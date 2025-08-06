@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, ArrowRight, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Play, ArrowRight, CheckCircle, AlertTriangle, Zap, Shield, Gauge, Wifi, DollarSign, Activity } from 'lucide-react';
 
 const Home: React.FC = () => {
   const challenges = [
@@ -16,10 +16,43 @@ const Home: React.FC = () => {
     'Real-time digital twin modeling'
   ];
 
+  const salientFeatures = [
+    {
+      icon: <Zap className="w-8 h-8" />,
+      title: 'Compact',
+      description: 'Power of advanced multiphase sensing in a compact package.'
+    },
+    {
+      icon: <Wifi className="w-8 h-8" />,
+      title: 'Remote Monitoring',
+      description: 'No need to visit well site in remote location or to access data center to view well performance. Our sensors are equipped with secure cloud connectivity and data can be accessed from anywhere in the world.'
+    },
+    {
+      icon: <Gauge className="w-8 h-8" />,
+      title: 'Min. Calibration Requirements',
+      description: 'Multiphase fraction sensing (WC & GVF) does not require PVT data & our advanced algorithms minimize the requirement of frequent recalibration.'
+    },
+    {
+      icon: <DollarSign className="w-8 h-8" />,
+      title: 'Cost Effective',
+      description: 'Get superior performance at a competitive price compared to our competitors.'
+    },
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: 'Non-Gamma',
+      description: 'Gamma rays were the solutions of the past. Our solution does not use any radioactive source such as gamma rays and yet gives accurate measurements.'
+    },
+    {
+      icon: <Activity className="w-8 h-8" />,
+      title: 'Non-intrusive (Full bore design)',
+      description: 'Microwave sensor is completely isolated from process fluid and does not come in physical contact with it. It eliminates the possibility of sensor fouling and wear effects ensuring longevity of the device.'
+    }
+  ];
+
   return (
-    <section id="home" className="relative">
+    <section id="home" className="relative dark:bg-gray-900">
       {/* Hero Section */}
-      <div className="relative min-h-screen bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 text-white overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 text-white overflow-hidden">
         {/* Background Image */}
         <div 
           className="absolute inset-0 opacity-30"
@@ -32,10 +65,10 @@ const Home: React.FC = () => {
         />
         
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-900/90 to-navy-800/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-900/90 to-navy-800/80 dark:from-gray-900/90 dark:to-gray-800/80" />
         
         {/* Content */}
-        <div className="relative z-10 pt-24 pb-16">
+        <div className="relative z-10 pt-32 pb-16">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
               {/* Left Content */}
@@ -75,35 +108,29 @@ const Home: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right Visual */}
+              {/* Right Visual - Technology Showcase */}
               <div className="relative">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
                   <div className="text-center mb-6">
-                    <h3 className="text-2xl font-semibold text-yellow-500 mb-2">Real-Time Flow Meter</h3>
-                    <p className="text-gray-300">Advanced DMOR Technology</p>
+                    <h3 className="text-2xl font-semibold text-yellow-500 mb-2">DMOR Technology</h3>
+                    <p className="text-gray-300">Advanced Multiphase Flow Measurement</p>
+                    <img 
+                      src="https://saherflow.com/wp-content/uploads/2023/01/Group-65-1.svg"
+                      alt="DMOR Technology"
+                      className="mx-auto mt-4 h-16"
+                    />
                   </div>
                   
-                  <svg width="100%" height="300" viewBox="0 0 400 300" className="mx-auto">
-                    {/* Device Frame */}
-                    <rect x="50" y="80" width="300" height="140" rx="12" fill="#1e293b" stroke="#fbbf24" strokeWidth="3"/>
-                    
-                    {/* Measurement Points */}
-                    <circle cx="120" cy="120" r="12" fill="#fbbf24" className="animate-pulse" />
-                    <circle cx="200" cy="120" r="12" fill="#10b981" className="animate-pulse" style={{animationDelay: '0.5s'}} />
-                    <circle cx="280" cy="120" r="12" fill="#3b82f6" className="animate-pulse" style={{animationDelay: '1s'}} />
-                    <circle cx="200" cy="180" r="12" fill="#f97316" className="animate-pulse" style={{animationDelay: '1.5s'}} />
-                    
-                    {/* Labels */}
-                    <text x="120" y="140" textAnchor="middle" fill="white" fontSize="12" fontWeight="600">GVF</text>
-                    <text x="200" y="140" textAnchor="middle" fill="white" fontSize="12" fontWeight="600">WC</text>
-                    <text x="280" y="140" textAnchor="middle" fill="white" fontSize="12" fontWeight="600">DMOR</text>
-                    <text x="200" y="200" textAnchor="middle" fill="white" fontSize="12" fontWeight="600">Digital Twin</text>
-                    
-                    {/* Flow Lines */}
-                    <path d="M20 150 Q200 150 380 150" stroke="#fbbf24" strokeWidth="2" fill="none" className="animate-pulse" />
-                  </svg>
+                  {/* Replace SVG with actual multiphase flow meter image */}
+                  <div className="mb-6">
+                    <img 
+                      src="https://saherflow.com/wp-content/uploads/2025/01/MPFM-SFS-3G-X-1536x1187.png"
+                      alt="Multiphase Flow Meter"
+                      className="w-full h-auto rounded-lg"
+                    />
+                  </div>
 
-                  <div className="grid grid-cols-2 gap-4 mt-8">
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="text-center p-4 bg-white/5 rounded-lg">
                       <div className="text-2xl font-bold text-yellow-500">99.9%</div>
                       <div className="text-sm text-gray-300">Accuracy</div>
@@ -120,21 +147,50 @@ const Home: React.FC = () => {
         </div>
       </div>
 
+      {/* Salient Features Section */}
+      <div className="py-24 bg-gray-50 dark:bg-gray-800">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-navy-900 dark:text-white mb-4">Salient Features</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Revolutionary technology that sets new standards in multiphase flow measurement
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {salientFeatures.map((feature, index) => (
+              <div 
+                key={index}
+                className="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 group"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg text-yellow-600 dark:text-yellow-400 group-hover:scale-110 transition-transform duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-navy-900 dark:text-white">{feature.title}</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Challenge & Solution Section */}
-      <div className="py-24 bg-gray-50">
+      <div className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Challenges */}
             <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <AlertTriangle className="text-red-500" size={32} />
-                <h2 className="text-4xl font-bold text-navy-900">The Challenge</h2>
+                <h2 className="text-4xl font-bold text-navy-900 dark:text-white">The Challenge</h2>
               </div>
               <ul className="space-y-4">
                 {challenges.map((challenge, index) => (
-                  <li key={index} className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm">
+                  <li key={index} className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm">
                     <AlertTriangle className="text-red-500 mt-1 flex-shrink-0" size={20} />
-                    <span className="text-lg text-gray-700">{challenge}</span>
+                    <span className="text-lg text-gray-700 dark:text-gray-300">{challenge}</span>
                   </li>
                 ))}
               </ul>
@@ -144,13 +200,13 @@ const Home: React.FC = () => {
             <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <CheckCircle className="text-green-500" size={32} />
-                <h2 className="text-4xl font-bold text-navy-900">Our Solution</h2>
+                <h2 className="text-4xl font-bold text-navy-900 dark:text-white">Our Solution</h2>
               </div>
               <ul className="space-y-4">
                 {solutions.map((solution, index) => (
-                  <li key={index} className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm">
+                  <li key={index} className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm">
                     <CheckCircle className="text-green-500 mt-1 flex-shrink-0" size={20} />
-                    <span className="text-lg text-gray-700">{solution}</span>
+                    <span className="text-lg text-gray-700 dark:text-gray-300">{solution}</span>
                   </li>
                 ))}
               </ul>
@@ -160,11 +216,11 @@ const Home: React.FC = () => {
       </div>
 
       {/* Featured Image Section */}
-      <div className="py-24 bg-white">
+      <div className="py-24 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-navy-900 mb-4">Advanced Flow Measurement Technology</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-navy-900 dark:text-white mb-4">Advanced Flow Measurement Technology</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Experience the future of multiphase flow measurement with our revolutionary DMOR technology
             </p>
           </div>
@@ -180,9 +236,9 @@ const Home: React.FC = () => {
             </div>
             
             {/* Floating Cards */}
-            <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-xl shadow-lg hidden lg:block">
-              <div className="text-2xl font-bold text-navy-900">PVT Independent</div>
-              <div className="text-gray-600">No Calibration Required</div>
+            <div className="absolute -bottom-8 -right-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hidden lg:block">
+              <div className="text-2xl font-bold text-navy-900 dark:text-white">PVT Independent</div>
+              <div className="text-gray-600 dark:text-gray-300">No Calibration Required</div>
             </div>
             
             <div className="absolute -top-8 -left-8 bg-yellow-500 text-navy-900 p-6 rounded-xl shadow-lg hidden lg:block">
@@ -194,7 +250,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="py-24 bg-navy-900 text-white">
+      <div className="py-24 bg-navy-900 dark:bg-gray-900 text-white">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Production?</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">

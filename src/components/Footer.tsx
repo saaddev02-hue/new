@@ -58,19 +58,18 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-navy-900 text-white">
+    <footer className="bg-navy-900 dark:bg-gray-900 text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 pt-16 pb-8">
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-navy-900">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
-                  <path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="2"/>
-                </svg>
-              </div>
+              <img 
+                src="https://saherflow.com/wp-content/uploads/2021/06/Artboard-1-copy100.svg"
+                alt="Saher Flow Solutions"
+                className="h-12 w-auto"
+              />
               <span className="text-2xl font-bold">Saher Flow Solutions</span>
             </div>
             
@@ -92,8 +91,8 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={20} className="text-yellow-500 flex-shrink-0" />
-                <a href="mailto:info@saherflow.com" className="text-gray-300 hover:text-white transition-colors">
-                  info@saherflow.com
+                <a href="mailto:contact@saherflow.com" className="text-gray-300 hover:text-white transition-colors">
+                  contact@saherflow.com
                 </a>
               </div>
             </div>
