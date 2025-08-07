@@ -55,7 +55,6 @@ const Home: React.FC = () => {
   }
 ];
 
-
   return (
     <section id="home" className="relative dark:bg-gray-900">
       {/* Hero Section */}
