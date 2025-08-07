@@ -150,14 +150,7 @@ const Home: React.FC = () => {
       expertise: ['Software Engineering', 'Machine Learning', 'Data Analytics'],
       achievements: 'M.S. Computer Science, 10+ Years Development'
     },
-    {
-      name: 'Fawwad Alshareef',
-      role: 'Product Manager',
-      image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555208/Fawwaz-Alshareef-Mechanical-Engineer_uqmind.jpg',
-      description: 'Managing product lifecycle and market strategy for our innovative flow measurement solutions.',
-      expertise: ['Product Strategy', 'Market Analysis', 'Customer Success'],
-      achievements: 'MBA, 7+ Years Product Management'
-    },
+  
     {
       name: 'Ammar Ayub',
       role: 'Mechanical Team Lead',
