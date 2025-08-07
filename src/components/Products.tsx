@@ -20,7 +20,7 @@ const Products: React.FC = () => {
     {
       name: '3-Phase Multi Phase Flow Meter (SF-331)',
       model: 'SF-331',
-      image: 'https://saherflow.com/wp-content/uploads/2025/01/MPFM-SFS-3G-X-1536x1187.png',
+      image: 'https://saherflow.com/wp-content/uploads/2025/02/High-Res-render-1536x1187.png',
       description: 'Multiphase mixture is very common in upstream sector of oil industry. Our 3-phase flow meter gives flow rates of all three fluids (oil, gas and water). Our patented microwave DMOR technology provides unparalleled accuracy to measure the multiphase fluid without any separation.',
       features: [
         'Simultaneous three-phase measurement',
