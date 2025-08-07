@@ -17,43 +17,44 @@ const Home: React.FC = () => {
   ];
 
   const salientFeatures = [
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: 'Compact',
-      description: 'Power of advanced multiphase sensing in a compact package.'
-      color: 'bg-blue-500'
-    },
-    {
-      icon: <Wifi className="w-8 h-8" />,
-      title: 'Remote Monitoring',
-      description: 'No need to visit well site in remote location or to access data center to view well performance. Our sensors are equipped with secure cloud connectivity and data can be accessed from anywhere in the world.'
-      color: 'bg-green-500'
-    },
-    {
-      icon: <Gauge className="w-8 h-8" />,
-      title: 'Min. Calibration Requirements',
-      description: 'Multiphase fraction sensing (WC & GVF) does not require PVT data & our advanced algorithms minimize the requirement of frequent recalibration.'
-      color: 'bg-purple-500'
-    },
-    {
-      icon: <DollarSign className="w-8 h-8" />,
-      title: 'Cost Effective',
-      description: 'Get superior performance at a competitive price compared to our competitors.'
-      color: 'bg-orange-500'
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: 'Non-Gamma',
-      description: 'Gamma rays were the solutions of the past. Our solution does not use any radioactive source such as gamma rays and yet gives accurate measurements.'
-      color: 'bg-red-500'
-    },
-    {
-      icon: <Activity className="w-8 h-8" />,
-      title: 'Non-intrusive (Full bore design)',
-      description: 'Microwave sensor is completely isolated from process fluid and does not come in physical contact with it. It eliminates the possibility of sensor fouling and wear effects ensuring longevity of the device.'
-      color: 'bg-indigo-500'
-    }
-  ];
+  {
+    icon: <Zap className="w-8 h-8" />,
+    title: 'Compact',
+    description: 'Power of advanced multiphase sensing in a compact package.',
+    color: 'bg-blue-500',
+  },
+  {
+    icon: <Wifi className="w-8 h-8" />,
+    title: 'Remote Monitoring',
+    description: 'No need to visit well site in remote location or to access data center to view well performance. Our sensors are equipped with secure cloud connectivity and data can be accessed from anywhere in the world.',
+    color: 'bg-green-500',
+  },
+  {
+    icon: <Gauge className="w-8 h-8" />,
+    title: 'Min. Calibration Requirements',
+    description: 'Multiphase fraction sensing (WC & GVF) does not require PVT data & our advanced algorithms minimize the requirement of frequent recalibration.',  // ← added comma here
+    color: 'bg-purple-500',
+  },
+  {
+    icon: <DollarSign className="w-8 h-8" />,
+    title: 'Cost Effective',
+    description: 'Get superior performance at a competitive price compared to our competitors.',
+    color: 'bg-orange-500',
+  },
+  {
+    icon: <Shield className="w-8 h-8" />,
+    title: 'Non-Gamma',
+    description: 'Gamma rays were the solutions of the past. Our solution does not use any radioactive source such as gamma rays and yet gives accurate measurements.',
+    color: 'bg-red-500',
+  },
+  {
+    icon: <Activity className="w-8 h-8" />,
+    title: 'Non-intrusive (Full bore design)',
+    description: 'Microwave sensor is completely isolated from process fluid and does not come in physical contact with it. It eliminates the possibility of sensor fouling and wear effects ensuring longevity of the device.',
+    color: 'bg-indigo-500',  // ← and here
+  }
+];
+
 
   return (
     <section id="home" className="relative dark:bg-gray-900">
