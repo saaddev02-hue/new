@@ -8,23 +8,33 @@ const Services: React.FC = () => {
       title: 'Flow Measurement Consultancy',
       description: 'Multiphase flow meters (MPFM) are the most advanced type of flow meters. Being expert in the toughest part, you can trust us with your conventional flow measurement needs.',
       details: 'Whether it\'s a laminar or turbulent flow, we are here to guide you the best measurement solution needed for your application. As an expert on multiphase flow measurements, we are well acquainted with various kinds of flow technologies including ultrasonics, magnetic resonance, differential pressure, Coriolis, vortex and clamp-on.',
-      image: 'https://saherflow.com/wp-content/uploads/2025/01/Flow-1024x466.png'
+      image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555207/Flow_p9rkop.png',
+      fallbackImage: 'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
       icon: <Microscope size={48} />,
       title: 'Imaging & Sensing Design',
       description: 'Our expertise in microwave and x-ray sensing enables us to offer customized solutions to a range of imaging and characterization applications.',
       details: 'Our in-depth expertise in the domain of microwave and x-ray sensing enables us to deliver customized solutions for a wide range of sensing needs. Our in-house microwave and x-ray test setups let us optimize the performance of the "made-to-order" systems.',
-      image: 'https://saherflow.com/wp-content/uploads/2025/01/x-ray.png'
+      image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555205/x-ray_bhg3rp.png',
+      fallbackImage: 'https://images.pexels.com/photos/3913025/pexels-photo-3913025.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
       icon: <Wrench size={48} />,
       title: 'Engineering & Product Design',
       description: 'Our in-house design team of mechanical, electrical, RF, software and product engineers can provide best-in-class services for all of your design needs.',
       details: 'Are you a company looking for engineering services, related to designing a new part, replacing the older one or completely revamping the whole facility? Saher offers an integrated engineering package which will be fully aligned with your digital and IoT strategies.',
-      image: 'https://saherflow.com/wp-content/uploads/2025/01/Flow-1024x466.png'
+      image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555205/Saher-Flow-Meter-in-DNV_gmjfnr.jpg',
+      fallbackImage: 'https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=800'
     }
   ];
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, fallbackSrc: string) => {
+    const target = e.target as HTMLImageElement;
+    if (target.src !== fallbackSrc) {
+      target.src = fallbackSrc;
+    }
+  };
 
   return (
     <section id="services" className="py-24 dark:bg-gray-900">
@@ -106,7 +116,10 @@ const Services: React.FC = () => {
                     {service.details}
                   </p>
 
-                  <button className="bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-8 py-4 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200">
+                  <button 
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-8 py-4 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200"
+                  >
                     Request Consultation
                   </button>
                 </div>
@@ -118,6 +131,7 @@ const Services: React.FC = () => {
                         src={service.image}
                         alt={service.title}
                         className="w-full h-full object-cover"
+                        onError={(e) => handleImageError(e, service.fallbackImage)}
                       />
                     </div>
                   </div>

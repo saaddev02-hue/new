@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, Clock, Globe } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ const Contact: React.FC = () => {
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Get in touch with our team of experts
+            Get in touch with our team of experts in Thuwal, Saudi Arabia
           </p>
         </div>
       </div>
@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
 
             {/* Contact Information */}
             <div className="space-y-8">
-              {/* Office Info */}
+              {/* Office Info - Updated for Saudi Arabia */}
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
                 <h3 className="text-2xl font-bold text-navy-900 dark:text-white mb-6">Get in Touch</h3>
                 
@@ -140,11 +140,11 @@ const Contact: React.FC = () => {
                       <MapPin className="text-yellow-600 dark:text-yellow-400" size={24} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Office Location</h4>
+                      <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Headquarters</h4>
                       <p className="text-gray-600 dark:text-gray-300">
-                        1234 Energy Boulevard<br />
-                        Houston, TX 77002<br />
-                        United States
+                        King Abdullah University of Science and Technology (KAUST)<br />
+                        Building 1, Office 2204<br />
+                        Thuwal 23955, Saudi Arabia
                       </p>
                     </div>
                   </div>
@@ -155,8 +155,8 @@ const Contact: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Phone</h4>
-                      <p className="text-gray-600 dark:text-gray-300">+1 (234) 567-8900</p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Mon-Fri 8:00 AM - 6:00 PM CST</p>
+                      <p className="text-gray-600 dark:text-gray-300">+966 12 808 0900</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Sun-Thu 8:00 AM - 5:00 PM AST</p>
                     </div>
                   </div>
 
@@ -178,37 +178,53 @@ const Contact: React.FC = () => {
                     <div>
                       <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Business Hours</h4>
                       <p className="text-gray-600 dark:text-gray-300">
-                        Monday - Friday: 8:00 AM - 6:00 PM CST<br />
-                        Saturday - Sunday: Emergency support only
+                        Sunday - Thursday: 8:00 AM - 5:00 PM AST<br />
+                        Friday - Saturday: Emergency support only
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                      <Globe className="text-indigo-600 dark:text-indigo-400" size={24} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Global Operations</h4>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        Serving 15+ countries across Middle East, Asia, and Europe<br />
+                        Local support and field services available
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Interactive Map */}
+              {/* Interactive Map - Updated for Saudi Arabia */}
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
                 <div className="aspect-[4/3]">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.2649087!2d-95.3698028!3d29.7604267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf48b1aa5cb3%3A0x4f1c4c1c4c1c4c1c!2sHouston%2C%20TX%2C%20USA!5e0!3m2!1sen!2sus!4v1234567890123"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3710.755308536956!2d39.10441331495915!3d22.30868398532059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c204b74c5c3db3%3A0x3d1c8b0a87d9ba2b!2sKing%20Abdullah%20University%20of%20Science%20and%20Technology!5e0!3m2!1sen!2ssa!4v1735123456789!5m2!1sen!2ssa"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Office Location"
+                    title="Office Location - KAUST, Thuwal"
                   />
                 </div>
               </div>
 
-              {/* Emergency Contact */}
+              {/* Emergency Contact - Updated for Saudi Arabia */}
               <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-6">
                 <h3 className="text-lg font-bold text-red-800 dark:text-red-400 mb-2">Emergency Support</h3>
                 <p className="text-red-700 dark:text-red-300 mb-3">
                   For urgent technical support outside business hours:
                 </p>
-                <p className="font-semibold text-red-800 dark:text-red-400">+1 (234) 567-HELP</p>
+                <p className="font-semibold text-red-800 dark:text-red-400">+966 55 123 4567</p>
+                <p className="text-sm text-red-600 dark:text-red-400 mt-2">
+                  Available 24/7 for critical field operations
+                </p>
               </div>
             </div>
           </div>

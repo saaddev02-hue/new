@@ -11,7 +11,8 @@ import {
   FileText,
   Users,
   Settings,
-  MessageCircle
+  MessageCircle,
+  CheckCircle
 } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -32,17 +33,17 @@ const Footer: React.FC = () => {
 
   const quickLinks = [
     { name: 'About Us', href: '#home' },
-    { name: 'Technology', href: '#home' },
+    { name: 'DMOR Technology', href: '#home' },
     { name: 'Case Studies', href: '#news' },
-    { name: 'Support', href: '#contact' },
+    { name: 'Support Center', href: '#contact' },
     { name: 'Documentation', href: '#products' },
-    { name: 'Training', href: '#services' },
+    { name: 'Training Programs', href: '#services' },
   ];
 
   const services = [
-    { name: 'Water Cut Meters', href: '#services' },
-    { name: 'Multiphase Flow Meters', href: '#services' },
-    { name: 'Downhole Solutions', href: '#services' },
+    { name: 'Water Cut Meters', href: '#products' },
+    { name: 'Multiphase Flow Meters', href: '#products' },
+    { name: 'Skid-Mounted Solutions', href: '#products' },
     { name: 'Digital Twin Services', href: '#services' },
     { name: 'Calibration Services', href: '#services' },
     { name: 'Technical Support', href: '#contact' },
@@ -51,7 +52,7 @@ const Footer: React.FC = () => {
   const resources = [
     { name: 'Product Brochures', href: '#products' },
     { name: 'Technical Papers', href: '#news' },
-    { name: 'Webinars', href: '#news' },
+    { name: 'Webinars & Events', href: '#news' },
     { name: 'Industry Insights', href: '#news' },
     { name: 'White Papers', href: '#news' },
     { name: 'FAQs', href: '#contact' },
@@ -61,16 +62,15 @@ const Footer: React.FC = () => {
     <footer className="bg-navy-900 dark:bg-gray-900 text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 pt-16 pb-8">
-        <div className="grid lg:grid-cols-5 gap-12">
-          {/* Company Info */}
-          <div className="lg:col-span-2 space-y-6">
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Company Info - Takes 4 columns */}
+          <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center space-x-3 mb-6">
               <img 
                 src="https://saherflow.com/wp-content/uploads/2021/06/Artboard-1-copy100.svg"
                 alt="Saher Flow Solutions"
                 className="h-12 w-auto"
               />
-              <span className="text-2xl font-bold">Saher Flow Solutions</span>
             </div>
             
             <p className="text-gray-300 leading-relaxed text-lg">
@@ -79,21 +79,33 @@ const Footer: React.FC = () => {
             </p>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <MapPin size={20} className="text-yellow-500 flex-shrink-0" />
-                <span className="text-gray-300">1234 Energy Boulevard, Houston, TX 77002</span>
+              <div className="flex items-start gap-3">
+                <MapPin size={20} className="text-yellow-500 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="text-gray-300 font-medium">Headquarters</p>
+                  <p className="text-gray-400 text-sm">
+                    King Abdullah University of Science and Technology (KAUST)<br />
+                    Building 1, Office 2204, Thuwal 23955, Saudi Arabia
+                  </p>
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={20} className="text-yellow-500 flex-shrink-0" />
-                <a href="tel:+12345678900" className="text-gray-300 hover:text-white transition-colors">
-                  +1 (234) 567-8900
-                </a>
+                <div>
+                  <a href="tel:+966128080900" className="text-gray-300 hover:text-white transition-colors">
+                    +966 12 808 0900
+                  </a>
+                  <p className="text-gray-400 text-sm">Sun-Thu 8:00 AM - 5:00 PM AST</p>
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={20} className="text-yellow-500 flex-shrink-0" />
-                <a href="mailto:contact@saherflow.com" className="text-gray-300 hover:text-white transition-colors">
-                  contact@saherflow.com
-                </a>
+                <div>
+                  <a href="mailto:contact@saherflow.com" className="text-gray-300 hover:text-white transition-colors">
+                    contact@saherflow.com
+                  </a>
+                  <p className="text-gray-400 text-sm">Response within 24 hours</p>
+                </div>
               </div>
             </div>
 
@@ -126,9 +138,9 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-bold text-yellow-500 flex items-center gap-2">
+          {/* Quick Links - 2 columns */}
+          <div className="lg:col-span-2 space-y-6">
+            <h4 className="text-xl font-bold text-yellow-500 flex items-center gap-2 mb-6">
               <Settings size={20} />
               Quick Links
             </h4>
@@ -137,6 +149,10 @@ const Footer: React.FC = () => {
                 <li key={index}>
                   <a 
                     href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
                   >
                     <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -147,9 +163,9 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Services */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-bold text-yellow-500 flex items-center gap-2">
+          {/* Services - 2 columns */}
+          <div className="lg:col-span-2 space-y-6">
+            <h4 className="text-xl font-bold text-yellow-500 flex items-center gap-2 mb-6">
               <Settings size={20} />
               Services
             </h4>
@@ -158,6 +174,10 @@ const Footer: React.FC = () => {
                 <li key={index}>
                   <a 
                     href={service.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.querySelector(service.href)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
                   >
                     <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -168,37 +188,40 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Newsletter & Resources */}
-          <div className="space-y-8">
-            {/* Resources */}
-            <div className="space-y-6">
-              <h4 className="text-xl font-bold text-yellow-500 flex items-center gap-2">
-                <FileText size={20} />
-                Resources
-              </h4>
-              <ul className="space-y-3">
-                {resources.map((resource, index) => (
-                  <li key={index}>
-                    <a 
-                      href={resource.href}
-                      className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
-                    >
-                      <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                      {resource.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Resources - 2 columns */}
+          <div className="lg:col-span-2 space-y-6">
+            <h4 className="text-xl font-bold text-yellow-500 flex items-center gap-2 mb-6">
+              <FileText size={20} />
+              Resources
+            </h4>
+            <ul className="space-y-3">
+              {resources.map((resource, index) => (
+                <li key={index}>
+                  <a 
+                    href={resource.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.querySelector(resource.href)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
+                  >
+                    <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {resource.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Newsletter */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+          {/* Stay Connected Newsletter - 2 columns */}
+          <div className="lg:col-span-2">
+            <div className="bg-gradient-to-br from-navy-800/50 to-navy-700/30 dark:from-gray-700/50 dark:to-gray-600/30 backdrop-blur-sm rounded-2xl p-6 border border-white/10 dark:border-gray-600/20 h-full">
               <h4 className="text-xl font-bold text-yellow-500 mb-4 flex items-center gap-2">
                 <MessageCircle size={20} />
                 Stay Connected
               </h4>
-              <p className="text-gray-300 mb-6 text-sm">
-                Get industry insights, product updates, and technical resources delivered to your inbox.
+              <p className="text-gray-300 dark:text-gray-400 mb-6 leading-relaxed text-sm">
+                Get industry insights, product updates, and technical resources delivered to your inbox monthly.
               </p>
               
               <form onSubmit={handleNewsletterSubmit} className="space-y-4">
@@ -209,15 +232,15 @@ const Footer: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                     required
-                    className="w-full px-4 py-3 pr-12 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all duration-200"
+                    className="w-full px-4 py-3 pr-12 bg-white/20 dark:bg-gray-800/50 border border-white/30 dark:border-gray-600/30 rounded-xl text-white dark:text-gray-200 placeholder-gray-300 dark:placeholder-gray-400 focus:bg-white/30 dark:focus:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500/50 transition-all duration-300 text-sm"
                   />
-                  <Mail size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <Mail size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
                 </div>
                 
                 <button
                   type="submit"
                   disabled={newsletterStatus === 'loading'}
-                  className="w-full bg-yellow-500 text-navy-900 py-3 px-4 rounded-lg font-semibold hover:bg-yellow-400 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-navy-900 py-3 px-4 rounded-xl font-bold text-sm hover:from-yellow-400 hover:to-yellow-300 hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
                 >
                   {newsletterStatus === 'loading' ? (
                     <>
@@ -227,17 +250,31 @@ const Footer: React.FC = () => {
                   ) : (
                     <>
                       <Send size={16} />
-                      Subscribe
+                      Subscribe Now
                     </>
                   )}
                 </button>
                 
                 {newsletterStatus === 'success' && (
-                  <p className="text-green-400 text-sm text-center">
-                    ✓ Thank you for subscribing!
-                  </p>
+                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-3 text-center">
+                    <div className="flex items-center justify-center gap-2">
+                      <CheckCircle size={16} className="text-green-400" />
+                      <p className="text-green-400 font-medium text-sm">
+                        Successfully subscribed!
+                      </p>
+                    </div>
+                  </div>
                 )}
               </form>
+
+              {/* Trust Indicators */}
+              <div className="mt-6 pt-4 border-t border-white/10">
+                <div className="flex items-center justify-between text-xs text-gray-400">
+                  <span>🔒 Privacy Protected</span>
+                  <span>📧 No Spam</span>
+                  <span>🎯 Relevant Content</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -249,7 +286,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-center md:text-left">
               <p>&copy; 2024 Saher Flow Solutions. All rights reserved.</p>
-              <p className="text-sm mt-1">Innovating flow measurement technology for the energy industry</p>
+              <p className="text-sm mt-1">Innovating flow measurement technology from Saudi Arabia for the world</p>
             </div>
             
             <div className="flex flex-wrap gap-6 text-sm text-gray-400">
@@ -260,26 +297,45 @@ const Footer: React.FC = () => {
             </div>
           </div>
           
-          {/* Certifications */}
+          {/* Certifications and Location */}
           <div className="mt-8 pt-8 border-t border-white/10">
-            <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 text-sm text-gray-400">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-white/20 rounded border border-white/30 flex items-center justify-center">
-                  <span className="text-xs font-bold">ISO</span>
+            <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+              {/* Certifications */}
+              <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 text-sm text-gray-400">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-white/20 rounded border border-white/30 flex items-center justify-center">
+                    <span className="text-xs font-bold">ISO</span>
+                  </div>
+                  <span>ISO 9001:2015</span>
                 </div>
-                <span>ISO 9001:2015 Certified</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-white/20 rounded border border-white/30 flex items-center justify-center">
+                    <span className="text-xs font-bold">API</span>
+                  </div>
+                  <span>API Approved</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-white/20 rounded border border-white/30 flex items-center justify-center">
+                    <span className="text-xs font-bold">CE</span>
+                  </div>
+                  <span>CE Compliant</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-green-600/30 rounded border border-green-500/30 flex items-center justify-center">
+                    <span className="text-xs font-bold text-green-400">KSA</span>
+                  </div>
+                  <span className="text-green-400">Made in Saudi Arabia</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-white/20 rounded border border-white/30 flex items-center justify-center">
-                  <span className="text-xs font-bold">API</span>
+
+              {/* Vision 2030 Badge */}
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 bg-green-600/20 border border-green-500/30 rounded-lg px-3 py-2">
+                  <div className="w-6 h-6 bg-green-600 rounded flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">2030</span>
+                  </div>
+                  <span className="text-green-400 font-medium text-sm">Supporting Vision 2030</span>
                 </div>
-                <span>API Approved</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-white/20 rounded border border-white/30 flex items-center justify-center">
-                  <span className="text-xs font-bold">CE</span>
-                </div>
-                <span>CE Compliant</span>
               </div>
             </div>
           </div>

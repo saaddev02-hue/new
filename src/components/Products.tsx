@@ -1,12 +1,15 @@
-import React from 'react';
-import { FileText, Download, Gauge, Droplets, Settings } from 'lucide-react';
+import React, { useState } from 'react';
+import { FileText, Download, Gauge, Droplets, Settings, X } from 'lucide-react';
 
 const Products: React.FC = () => {
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+
   const products = [
     {
       name: '3 Phase Wellhead Water-cut Meter (SF-321)',
       model: 'SF-321',
-      image: 'https://saherflow.com/wp-content/uploads/2025/02/High-Res-render-1536x1187.png',
+      image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555754/High-Res-render-min_oqcyvr.png',
+      fallbackImage: 'https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=800',
       description: 'Produced water is one of the biggest challenges of production team in any oil field. Mature fields start producing more and more water with each passing day. It is crucial to measure the amount of produced water in the production stream in order to schedule and effectively manage the well intervention tasks.',
       features: [
         'Non-radioactive, non-intrusive measurement',
@@ -20,7 +23,8 @@ const Products: React.FC = () => {
     {
       name: '3-Phase Multi Phase Flow Meter (SF-331)',
       model: 'SF-331',
-      image: 'https://saherflow.com/wp-content/uploads/2025/02/High-Res-render-1536x1187.png',
+      image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555854/MPFM-SFS-3G-X-1536x1187_qhmxbs.png',
+      fallbackImage: 'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800',
       description: 'Multiphase mixture is very common in upstream sector of oil industry. Our 3-phase flow meter gives flow rates of all three fluids (oil, gas and water). Our patented microwave DMOR technology provides unparalleled accuracy to measure the multiphase fluid without any separation.',
       features: [
         'Simultaneous three-phase measurement',
@@ -34,7 +38,8 @@ const Products: React.FC = () => {
     {
       name: 'Skid Mounted MPFM (SK-100)',
       model: 'SK-100',
-      image: 'https://saherflow.com/wp-content/uploads/2025/02/MPFM-with-SKID-1536x1187.png',
+      image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555852/MPFM-with-SKID-1536x1187_sjrvdp.png',
+      fallbackImage: 'https://images.pexels.com/photos/3913025/pexels-photo-3913025.jpeg?auto=compress&cs=tinysrgb&w=800',
       description: 'SK-100 is a compact and portable skid integrating Saher\'s patented multiphase meter (MPM). The skid is equipped with a high-pressure sampling valve and ATEX/IECEx certified readout electronics box with plug-and-play setup.',
       features: [
         'Portable and compact design',
@@ -47,6 +52,13 @@ const Products: React.FC = () => {
       icon: <Settings className="w-8 h-8" />
     }
   ];
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, fallbackSrc: string) => {
+    const target = e.target as HTMLImageElement;
+    if (target.src !== fallbackSrc) {
+      target.src = fallbackSrc;
+    }
+  };
 
   return (
     <section id="products" className="py-24 dark:bg-gray-900">
@@ -140,10 +152,16 @@ const Products: React.FC = () => {
                   </div>
 
                   <div className="flex gap-3">
-                    <button className="bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-8 py-4 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200">
+                    <button 
+                      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-8 py-4 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200"
+                    >
                       Get Quote
                     </button>
-                    <button className="flex items-center justify-center gap-2 px-6 py-4 border-2 border-navy-900 dark:border-yellow-500 text-navy-900 dark:text-yellow-500 rounded-lg font-semibold hover:bg-navy-900 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-navy-900 transition-all duration-200">
+                    <button 
+                      onClick={() => setSelectedProduct(product)}
+                      className="flex items-center justify-center gap-2 px-6 py-4 border-2 border-navy-900 dark:border-yellow-500 text-navy-900 dark:text-yellow-500 rounded-lg font-semibold hover:bg-navy-900 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-navy-900 transition-all duration-200"
+                    >
                       <FileText size={16} />
                       Specs
                     </button>
@@ -157,6 +175,7 @@ const Products: React.FC = () => {
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-contain p-4"
+                        onError={(e) => handleImageError(e, product.fallbackImage)}
                       />
                     </div>
                   </div>
@@ -171,12 +190,79 @@ const Products: React.FC = () => {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Our engineering team can develop tailored solutions for your specific measurement challenges
             </p>
-            <button className="bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors duration-200">
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors duration-200"
+            >
               Discuss Custom Requirements
             </button>
           </div>
         </div>
       </div>
+
+      {/* Product Specs Modal */}
+      {selectedProduct && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-8">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h2 className="text-3xl font-bold text-navy-900 dark:text-white">{selectedProduct.name}</h2>
+                  <p className="text-xl text-yellow-600 dark:text-yellow-400 font-semibold">{selectedProduct.model}</p>
+                </div>
+                <button 
+                  onClick={() => setSelectedProduct(null)}
+                  className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <img 
+                    src={selectedProduct.image}
+                    alt={selectedProduct.name}
+                    className="w-full h-auto rounded-lg object-contain bg-gray-50 dark:bg-gray-700 p-4"
+                    onError={(e) => handleImageError(e, selectedProduct.fallbackImage)}
+                  />
+                </div>
+                
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-semibold text-navy-900 dark:text-white mb-3">Description</h3>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{selectedProduct.description}</p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-semibold text-navy-900 dark:text-white mb-3">Key Features</h3>
+                    <ul className="space-y-2">
+                      {selectedProduct.features.map((feature: string, index: number) => (
+                        <li key={index} className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full" />
+                          <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="pt-4">
+                    <button 
+                      onClick={() => {
+                        setSelectedProduct(null);
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="w-full bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-3 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200"
+                    >
+                      Request Quote
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
