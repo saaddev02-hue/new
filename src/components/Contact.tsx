@@ -190,7 +190,7 @@ const Contact: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
                 <div className="aspect-[4/3]">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.2649087!2d-95.3698028!3d29.7604267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf48b1aa5cb3%3A0x4f1c4c1c4c1c4c1c!2sHouston%2C%20TX%2C%20USA!5e0!3m2!1sen!2sus!4v1234567890123"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.2649087!2d-95.3698028!3d29.7604267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf48b1aa5cb3%3A0x4f1c4c1c4c1c4c1c!2s1234%20Energy%20Boulevard%2C%20Houston%2C%20TX%2077002%2C%20USA!5e0!3m2!1sen!2sus!4v1234567890123"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}

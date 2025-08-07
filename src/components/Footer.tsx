@@ -192,12 +192,12 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Newsletter */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-              <h4 className="text-xl font-bold text-yellow-500 mb-4 flex items-center gap-2">
+            <div className="bg-gradient-to-br from-navy-800/50 to-navy-700/50 dark:from-gray-700/50 dark:to-gray-600/50 backdrop-blur-sm rounded-2xl p-8 border border-white/10 dark:border-gray-600/20">
+              <h4 className="text-2xl font-bold text-yellow-500 mb-4 flex items-center gap-3">
                 <MessageCircle size={20} />
                 Stay Connected
               </h4>
-              <p className="text-gray-300 mb-6 text-sm">
+              <p className="text-gray-300 dark:text-gray-400 mb-6 leading-relaxed">
                 Get industry insights, product updates, and technical resources delivered to your inbox.
               </p>
               
@@ -209,32 +209,35 @@ const Footer: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                     required
-                    className="w-full px-4 py-3 pr-12 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all duration-200"
+                    className="w-full px-4 py-4 pr-12 bg-white/20 dark:bg-gray-800/50 border border-white/30 dark:border-gray-600/30 rounded-xl text-white dark:text-gray-200 placeholder-gray-300 dark:placeholder-gray-400 focus:bg-white/30 dark:focus:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500/50 transition-all duration-300"
                   />
-                  <Mail size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <Mail size={18} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
                 </div>
                 
                 <button
                   type="submit"
                   disabled={newsletterStatus === 'loading'}
-                  className="w-full bg-yellow-500 text-navy-900 py-3 px-4 rounded-lg font-semibold hover:bg-yellow-400 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-navy-900 py-4 px-6 rounded-xl font-bold text-lg hover:from-yellow-400 hover:to-yellow-300 hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
                 >
                   {newsletterStatus === 'loading' ? (
                     <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-navy-900 border-t-transparent" />
+                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-navy-900 border-t-transparent" />
                       Subscribing...
                     </>
                   ) : (
                     <>
-                      <Send size={16} />
+                      <Send size={18} />
                       Subscribe
                     </>
                   )}
                 </button>
                 
                 {newsletterStatus === 'success' && (
-                  <p className="text-green-400 text-sm text-center">
+                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-3 text-center">
+                    <p className="text-green-400 font-medium">
                     ✓ Thank you for subscribing!
+                    </p>
+                  </div>
                   </p>
                 )}
               </form>

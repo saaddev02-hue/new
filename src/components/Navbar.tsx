@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
         </div>
       )}
 
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      <nav className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
         showNotification ? 'top-10' : 'top-0'
       } ${
         isScrolled 
@@ -73,13 +73,12 @@ const Navbar: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center">
               <img 
                 src="https://saherflow.com/wp-content/uploads/2021/06/Artboard-1-copy100.svg"
                 alt="Saher Flow Solutions"
-                className="h-10 w-auto"
+                className="h-12 w-auto filter dark:brightness-0 dark:invert"
               />
-              <span className="text-xl font-bold text-navy-900 dark:text-white">Saher Flow Solutions</span>
             </div>
 
             {/* Desktop Navigation */}

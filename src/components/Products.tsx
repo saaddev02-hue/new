@@ -2,6 +2,8 @@ import React from 'react';
 import { FileText, Download, Gauge, Droplets, Settings } from 'lucide-react';
 
 const Products: React.FC = () => {
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+
   const products = [
     {
       name: '3 Phase Wellhead Water-cut Meter (SF-321)',
@@ -140,10 +142,16 @@ const Products: React.FC = () => {
                   </div>
 
                   <div className="flex gap-3">
-                    <button className="bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-8 py-4 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200">
+                    <button 
+                      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-8 py-4 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200"
+                    >
                       Get Quote
                     </button>
-                    <button className="flex items-center justify-center gap-2 px-6 py-4 border-2 border-navy-900 dark:border-yellow-500 text-navy-900 dark:text-yellow-500 rounded-lg font-semibold hover:bg-navy-900 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-navy-900 transition-all duration-200">
+                    <button 
+                      onClick={() => setSelectedProduct(product)}
+                      className="flex items-center justify-center gap-2 px-6 py-4 border-2 border-navy-900 dark:border-yellow-500 text-navy-900 dark:text-yellow-500 rounded-lg font-semibold hover:bg-navy-900 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-navy-900 transition-all duration-200"
+                    >
                       <FileText size={16} />
                       Specs
                     </button>
@@ -171,12 +179,78 @@ const Products: React.FC = () => {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Our engineering team can develop tailored solutions for your specific measurement challenges
             </p>
-            <button className="bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors duration-200">
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors duration-200"
+            >
               Discuss Custom Requirements
             </button>
           </div>
         </div>
       </div>
+
+      {/* Product Specs Modal */}
+      {selectedProduct && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-8">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h2 className="text-3xl font-bold text-navy-900 dark:text-white">{selectedProduct.name}</h2>
+                  <p className="text-xl text-yellow-600 dark:text-yellow-400 font-semibold">{selectedProduct.model}</p>
+                </div>
+                <button 
+                  onClick={() => setSelectedProduct(null)}
+                  className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <img 
+                    src={selectedProduct.image}
+                    alt={selectedProduct.name}
+                    className="w-full h-auto rounded-lg object-contain bg-gray-50 dark:bg-gray-700 p-4"
+                  />
+                </div>
+                
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-semibold text-navy-900 dark:text-white mb-3">Description</h3>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{selectedProduct.description}</p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-semibold text-navy-900 dark:text-white mb-3">Key Features</h3>
+                    <ul className="space-y-2">
+                      {selectedProduct.features.map((feature: string, index: number) => (
+                        <li key={index} className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full" />
+                          <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="pt-4">
+                    <button 
+                      onClick={() => {
+                        setSelectedProduct(null);
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="w-full bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-3 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200"
+                    >
+                      Request Quote
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

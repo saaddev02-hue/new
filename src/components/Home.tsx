@@ -21,31 +21,37 @@ const Home: React.FC = () => {
       icon: <Zap className="w-8 h-8" />,
       title: 'Compact',
       description: 'Power of advanced multiphase sensing in a compact package.'
+      color: 'bg-blue-500'
     },
     {
       icon: <Wifi className="w-8 h-8" />,
       title: 'Remote Monitoring',
       description: 'No need to visit well site in remote location or to access data center to view well performance. Our sensors are equipped with secure cloud connectivity and data can be accessed from anywhere in the world.'
+      color: 'bg-green-500'
     },
     {
       icon: <Gauge className="w-8 h-8" />,
       title: 'Min. Calibration Requirements',
       description: 'Multiphase fraction sensing (WC & GVF) does not require PVT data & our advanced algorithms minimize the requirement of frequent recalibration.'
+      color: 'bg-purple-500'
     },
     {
       icon: <DollarSign className="w-8 h-8" />,
       title: 'Cost Effective',
       description: 'Get superior performance at a competitive price compared to our competitors.'
+      color: 'bg-orange-500'
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: 'Non-Gamma',
       description: 'Gamma rays were the solutions of the past. Our solution does not use any radioactive source such as gamma rays and yet gives accurate measurements.'
+      color: 'bg-red-500'
     },
     {
       icon: <Activity className="w-8 h-8" />,
       title: 'Non-intrusive (Full bore design)',
       description: 'Microwave sensor is completely isolated from process fluid and does not come in physical contact with it. It eliminates the possibility of sensor fouling and wear effects ensuring longevity of the device.'
+      color: 'bg-indigo-500'
     }
   ];
 
@@ -83,7 +89,10 @@ const Home: React.FC = () => {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-all duration-300 hover:transform hover:scale-105 shadow-lg">
+                  <button 
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-all duration-300 hover:transform hover:scale-105 shadow-lg"
+                  >
                     Request Demo
                   </button>
                   <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-navy-900 transition-all duration-300 flex items-center justify-center gap-2">
@@ -114,11 +123,13 @@ const Home: React.FC = () => {
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-semibold text-yellow-500 mb-2">DMOR Technology</h3>
                     <p className="text-gray-300">Advanced Multiphase Flow Measurement</p>
-                    <img 
-                      src="https://saherflow.com/wp-content/uploads/2023/01/Group-65-1.svg"
-                      alt="DMOR Technology"
-                      className="mx-auto mt-4 h-16"
-                    />
+                    <div className="mx-auto mt-4 flex justify-center">
+                      <img 
+                        src="https://saherflow.com/wp-content/uploads/2023/01/Group-65-1.svg"
+                        alt="DMOR Technology"
+                        className="h-20 w-auto"
+                      />
+                    </div>
                   </div>
                   
                   {/* Replace SVG with actual multiphase flow meter image */}
@@ -126,7 +137,7 @@ const Home: React.FC = () => {
                     <img 
                       src="https://saherflow.com/wp-content/uploads/2025/01/MPFM-SFS-3G-X-1536x1187.png"
                       alt="Multiphase Flow Meter"
-                      className="w-full h-auto rounded-lg"
+                      className="w-full h-auto rounded-lg object-contain"
                     />
                   </div>
 
@@ -164,7 +175,7 @@ const Home: React.FC = () => {
                 className="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 group"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg text-yellow-600 dark:text-yellow-400 group-hover:scale-110 transition-transform duration-300">
+                  <div className={`p-3 ${feature.color} rounded-lg text-white group-hover:scale-110 transition-transform duration-300`}>
                     {feature.icon}
                   </div>
                   <h3 className="text-xl font-bold text-navy-900 dark:text-white">{feature.title}</h3>
@@ -230,7 +241,7 @@ const Home: React.FC = () => {
               <img 
                 src="https://saherflow.com/wp-content/uploads/2025/01/combined-enhanced_image-1024x591.png"
                 alt="Saher Flow Advanced Technology"
-                className="w-full h-auto transform hover:scale-105 transition-transform duration-700"
+                className="w-full h-auto transform hover:scale-105 transition-transform duration-700 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-900/20 to-transparent" />
             </div>
@@ -257,12 +268,89 @@ const Home: React.FC = () => {
             Join industry leaders who trust Saher Flow Solutions for their critical flow measurement needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-all duration-300 hover:transform hover:scale-105">
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-all duration-300 hover:transform hover:scale-105"
+            >
               Schedule Demo
             </button>
             <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-navy-900 transition-all duration-300 flex items-center justify-center gap-2">
               Learn More <ArrowRight size={20} />
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Team Members Section */}
+      <div className="py-24 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-navy-900 dark:text-white mb-4">Meet Our Team</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Industry experts driving innovation in flow measurement technology
+            </p>
+          </div>
+
+          <div className="overflow-x-auto pb-6">
+            <div className="flex gap-8 min-w-max">
+              {[
+                {
+                  name: 'Prof. Atif Shamim',
+                  role: 'Founder & CEO',
+                  image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  description: 'Distinguished Professor of Electrical and Computer Engineering at KAUST'
+                },
+                {
+                  name: 'Dr. Sarah Ahmed',
+                  role: 'CTO',
+                  image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  description: 'Expert in microwave sensing and DMOR technology development'
+                },
+                {
+                  name: 'Mohammed Al-Rashid',
+                  role: 'VP Engineering',
+                  image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  description: 'Leading multiphase flow measurement innovations'
+                },
+                {
+                  name: 'Dr. Emily Chen',
+                  role: 'Head of R&D',
+                  image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  description: 'Pioneering AI-based sensor technologies'
+                },
+                {
+                  name: 'Ahmed Hassan',
+                  role: 'Field Operations Manager',
+                  image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  description: 'Ensuring successful field deployments across the GCC'
+                },
+                {
+                  name: 'Dr. Lisa Rodriguez',
+                  role: 'Data Analytics Lead',
+                  image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  description: 'Developing digital twin modeling solutions'
+                }
+              ].map((member, index) => (
+                <div 
+                  key={index}
+                  className="flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 group"
+                >
+                  <div className="p-8 text-center">
+                    <div className="relative mb-6">
+                      <img 
+                        src={member.image}
+                        alt={member.name}
+                        className="w-32 h-32 rounded-full mx-auto object-cover shadow-lg group-hover:shadow-2xl transition-shadow duration-300"
+                      />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-t from-navy-900/20 to-transparent" />
+                    </div>
+                    <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-2">{member.name}</h3>
+                    <p className="text-yellow-600 dark:text-yellow-400 font-semibold mb-3">{member.role}</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{member.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
