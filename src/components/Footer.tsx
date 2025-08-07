@@ -237,9 +237,7 @@ const Footer: React.FC = () => {
                     <p className="text-green-400 font-medium">
                     ✓ Thank you for subscribing!
                     </p>
-                  </div>
-                  </p>
-                )}
+                  </div>                )}
               </form>
             </div>
           </div>
