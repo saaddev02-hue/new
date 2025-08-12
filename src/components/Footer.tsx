@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
     <footer className="bg-navy-900 dark:bg-gray-900 text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 pt-16 pb-8">
-        <div className="grid lg:grid-cols-12 gap-12">
+        <div className="grid lg:grid-cols-10 gap-12">
           {/* Company Info - Takes 4 columns */}
           <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center space-x-3 mb-6">
@@ -163,66 +163,28 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Services - 2 columns */}
-          <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-xl font-bold text-yellow-500 flex items-center gap-2 mb-6">
-              <Settings size={20} />
-              Services
-            </h4>
-            <ul className="space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
-                  <a 
-                    href={service.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.querySelector(service.href)?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
-                  >
-                    <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {service.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources - 2 columns */}
-          <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-xl font-bold text-yellow-500 flex items-center gap-2 mb-6">
-              <FileText size={20} />
-              Resources
-            </h4>
-            <ul className="space-y-3">
-              {resources.map((resource, index) => (
-                <li key={index}>
-                  <a 
-                    href={resource.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.querySelector(resource.href)?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
-                  >
-                    <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {resource.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Stay Connected Newsletter - 2 columns */}
-          <div className="lg:col-span-2">
-            <div className="bg-gradient-to-br from-navy-800/50 to-navy-700/30 dark:from-gray-700/50 dark:to-gray-600/30 backdrop-blur-sm rounded-2xl p-6 border border-white/10 dark:border-gray-600/20 h-full">
+          {/* Stay Connected Newsletter - Expanded to 4 columns */}
+          <div className="lg:col-span-4">
+            <div className="bg-gradient-to-br from-navy-800/50 to-navy-700/30 dark:from-gray-700/50 dark:to-gray-600/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 dark:border-gray-600/20 h-full">
               <h4 className="text-xl font-bold text-yellow-500 mb-4 flex items-center gap-2">
                 <MessageCircle size={20} />
                 Stay Connected
               </h4>
-              <p className="text-gray-300 dark:text-gray-400 mb-6 leading-relaxed text-sm">
+              <p className="text-gray-300 dark:text-gray-400 mb-6 leading-relaxed">
                 Get industry insights, product updates, and technical resources delivered to your inbox monthly.
               </p>
+              
+              {/* Newsletter Benefits */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-white/10 dark:bg-gray-800/30 rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-yellow-400 mb-1">500+</div>
+                  <div className="text-xs text-gray-300">Subscribers</div>
+                </div>
+                <div className="bg-white/10 dark:bg-gray-800/30 rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-yellow-400 mb-1">Monthly</div>
+                  <div className="text-xs text-gray-300">Updates</div>
+                </div>
+              </div>
               
               <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                 <div className="relative">
@@ -232,34 +194,34 @@ const Footer: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                     required
-                    className="w-full px-4 py-3 pr-12 bg-white/20 dark:bg-gray-800/50 border border-white/30 dark:border-gray-600/30 rounded-xl text-white dark:text-gray-200 placeholder-gray-300 dark:placeholder-gray-400 focus:bg-white/30 dark:focus:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500/50 transition-all duration-300 text-sm"
+                    className="w-full px-4 py-3 pr-12 bg-white/20 dark:bg-gray-800/50 border border-white/30 dark:border-gray-600/30 rounded-xl text-white dark:text-gray-200 placeholder-gray-300 dark:placeholder-gray-400 focus:bg-white/30 dark:focus:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500/50 transition-all duration-300"
                   />
-                  <Mail size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
+                  <Mail size={18} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
                 </div>
                 
                 <button
                   type="submit"
                   disabled={newsletterStatus === 'loading'}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-navy-900 py-3 px-4 rounded-xl font-bold text-sm hover:from-yellow-400 hover:to-yellow-300 hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-navy-900 py-4 px-4 rounded-xl font-bold hover:from-yellow-400 hover:to-yellow-300 hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
                 >
                   {newsletterStatus === 'loading' ? (
                     <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-navy-900 border-t-transparent" />
+                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-navy-900 border-t-transparent" />
                       Subscribing...
                     </>
                   ) : (
                     <>
-                      <Send size={16} />
+                      <Send size={18} />
                       Subscribe Now
                     </>
                   )}
                 </button>
                 
                 {newsletterStatus === 'success' && (
-                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-3 text-center">
+                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4 text-center">
                     <div className="flex items-center justify-center gap-2">
-                      <CheckCircle size={16} className="text-green-400" />
-                      <p className="text-green-400 font-medium text-sm">
+                      <CheckCircle size={18} className="text-green-400" />
+                      <p className="text-green-400 font-medium">
                         Successfully subscribed!
                       </p>
                     </div>
@@ -268,11 +230,34 @@ const Footer: React.FC = () => {
               </form>
 
               {/* Trust Indicators */}
-              <div className="mt-6 pt-4 border-t border-white/10">
-                <div className="flex items-center justify-between text-xs text-gray-400">
+              <div className="mt-8 pt-6 border-t border-white/10">
+                <div className="flex items-center justify-between text-sm text-gray-400">
                   <span>🔒 Privacy Protected</span>
                   <span>📧 No Spam</span>
                   <span>🎯 Relevant Content</span>
+                </div>
+              </div>
+              
+              {/* Additional Newsletter Features */}
+              <div className="mt-6 space-y-3">
+                <h5 className="text-sm font-semibold text-white mb-3">What you'll receive:</h5>
+                <div className="space-y-2 text-sm text-gray-300">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+                    <span>Monthly technology updates</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+                    <span>Industry insights and trends</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+                    <span>Product announcements</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+                    <span>Exclusive technical resources</span>
+                  </div>
                 </div>
               </div>
             </div>

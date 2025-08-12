@@ -156,7 +156,7 @@ const Contact: React.FC = () => {
                     <div>
                       <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Phone</h4>
                       <p className="text-gray-600 dark:text-gray-300">+966 12 808 0900</p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Sun-Thu 8:00 AM - 5:00 PM AST</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Sun-Thu 8:00 AM - 5:00 PM GMT+3</p>
                     </div>
                   </div>
 
@@ -178,21 +178,8 @@ const Contact: React.FC = () => {
                     <div>
                       <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Business Hours</h4>
                       <p className="text-gray-600 dark:text-gray-300">
-                        Sunday - Thursday: 8:00 AM - 5:00 PM AST<br />
+                        Sunday - Thursday: 8:00 AM - 5:00 PM GMT+3<br />
                         Friday - Saturday: Emergency support only
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
-                      <Globe className="text-indigo-600 dark:text-indigo-400" size={24} />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Global Operations</h4>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        Serving 15+ countries across Middle East, Asia, and Europe<br />
-                        Local support and field services available
                       </p>
                     </div>
                   </div>
@@ -215,17 +202,6 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              {/* Emergency Contact - Updated for Saudi Arabia */}
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-6">
-                <h3 className="text-lg font-bold text-red-800 dark:text-red-400 mb-2">Emergency Support</h3>
-                <p className="text-red-700 dark:text-red-300 mb-3">
-                  For urgent technical support outside business hours:
-                </p>
-                <p className="font-semibold text-red-800 dark:text-red-400">+966 55 123 4567</p>
-                <p className="text-sm text-red-600 dark:text-red-400 mt-2">
-                  Available 24/7 for critical field operations
-                </p>
-              </div>
             </div>
           </div>
         </div>

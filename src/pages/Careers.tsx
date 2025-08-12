@@ -118,7 +118,7 @@ const Careers: React.FC = () => {
   };
 
   return (
-    <section id="careers" className="py-24 dark:bg-gray-900">
+    <section id="careers" className="py-24 dark:bg-gray-900 pt-32">
       {/* Header */}
       <div className="bg-gradient-to-r from-navy-900 to-navy-800 dark:from-gray-800 dark:to-gray-700 text-white py-16">
         <div className="container mx-auto px-6 text-center">
