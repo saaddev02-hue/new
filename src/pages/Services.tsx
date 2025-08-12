@@ -111,56 +111,6 @@ const Services: React.FC = () => {
         </div>
       </div>
 
-      {/* Services Brochure with Preloaded PDF */}
-      <div className="py-16 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-navy-900 dark:text-white mb-4">Comprehensive Services Brochure</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              Detailed information about all our service offerings
-            </p>
-          </div>
-          
-          <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg overflow-hidden max-w-4xl mx-auto">
-            <div className="aspect-[4/3] w-full bg-white dark:bg-gray-700 flex items-center justify-center relative">
-              {isPDFLoaded ? (
-                <iframe
-                  src={`https://docs.google.com/viewerng/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`}
-                  className="w-full h-full border-0"
-                  title="Services Brochure Preview"
-                />
-              ) : (
-                <div className="text-center p-8">
-                  <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mx-auto mb-4"></div>
-                  <FileText size={64} className="text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">Loading Services Brochure...</h3>
-                  <p className="text-gray-500 dark:text-gray-400">Complete overview of our technical capabilities</p>
-                </div>
-              )}
-              
-              {/* Overlay with buttons */}
-              <div className="absolute bottom-4 right-4 flex gap-3">
-                <button
-                  onClick={() => setShowPDFViewer(true)}
-                  className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
-                >
-                  <Eye size={16} />
-                  Full View
-                </button>
-                <a
-                  href={pdfUrl}
-                  download
-                  className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors shadow-lg"
-                >
-                  <Download size={16} />
-                  Download
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Detailed Services */}
       <div className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-6">
@@ -217,6 +167,56 @@ const Services: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Services Brochure with Preloaded PDF */}
+      <div className="py-16 bg-gray-50 dark:bg-gray-800">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-navy-900 dark:text-white mb-4">Comprehensive Services Brochure</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              Detailed information about all our service offerings
+            </p>
+          </div>
+          
+          <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+            <div className="aspect-[4/3] w-full bg-white dark:bg-gray-700 flex items-center justify-center relative">
+              {isPDFLoaded ? (
+                <iframe
+                  src={`https://docs.google.com/viewerng/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`}
+                  className="w-full h-full border-0"
+                  title="Services Brochure Preview"
+                />
+              ) : (
+                <div className="text-center p-8">
+                  <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mx-auto mb-4"></div>
+                  <FileText size={64} className="text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">Loading Services Brochure...</h3>
+                  <p className="text-gray-500 dark:text-gray-400">Complete overview of our technical capabilities</p>
+                </div>
+              )}
+              
+              {/* Overlay with buttons */}
+              <div className="absolute bottom-4 right-4 flex gap-3">
+                <button
+                  onClick={() => setShowPDFViewer(true)}
+                  className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+                >
+                  <Eye size={16} />
+                  Full View
+                </button>
+                <a
+                  href={pdfUrl}
+                  download
+                  className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors shadow-lg"
+                >
+                  <Download size={16} />
+                  Download
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

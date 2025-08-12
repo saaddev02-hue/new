@@ -246,7 +246,7 @@ const News: React.FC = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="bg-white dark:bg-gray-800 shadow-md sticky top-20 z-40">
+        <div className="bg-white dark:bg-gray-800 shadow-md sticky top-16 z-40 border-t border-gray-200 dark:border-gray-700">
           <div className="container mx-auto px-6 py-4">
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {categories.map((category) => (
@@ -410,18 +410,35 @@ const News: React.FC = () => {
           </div>
         </div>
 
-        {/* Newsletter Section */}
-        <div className="bg-gradient-to-r from-navy-900 to-navy-800 dark:from-gray-900 dark:to-gray-800 py-16">
+        {/* CTA Section */}
+        <div className="py-16 bg-gradient-to-r from-navy-900 to-navy-800 dark:from-gray-900 dark:to-gray-800">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">Stay Updated</h2>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Ready to Transform Your Production?</h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              Join industry leaders who trust Saher Flow Solutions for their critical flow measurement needs
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-3 bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              Schedule Demo
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+
+        {/* Newsletter Section */}
+        <div className="bg-gray-50 dark:bg-gray-800 py-16">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold text-navy-900 dark:text-white mb-4">Stay Updated</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Subscribe to our newsletter for the latest news, insights, and updates from Saher Flow Solutions
             </p>
             <div className="max-w-md mx-auto flex gap-4">
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 dark:bg-gray-700 dark:text-white border-0 focus:ring-2 focus:ring-yellow-400"
+                className="flex-1 px-4 py-3 rounded-lg text-gray-900 dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
               />
               <button className="bg-yellow-500 text-navy-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
                 Subscribe
@@ -477,6 +494,133 @@ const News: React.FC = () => {
                   className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-navy-900 dark:prose-headings:text-white prose-a:text-navy-600 dark:prose-a:text-yellow-400 prose-strong:text-navy-900 dark:prose-strong:text-white"
                   dangerouslySetInnerHTML={{ __html: selectedArticle.content }}
                 />
+                <style jsx>{`
+                  .prose {
+                    line-height: 1.8;
+                  }
+                  .prose h1 {
+                    font-size: 2.5rem;
+                    font-weight: 800;
+                    margin-top: 2rem;
+                    margin-bottom: 1.5rem;
+                    color: #1a3a5c;
+                  }
+                  .prose h2 {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    margin-top: 2rem;
+                    margin-bottom: 1rem;
+                    color: #1a3a5c;
+                    border-bottom: 2px solid #ffd500;
+                    padding-bottom: 0.5rem;
+                  }
+                  .prose h3 {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-top: 1.5rem;
+                    margin-bottom: 0.75rem;
+                    color: #1a3a5c;
+                  }
+                  .prose p {
+                    margin-bottom: 1.5rem;
+                    font-size: 1.1rem;
+                    line-height: 1.8;
+                    color: #374151;
+                  }
+                  .prose ul, .prose ol {
+                    margin: 1.5rem 0;
+                    padding-left: 2rem;
+                  }
+                  .prose li {
+                    margin-bottom: 0.75rem;
+                    font-size: 1.1rem;
+                    line-height: 1.7;
+                  }
+                  .prose blockquote {
+                    border-left: 4px solid #ffd500;
+                    background: #f9fafb;
+                    padding: 1.5rem 2rem;
+                    margin: 2rem 0;
+                    font-style: italic;
+                    font-size: 1.2rem;
+                    color: #1a3a5c;
+                  }
+                  .prose table {
+                    width: 100%;
+                    margin: 2rem 0;
+                    border-collapse: collapse;
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                    border-radius: 0.5rem;
+                    overflow: hidden;
+                  }
+                  .prose th {
+                    background: #1a3a5c;
+                    color: white;
+                    padding: 1rem;
+                    text-align: left;
+                    font-weight: 600;
+                  }
+                  .prose td {
+                    padding: 1rem;
+                    border-bottom: 1px solid #e5e7eb;
+                  }
+                  .prose tr:nth-child(even) {
+                    background: #f9fafb;
+                  }
+                  .prose code {
+                    background: #f3f4f6;
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 0.25rem;
+                    font-family: 'Monaco', 'Menlo', monospace;
+                    font-size: 0.9rem;
+                    color: #1a3a5c;
+                  }
+                  .prose pre {
+                    background: #1f2937;
+                    color: #f9fafb;
+                    padding: 1.5rem;
+                    border-radius: 0.5rem;
+                    overflow-x: auto;
+                    margin: 2rem 0;
+                  }
+                  .prose img {
+                    border-radius: 0.5rem;
+                    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+                    margin: 2rem 0;
+                  }
+                  .prose a {
+                    color: #1a3a5c;
+                    text-decoration: underline;
+                    text-decoration-color: #ffd500;
+                    text-underline-offset: 3px;
+                    font-weight: 500;
+                  }
+                  .prose a:hover {
+                    color: #ffd500;
+                  }
+                  .dark .prose h1,
+                  .dark .prose h2,
+                  .dark .prose h3 {
+                    color: white;
+                  }
+                  .dark .prose p {
+                    color: #d1d5db;
+                  }
+                  .dark .prose blockquote {
+                    background: #374151;
+                    color: #f9fafb;
+                  }
+                  .dark .prose th {
+                    background: #374151;
+                  }
+                  .dark .prose tr:nth-child(even) {
+                    background: #374151;
+                  }
+                  .dark .prose code {
+                    background: #374151;
+                    color: #ffd500;
+                  }
+                `}</style>
 
                 {/* Share Actions */}
                 <div className="flex items-center justify-between pt-8 mt-8 border-t border-gray-200 dark:border-gray-700">

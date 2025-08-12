@@ -32,30 +32,30 @@ const Footer: React.FC = () => {
   };
 
   const quickLinks = [
-    { name: 'About Us', href: '#home' },
-    { name: 'DMOR Technology', href: '#home' },
-    { name: 'Case Studies', href: '#news' },
-    { name: 'Support Center', href: '#contact' },
-    { name: 'Documentation', href: '#products' },
-    { name: 'Training Programs', href: '#services' },
+    { name: 'About Us', href: '/' },
+    { name: 'DMOR Technology', href: '/' },
+    { name: 'Case Studies', href: '/news' },
+    { name: 'Support Center', href: '/contact' },
+    { name: 'Product Catalog', href: 'https://saherflow.com/wp-content/uploads/2025/01/Saher-Products-Broucher-2025-01.pdf', external: true },
+    { name: 'Services Brochure', href: 'https://saherflow.com/wp-content/uploads/2025/02/SaherBrochure-Vertical-English_MAK.pdf', external: true },
   ];
 
   const services = [
-    { name: 'Water Cut Meters', href: '#products' },
-    { name: 'Multiphase Flow Meters', href: '#products' },
-    { name: 'Skid-Mounted Solutions', href: '#products' },
-    { name: 'Digital Twin Services', href: '#services' },
-    { name: 'Calibration Services', href: '#services' },
-    { name: 'Technical Support', href: '#contact' },
+    { name: 'Water Cut Meters', href: '/products' },
+    { name: 'Multiphase Flow Meters', href: '/products' },
+    { name: 'Skid-Mounted Solutions', href: '/products' },
+    { name: 'Digital Twin Services', href: '/services' },
+    { name: 'Calibration Services', href: '/services' },
+    { name: 'Technical Support', href: '/contact' },
   ];
 
   const resources = [
-    { name: 'Product Brochures', href: '#products' },
-    { name: 'Technical Papers', href: '#news' },
-    { name: 'Webinars & Events', href: '#news' },
-    { name: 'Industry Insights', href: '#news' },
-    { name: 'White Papers', href: '#news' },
-    { name: 'FAQs', href: '#contact' },
+    { name: 'Product Brochures', href: '/products' },
+    { name: 'Technical Papers', href: '/news' },
+    { name: 'Webinars & Events', href: '/news' },
+    { name: 'Industry Insights', href: '/news' },
+    { name: 'White Papers', href: '/news' },
+    { name: 'FAQs', href: '/contact' },
   ];
 
   return (
@@ -147,17 +147,25 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
-                  >
-                    <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {link.name}
-                  </a>
+                  {link.external ? (
+                    <a 
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
+                    >
+                      <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                      {link.name}
+                    </a>
+                  ) : (
+                    <a 
+                      href={link.href}
+                      className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-200 flex items-center gap-2 group"
+                    >
+                      <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
