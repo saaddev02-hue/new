@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
     { id: '/services', label: 'Services', path: '/services' },
     { id: '/news',     label: 'News',     path: '/news' },
     { id: '/careers',  label: 'Careers',  path: '/careers' },
-    { id: '/team',     label: 'Team',     path: '/team' },
+
   ];
 
   useEffect(() => {
