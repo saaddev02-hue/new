@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Play, CheckCircle, Users, Award, TrendingUp, Globe, Zap, Shield, Clock, Star, Building2, Handshake } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle, Users, Award, TrendingUp, Globe, Zap, Shield, Clock, Star, Building2, Handshake, Droplets, Gauge, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Team from './Team';
 import { getRecentNews, NewsArticle } from '../utils/newsLoader';
