@@ -99,22 +99,25 @@ const Home: React.FC = () => {
   ];
 
   // Industry partnerships data
-  const partnerships = [
-    {
-      name: "Saudi Aramco",
-      type: "Ongoing Project",
-      description: "Working with the world's largest oil company on advanced flow measurement solutions",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Saudi_Aramco_Logo.svg",
-      status: "Active Development"
-    },
-    {
-      name: "Strategic US Partner",
-      type: "Active Partnership",
-      description: "Collaborating with leading American energy technology company on innovative measurement systems",
-      logo: "https://images.pexels.com/photos/6801647/pexels-photo-6801647.jpeg?auto=compress&cs=tinysrgb&w=300",
-      status: "Ongoing Partnership"
-    }
-  ];
+const partnerships = [
+  {
+    name: "Saudi Aramco",
+    description:
+      "Working with the world's largest oil company on advanced flow measurement solutions",
+    // your provided logo URL
+    logo:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzjCsaIDepOvxQDRfGMiheyVepvqsdwpt5A&s",
+    status: "Active Development"
+  },
+  {
+    name: "Strategic US Partner",
+    description:
+      "Collaborating with leading American energy technology company on innovative measurement systems",
+    logo:
+      "https://cdn.informaconnect.com/platform/files/public/2020-08/background/400x600/USoil-logo_1598383213.jpg?VersionId=aSQb_.jysA_xThRyDijAOtgzNQEpudcF",
+    status: "Ongoing Partnership"
+  }
+];
 
   const products = [
     {
@@ -193,11 +196,11 @@ const Home: React.FC = () => {
     {
       id: 2,
       name: 'Dr. Atif Shamim',
-      role: 'Chair Professor, ECE at KAUST & Technical Director at SaherFlow',
+      role: 'Technical Director',
       location: 'Makkah, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555206/ATIF-SHAMIM-2020_v6cyab.png',
       description: 'IEEE Fellow, Chair Professor at KAUST, and pioneer in innovative antenna and sensing technologies with 400+ publications and 40 patents.',
-      longDescription: 'Dr. Atif Shamim is Chair Professor of Electrical and Computer Engineering at KAUST, leading the IMPACT Lab. He is a Fellow of IEEE and a globally recognized leader in antenna design, RF systems, and wireless sensing technologies, integrating CMOS and additive manufacturing for flexible and wearable systems. He holds a Ph.D. in Electronics from Carleton University and has authored 400+ publications, 1 book, and 40 patents. His work has earned prestigious awards, including the King\'s Prize for Best Innovation, OCRI Researcher of the Year, multiple IEEE Best Paper Awards, and several international design competition wins. Beyond academia, he has successfully commercialized technologies for the oil industry, winning Canada's national business plan competition and OCRI Entrepreneur of the Year.',
+      longDescription: 'Dr. Atif Shamim is Chair Professor of Electrical and Computer Engineering at KAUST, leading the IMPACT Lab. He is a Fellow of IEEE and a globally recognized leader in antenna design, RF systems, and wireless sensing technologies, integrating CMOS and additive manufacturing for flexible and wearable systems. He holds a Ph.D. in Electronics from Carleton University and has authored 400+ publications, 1 book, and 40 patents. His work has earned prestigious awards, including the King\'s Prize for Best Innovation, OCRI Researcher of the Year, multiple IEEE Best Paper Awards, and several international design competition wins. Beyond academia, he has successfully commercialized technologies for the oil industry, winning Canadas national business plan competition and OCRI Entrepreneur of the Year.',
       expertise: [
         'Antenna Design',
         'RF & Microwave Systems',
@@ -689,88 +692,86 @@ const Home: React.FC = () => {
       </section>
 
       {/* Industry Partnerships Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-8 sm:mb-12 md:mb-16"
-          >
-            <div className="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm font-semibold mb-4 sm:mb-6">
-              <Handshake size={14} className="sm:w-4 sm:h-4" />
-              Strategic Partnerships
+<section className="py-12 sm:py-16 md:py-24 bg-white dark:bg-gray-900">
+  <div className="container mx-auto px-4 sm:px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center mb-8 sm:mb-12 md:mb-16"
+    >
+      {/* changed pill color to green */}
+      <div className="inline-flex items-center gap-2 bg-green-500/10 text-green-600 dark:text-green-400 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm font-semibold mb-4 sm:mb-6">
+        <Handshake size={14} className="sm:w-4 sm:h-4" />
+        Strategic Partnerships
+      </div>
+
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 dark:text-white mb-4 sm:mb-6">
+        Trusted by Industry Leaders
+      </h2>
+      <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
+        Building strategic partnerships with leading energy companies worldwide to advance flow measurement technology
+      </p>
+    </motion.div>
+
+    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {partnerships.map((partner, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: index * 0.2 }}
+          viewport={{ once: true }}
+          className="group bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105 border border-gray-200 dark:border-gray-600"
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-16 h-16 bg-white dark:bg-gray-600 rounded-xl flex items-center justify-center p-3 shadow-md overflow-hidden">
+              {/* show logo if present, otherwise fallback to Building icon */}
+              {partner.logo ? (
+                <img
+                  src={partner.logo}
+                  alt={`${partner.name} logo`}
+                  className="w-full h-full object-contain"
+                  // optional: add onError fallback to hide broken images
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              ) : (
+                <Building className="w-8 h-8 text-navy-600 dark:text-yellow-400" />
+              )}
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 dark:text-white mb-4 sm:mb-6">
-              Trusted by Industry Leaders
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
-              Building strategic partnerships with leading energy companies worldwide to advance flow measurement technology
-            </p>
-          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {partnerships.map((partner, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="group bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105 border border-gray-200 dark:border-gray-600"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-white dark:bg-gray-600 rounded-xl flex items-center justify-center p-3 shadow-md">
-                    <Building className="w-8 h-8 text-navy-600 dark:text-yellow-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-navy-900 dark:text-white">{partner.name}</h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="px-3 py-1 bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 text-xs rounded-full font-semibold">
-                        {partner.status}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
-                  {partner.description}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                    {partner.type}
-                  </span>
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                </div>
-              </motion.div>
-            ))}
+            <div>
+              <h3 className="text-xl font-bold text-navy-900 dark:text-white">{partner.name}</h3>
+              <div className="flex items-center gap-2 mt-1">
+                {/* status badge: switched to green */}
+                <span className="px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs rounded-full font-semibold">
+                  {partner.status}
+                </span>
+              </div>
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mt-12 p-8 bg-gradient-to-r from-navy-50 to-yellow-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl"
-          >
-            <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-4">
-              Ready to Partner with Us?
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-              Join our growing network of industry partners and help advance the future of flow measurement technology.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-3 bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-navy-800 dark:hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Explore Partnership
-              <ArrowRight className="w-5 h-5" />
-            </a>
-          </motion.div>
-        </div>
-      </section>
+          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
+            {partner.description}
+          </p>
+
+          {/* removed the small green pulsing dot as requested */}
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+              {partner.type ?? ""}
+            </span>
+            {/* intentionally left blank where the pulsing dot used to be */}
+          </div>
+        </motion.div>
+      ))}
+    </div>
+
+  
+  </div>
+</section>
 
       {/* Products Section */}
       <section className="py-12 sm:py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
@@ -947,11 +948,9 @@ const Home: React.FC = () => {
             className="text-center mb-20 -mt-6 md:-mt-16 space-y-4 md:space-y-6"
           >
             {/* Responsive pill */}
-            <div className="inline-flex items-center gap-2 sm:gap-3 md:gap-5 bg-gradient-to-r from-yellow-500/10 to-yellow-400/10 text-yellow-600 dark:text-yellow-400
-                      px-4 py-2 sm:px-8 sm:py-3 md:px-14 md:py-5 rounded-full text-sm sm:text-base md:text-2xl font-semibold mx-auto">
-              {/* Icon: prefer width/height classes for responsive sizing */}
-              <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-8 md:h-8" aria-hidden="true" />
-              <span>Our Expert Team</span>
+           <div className="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm font-semibold mb-4 sm:mb-6">
+              <Star size={14} className="sm:w-4 sm:h-4" />
+              Our Expert Team
             </div>
 
             {/* Responsive paragraph */}
@@ -1076,6 +1075,7 @@ const Home: React.FC = () => {
           </div>
 
           {/* Team Stats */}
+          {/* Team Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1099,9 +1099,10 @@ const Home: React.FC = () => {
               <div className="text-3xl font-bold text-navy-900 dark:text-white mb-2">5+</div>
               <div className="text-sm text-gray-600 dark:text-gray-300">Successful Deployments</div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
+
 
       {/* Recent News Section */}
       {recentNews.length > 0 && (
