@@ -107,7 +107,7 @@ const partnerships = [
     // your provided logo URL
     logo:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzjCsaIDepOvxQDRfGMiheyVepvqsdwpt5A&s",
-    status: "Active Development"
+    status: "Ongoing Project"
   },
   {
     name: "Strategic US Partner",
@@ -115,7 +115,7 @@ const partnerships = [
       "Collaborating with leading American energy technology company on innovative measurement systems",
     logo:
       "https://cdn.informaconnect.com/platform/files/public/2020-08/background/400x600/USoil-logo_1598383213.jpg?VersionId=aSQb_.jysA_xThRyDijAOtgzNQEpudcF",
-    status: "Ongoing Partnership"
+    status: "Active Partnership"
   }
 ];
 
