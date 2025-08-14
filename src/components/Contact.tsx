@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { Phone, Mail, MapPin, Send, Clock, Globe } from 'lucide-react';
 
 const Contact: React.FC = () => {
+  const [state, handleSubmit] = useForm("xzzvwrgz"); // You'll need to replace this with your actual Formspree form ID
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,11 +19,24 @@ const Contact: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', department: 'sales', message: '' });
-    alert('Thank you for your message! We\'ll get back to you soon.');
+    
+    // Create FormData object for Formspree
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append('name', formData.name);
+    formDataToSubmit.append('email', formData.email);
+    formDataToSubmit.append('department', formData.department);
+    formDataToSubmit.append('message', formData.message);
+    formDataToSubmit.append('_subject', `New Contact Form Submission from ${formData.name}`);
+    
+    // Submit to Formspree
+    const result = await handleSubmit(formDataToSubmit);
+    
+    if (state.succeeded) {
+      setFormData({ name: '', email: '', department: 'sales', message: '' });
+      alert('Thank you for your message! We\'ll get back to you soon.');
+    }
   };
 
   return (
@@ -49,7 +64,7 @@ const Contact: React.FC = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={onSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -64,6 +79,12 @@ const Contact: React.FC = () => {
                       required
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent transition-colors duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                       placeholder="Your full name"
+                    />
+                    <ValidationError 
+                      prefix="Name" 
+                      field="name"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
                   
@@ -80,6 +101,12 @@ const Contact: React.FC = () => {
                       required
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent transition-colors duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                       placeholder="your.email@company.com"
+                    />
+                    <ValidationError 
+                      prefix="Email" 
+                      field="email"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
                 </div>
@@ -100,6 +127,12 @@ const Contact: React.FC = () => {
                     <option value="general">General Inquiry</option>
                     <option value="partnership">Partnership</option>
                   </select>
+                  <ValidationError 
+                    prefix="Department" 
+                    field="department"
+                    errors={state.errors}
+                    className="text-red-500 text-sm mt-1"
+                  />
                 </div>
 
                 <div>
@@ -116,15 +149,38 @@ const Contact: React.FC = () => {
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent transition-colors duration-200 resize-vertical bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     placeholder="Tell us about your project or inquiry..."
                   />
+                  <ValidationError 
+                    prefix="Message" 
+                    field="message"
+                    errors={state.errors}
+                    className="text-red-500 text-sm mt-1"
+                  />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-4 px-8 rounded-lg font-semibold text-lg hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200 flex items-center justify-center gap-2"
+                  disabled={state.submitting}
+                  className="w-full bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-4 px-8 rounded-lg font-semibold text-lg hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send size={20} />
-                  Send Message
+                  {state.submitting ? 'Sending...' : 'Send Message'}
                 </button>
+                
+                {state.succeeded && (
+                  <div className="bg-green-100 dark:bg-green-900/30 border border-green-500/30 rounded-lg p-4 text-center">
+                    <p className="text-green-800 dark:text-green-400 font-medium">
+                      ✅ Message sent successfully! We'll get back to you within 24 hours.
+                    </p>
+                  </div>
+                )}
+                
+                {state.errors && state.errors.length > 0 && (
+                  <div className="bg-red-100 dark:bg-red-900/30 border border-red-500/30 rounded-lg p-4 text-center">
+                    <p className="text-red-800 dark:text-red-400 font-medium">
+                      ❌ There was an error sending your message. Please try again.
+                    </p>
+                  </div>
+                )}
               </form>
             </div>
 

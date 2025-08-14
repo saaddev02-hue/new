@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { MapPin, Briefcase, Clock, Users, Award, Zap } from 'lucide-react';
 
 const Careers: React.FC = () => {
+  const [state, handleSubmit] = useForm("mnnzrdzo"); // Replace with your actual Formspree form ID for careers
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [applicationData, setApplicationData] = useState({
     name: '',
     email: '',
     position: '',
     coverLetter: '',
-    resume: null as File | null
+    resume: null as File | null,
+    phone: '',
+    experience: '',
+    location: ''
   });
 
   // Updated jobs for Saudi Arabia location
@@ -115,6 +120,59 @@ const Careers: React.FC = () => {
 
   const closeApplication = () => {
     setSelectedJob(null);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setApplicationData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setApplicationData(prev => ({
+      ...prev,
+      resume: file
+    }));
+  };
+
+  const submitApplication = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create FormData object for Formspree
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append('name', applicationData.name);
+    formDataToSubmit.append('email', applicationData.email);
+    formDataToSubmit.append('phone', applicationData.phone);
+    formDataToSubmit.append('position', applicationData.position);
+    formDataToSubmit.append('experience', applicationData.experience);
+    formDataToSubmit.append('location', applicationData.location);
+    formDataToSubmit.append('coverLetter', applicationData.coverLetter);
+    
+    if (applicationData.resume) {
+      formDataToSubmit.append('resume', applicationData.resume);
+    }
+    
+    formDataToSubmit.append('_subject', `Job Application: ${applicationData.position} - ${applicationData.name}`);
+    
+    // Submit to Formspree
+    await handleSubmit(formDataToSubmit);
+    
+    if (state.succeeded) {
+      setApplicationData({ 
+        name: '', 
+        email: '', 
+        position: '', 
+        coverLetter: '', 
+        resume: null,
+        phone: '',
+        experience: '',
+        location: ''
+      });
+      alert('Application submitted successfully! We\'ll review your application and get back to you within 5 business days.');
+    }
   };
 
   return (
@@ -337,7 +395,10 @@ const Careers: React.FC = () => {
                       <div className="flex gap-4 pt-6">
                         <button 
                           onClick={() => {
-                            setApplicationData(prev => ({ ...prev, position: job.title }));
+                            setApplicationData(prev => ({ 
+                              ...prev, 
+                              position: job.title 
+                            }));
                             setSelectedJob(null);
                           }}
                           className="flex-1 bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-3 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200"
@@ -368,21 +429,23 @@ const Careers: React.FC = () => {
               <div className="flex justify-between items-start mb-6">
                 <h2 className="text-3xl font-bold text-navy-900 dark:text-white">Apply for Position</h2>
                 <button 
-                  onClick={() => setApplicationData({ name: '', email: '', position: '', coverLetter: '', resume: null })}
+                  onClick={() => setApplicationData({ 
+                    name: '', 
+                    email: '', 
+                    position: '', 
+                    coverLetter: '', 
+                    resume: null,
+                    phone: '',
+                    experience: '',
+                    location: ''
+                  })}
                   className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl"
                 >
                   ×
                 </button>
               </div>
 
-              <form 
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert('Application submitted successfully! Our HR team will contact you within 5 business days.');
-                  setApplicationData({ name: '', email: '', position: '', coverLetter: '', resume: null });
-                }}
-                className="space-y-6"
-              >
+              <form onSubmit={submitApplication} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -391,9 +454,17 @@ const Careers: React.FC = () => {
                     <input 
                       type="text"
                       value={applicationData.name}
-                      onChange={(e) => setApplicationData(prev => ({ ...prev, name: e.target.value }))}
+                      name="name"
+                      onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      placeholder="Your full name"
                       required
+                    />
+                    <ValidationError 
+                      prefix="Name" 
+                      field="name"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
                   <div>
@@ -403,9 +474,58 @@ const Careers: React.FC = () => {
                     <input 
                       type="email"
                       value={applicationData.email}
-                      onChange={(e) => setApplicationData(prev => ({ ...prev, email: e.target.value }))}
+                      name="email"
+                      onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      placeholder="your.email@company.com"
                       required
+                    />
+                    <ValidationError 
+                      prefix="Email" 
+                      field="email"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Phone Number
+                    </label>
+                    <input 
+                      type="tel"
+                      value={applicationData.phone}
+                      name="phone"
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      placeholder="+966 XX XXX XXXX"
+                    />
+                    <ValidationError 
+                      prefix="Phone" 
+                      field="phone"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Years of Experience
+                    </label>
+                    <input 
+                      type="text"
+                      value={applicationData.experience}
+                      name="experience"
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      placeholder="e.g., 5+ years"
+                    />
+                    <ValidationError 
+                      prefix="Experience" 
+                      field="experience"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
                 </div>
@@ -424,15 +544,42 @@ const Careers: React.FC = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Current Location
+                  </label>
+                  <input 
+                    type="text"
+                    value={applicationData.location}
+                    name="location"
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    placeholder="City, Country"
+                  />
+                  <ValidationError 
+                    prefix="Location" 
+                    field="location"
+                    errors={state.errors}
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Cover Letter
                   </label>
                   <textarea 
                     rows={6}
                     value={applicationData.coverLetter}
-                    onChange={(e) => setApplicationData(prev => ({ ...prev, coverLetter: e.target.value }))}
+                    name="coverLetter"
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     placeholder="Tell us why you're perfect for this role and your interest in working in Saudi Arabia..."
                     required
+                  />
+                  <ValidationError 
+                    prefix="Cover Letter" 
+                    field="coverLetter"
+                    errors={state.errors}
+                    className="text-red-500 text-sm mt-1"
                   />
                 </div>
 
@@ -443,27 +590,62 @@ const Careers: React.FC = () => {
                   <input 
                     type="file"
                     accept=".pdf,.doc,.docx"
-                    onChange={(e) => setApplicationData(prev => ({ ...prev, resume: e.target.files?.[0] || null }))}
+                    onChange={handleFileChange}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     required
                   />
+                  <ValidationError 
+                    prefix="Resume" 
+                    field="resume"
+                    errors={state.errors}
+                    className="text-red-500 text-sm mt-1"
+                  />
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    Accepted formats: PDF, DOC, DOCX (Max 10MB)
+                  </p>
                 </div>
 
                 <div className="flex gap-4 pt-4">
                   <button 
                     type="submit"
-                    className="flex-1 bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-4 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200"
+                    disabled={state.submitting}
+                    className="flex-1 bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-4 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit Application
+                    {state.submitting ? 'Submitting...' : 'Submit Application'}
                   </button>
                   <button 
                     type="button"
-                    onClick={() => setApplicationData({ name: '', email: '', position: '', coverLetter: '', resume: null })}
+                    onClick={() => setApplicationData({ 
+                      name: '', 
+                      email: '', 
+                      position: '', 
+                      coverLetter: '', 
+                      resume: null,
+                      phone: '',
+                      experience: '',
+                      location: ''
+                    })}
                     className="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
                   >
                     Cancel
                   </button>
                 </div>
+                
+                {state.succeeded && (
+                  <div className="bg-green-100 dark:bg-green-900/30 border border-green-500/30 rounded-lg p-4 text-center">
+                    <p className="text-green-800 dark:text-green-400 font-medium">
+                      ✅ Application submitted successfully! We'll review your application and get back to you within 5 business days.
+                    </p>
+                  </div>
+                )}
+                
+                {state.errors && state.errors.lenght> 0 && (
+                  <div className="bg-red-100 dark:bg-red-900/30 border border-red-500/30 rounded-lg p-4 text-center">
+                    <p className="text-red-800 dark:text-red-400 font-medium">
+                      ❌ There was an error submitting your application. Please try again.
+                    </p>
+                  </div>
+                )}
               </form>
             </div>
           </div>

@@ -92,3 +92,66 @@ The system is designed to be easily extensible with features like:
 - RSS feed generation
 - Email notifications
 - Admin interface for content management
+
+## Contact Form Setup
+
+The contact form is integrated with Formspree for receiving real messages. To set it up:
+
+1. Go to [Formspree.io](https://formspree.io) and create a free account
+2. Create a new form and get your form ID
+3. Replace the form ID in `src/components/Contact.tsx`:
+   ```typescript
+   const [state, handleSubmit] = useForm("YOUR_FORM_ID_HERE");
+   ```
+4. Configure your form settings in Formspree dashboard:
+   - Set up email notifications
+   - Configure spam protection
+   - Add custom thank you messages
+   - Set up integrations (Slack, email, etc.)
+
+### Form Features:
+- ✅ Real-time form submission
+- 📧 Email notifications to your inbox
+- 🛡️ Built-in spam protection
+- 📊 Submission analytics
+- 🔄 Form validation and error handling
+- 📱 Mobile-friendly interface
+
+### Free Plan Limits:
+- 50 submissions per month
+- Basic spam filtering
+- Email notifications
+
+For higher volume, upgrade to a paid plan for unlimited submissions and advanced features.
+
+## Job Applications Setup
+
+The careers page also has a functional application form. To receive job applications:
+
+1. Create a second form in your Formspree account for job applications
+2. Replace the form ID in `src/pages/Careers.tsx`:
+   ```typescript
+   const [state, handleSubmit] = useForm("YOUR_CAREERS_FORM_ID_HERE");
+   ```
+3. Configure the careers form in Formspree dashboard:
+   - Set up separate email notifications for HR/recruitment team
+   - Configure file upload settings for resumes
+   - Set up automated responses for applicants
+
+### Job Application Features:
+- ✅ Complete candidate information collection
+- 📄 Resume/CV file upload support
+- 📧 Automatic email notifications to HR team
+- 🔄 Form validation and error handling
+- 📱 Mobile-friendly application process
+- 🛡️ Spam protection for applications
+
+### Application Data Collected:
+- Full name and contact information
+- Phone number and current location
+- Years of experience
+- Position applied for
+- Cover letter
+- Resume/CV file attachment
+
+This allows you to receive complete job applications with all candidate data and documents directly in your email inbox.
