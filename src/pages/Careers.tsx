@@ -3,7 +3,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { MapPin, Briefcase, Clock, Users, Award, Zap } from 'lucide-react';
 
 const Careers: React.FC = () => {
-  const [state, handleSubmit] = useForm("mnnzrdzo"); // Replace with your actual Formspree form ID for careers
+  const [state, handleSubmit] = useForm("mnnzrdzo");
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [applicationData, setApplicationData] = useState({
     name: '',
@@ -141,25 +141,12 @@ const Careers: React.FC = () => {
   const submitApplication = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create FormData object for Formspree
-    const formDataToSubmit = new FormData();
-    formDataToSubmit.append('name', applicationData.name);
-    formDataToSubmit.append('email', applicationData.email);
-    formDataToSubmit.append('phone', applicationData.phone);
-    formDataToSubmit.append('position', applicationData.position);
-    formDataToSubmit.append('experience', applicationData.experience);
-    formDataToSubmit.append('location', applicationData.location);
-    formDataToSubmit.append('coverLetter', applicationData.coverLetter);
-    
-    if (applicationData.resume) {
-      formDataToSubmit.append('resume', applicationData.resume);
-    }
-    
-    formDataToSubmit.append('_subject', `Job Application: ${applicationData.position} - ${applicationData.name}`);
-    
-    // Submit to Formspree
-    await handleSubmit(formDataToSubmit);
-    
+    // Submit to Formspree using handleSubmit directly
+    await handleSubmit(e);
+  };
+
+  // Reset form after successful submission
+  React.useEffect(() => {
     if (state.succeeded) {
       setApplicationData({ 
         name: '', 
@@ -171,9 +158,8 @@ const Careers: React.FC = () => {
         experience: '',
         location: ''
       });
-      alert('Application submitted successfully! We\'ll review your application and get back to you within 5 business days.');
     }
-  };
+  }, [state.succeeded]);
 
   return (
     <section id="careers" className="py-24 dark:bg-gray-900 pt-32">
@@ -446,6 +432,10 @@ const Careers: React.FC = () => {
               </div>
 
               <form onSubmit={submitApplication} className="space-y-6">
+                {/* Hidden fields for Formspree */}
+                <input type="hidden" name="_subject" value={`Job Application: ${applicationData.position} - ${applicationData.name}`} />
+                <input type="hidden" name="_template" value="table" />
+                
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -639,7 +629,7 @@ const Careers: React.FC = () => {
                   </div>
                 )}
                 
-                {state.errors && state.errors.lenght> 0 && (
+                {state.errors && state.errors.length > 0 && (
                   <div className="bg-red-100 dark:bg-red-900/30 border border-red-500/30 rounded-lg p-4 text-center">
                     <p className="text-red-800 dark:text-red-400 font-medium">
                       ❌ There was an error submitting your application. Please try again.
