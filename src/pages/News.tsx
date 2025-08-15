@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, ArrowRight, Tag, Award, Users, TrendingUp, Building, X, ChevronLeft, ChevronRight, Clock, Eye, Share2, AlertCircle } from 'lucide-react';
 import { loadAllNews, getNewsCategories, getNewsByCategory, NewsArticle } from '../utils/newsLoader';
 import NewsletterSubscription from '../components/NewsletterSubscription';
-import { useAutoNotification } from '../utils/subscriptionManager';
+import { NewsNotificationService } from '../utils/newsNotificationService';
+import AdminNotificationPanel from '../components/AdminNotificationPanel';
 
 // SEO Component for structured data
 const NewsStructuredData: React.FC<{ articles: NewsArticle[] }> = ({ articles }) => {
@@ -47,7 +48,7 @@ const News: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { notifySubscribers } = useAutoNotification();
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
 
   const articlesPerSlide = 3;
 
@@ -74,20 +75,9 @@ const News: React.FC = () => {
           }
         }
         
-        // Auto-notify subscribers for new articles (only if this is a new article)
-        const latestArticle = newsArticles[0];
-        // Commented out auto-notification to prevent spam during development
-        // Uncomment when you want to enable automatic notifications for new articles
-        // if (latestArticle && isNewArticle(latestArticle)) {
-        //   await notifySubscribers({
-        //     title: latestArticle.title,
-        //     url: `/news#${latestArticle.slug}`,
-        //     excerpt: latestArticle.excerpt,
-        //     image: latestArticle.image,
-        //     category: latestArticle.category,
-        //     publishedAt: latestArticle.date
-        //   });
-        // }
+        // Check for new articles and notify subscribers
+        await NewsNotificationService.checkAndNotifyNewArticles(newsArticles);
+        
       } catch (err) {
         console.error('Error loading news:', err);
         setError(`Failed to load news articles: ${err instanceof Error ? err.message : 'Unknown error'}`);
@@ -99,13 +89,6 @@ const News: React.FC = () => {
     loadNewsData();
   }, []);
 
-  // Check if article is new (published within last 24 hours)
-  const isNewArticle = (article: NewsArticle): boolean => {
-    const articleDate = new Date(article.date);
-    const now = new Date();
-    const diffHours = (now.getTime() - articleDate.getTime()) / (1000 * 60 * 60);
-    return diffHours <= 24;
-  };
 
   // Auto-refresh news every 5 minutes to pick up new articles
   useEffect(() => {
@@ -123,6 +106,9 @@ const News: React.FC = () => {
           if (selectedCategory === 'All') {
             setFilteredArticles(newsArticles);
           }
+          
+          // Check for new articles and notify subscribers
+          await NewsNotificationService.checkAndNotifyNewArticles(newsArticles);
         }
       } catch (err) {
         console.error('Error refreshing news:', err);
@@ -456,15 +442,38 @@ const News: React.FC = () => {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Join industry leaders who trust Saher Flow Solutions for their critical flow measurement needs
             </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-3 bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Schedule Demo
-              <ArrowRight className="w-5 h-5" />
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-3 bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule Demo
+                <ArrowRight className="w-5 h-5" />
+              </a>
+              
+              {/* Admin Panel Toggle - Only show in development or for admins */}
+              <button
+                onClick={() => setShowAdminPanel(!showAdminPanel)}
+                className="inline-flex items-center gap-2 bg-white/10 text-white px-6 py-3 rounded-lg font-medium hover:bg-white/20 transition-colors"
+              >
+                <Bell className="w-4 h-4" />
+                Newsletter Admin
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* Admin Panel */}
+        {showAdminPanel && (
+          <div className="py-8 bg-gray-50 dark:bg-gray-800">
+            <div className="container mx-auto px-6">
+              <AdminNotificationPanel 
+                article={selectedArticle || filteredArticles[0]}
+                onClose={() => setShowAdminPanel(false)}
+              />
+            </div>
+          </div>
+        )}
 
         
         {/* Article Modal */}

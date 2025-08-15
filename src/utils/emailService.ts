@@ -2,25 +2,22 @@
 import emailjs from '@emailjs/browser';
 
 /**
- * Hard-coded EmailJS config (no .env as requested)
- * Replace EMAILJS_PUBLIC_KEY with your EmailJS public key string.
+ * EmailJS Configuration
+ * Replace these with your actual EmailJS credentials
  */
-const EMAILJS_SERVICE_ID = 'service_azqbh9e'; // provided by you
-const EMAILJS_TEMPLATE_ID_WELCOME = 'template_xa7i4og'; // provided by you
-const EMAILJS_TEMPLATE_ID_NEW_ARTICLE = 'template_7msgyni'; // provided by you
-const EMAILJS_TEMPLATE_ID_ADMIN_NOTIFICATION = 'template_admin_notification'; // kept for future (not used)
-const EMAILJS_PUBLIC_KEY = '8tFc9GCXL3OfQUv5c'; // TODO: replace with your EmailJS public key
+const EMAILJS_SERVICE_ID = 'service_azqbh9e';
+const EMAILJS_TEMPLATE_ID_WELCOME = 'template_xa7i4og';
+const EMAILJS_TEMPLATE_ID_NEW_ARTICLE = 'template_7msgyni';
+const EMAILJS_TEMPLATE_ID_ADMIN_NOTIFICATION = 'template_admin_notification';
+const EMAILJS_PUBLIC_KEY = '8tFc9GCXL3OfQUv5c';
 
-// Initialize EmailJS (ok to call even if public key placeholder)
+// Initialize EmailJS
 try {
   emailjs.init(EMAILJS_PUBLIC_KEY);
 } catch (err) {
   console.warn('EmailJS init warning:', err);
 }
 
-/* ----------------------
-   Types
-   ---------------------- */
 export interface EmailTemplateParams {
   to_email?: string;
   to_name?: string;
@@ -30,9 +27,6 @@ export interface EmailTemplateParams {
   [key: string]: any;
 }
 
-/* ----------------------
-   Helper
-   ---------------------- */
 const makeAbsoluteUrl = (urlOrPath: string): string => {
   if (!urlOrPath) return '';
   try {
@@ -45,44 +39,38 @@ const makeAbsoluteUrl = (urlOrPath: string): string => {
   }
 };
 
-/* ----------------------
-   EmailService
-   ---------------------- */
 export class EmailService {
   /**
-   * Send welcome email to new subscriber (uses template_xa7i4og)
-   * Ensure your EmailJS template expects these variable names:
-   * - first_name, dashboard_url, support_email, unsubscribe_url, logo_url, year, etc.
+   * Send welcome email to new subscriber
    */
   static async sendWelcomeEmail(subscriberEmail: string, subscriberName?: string): Promise<boolean> {
-    const firstName = subscriberName || 'Valued Subscriber';
+    const firstName = subscriberName || subscriberEmail.split('@')[0];
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
 
     const templateParams: EmailTemplateParams = {
       to_email: subscriberEmail,
       to_name: firstName,
       from_name: 'Saher Flow Solutions',
-      subject: `Welcome to Saher Flow Solutions, ${firstName}!`,
-      // template variables (match your EmailJS template fields)
+      subject: `Welcome to Saher Flow Solutions Newsletter!`,
       first_name: firstName,
-      logo_url: `${origin}/assets/logo.png`,
-      dashboard_url: `${origin}/dashboard`,
-      support_email: 'support@saherflow.com',
+      subscriber_email: subscriberEmail,
+      company_name: 'Saher Flow Solutions',
+      website_url: origin,
       unsubscribe_url: `${origin}/unsubscribe?email=${encodeURIComponent(subscriberEmail)}`,
+      support_email: 'contact@saherflow.com',
       year: new Date().getFullYear().toString(),
-      // fallback message (if you use a text block in the template)
-      message: `Welcome ${firstName} — thanks for subscribing to Saher Flow Solutions.`,
+      message: `Welcome ${firstName}! Thank you for subscribing to our newsletter. You'll receive the latest updates about multiphase flow measurement technology.`,
     };
 
     try {
+      console.log('Sending welcome email to:', subscriberEmail);
       const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID_WELCOME,
         templateParams
       );
-      console.log('Welcome email sent:', response);
-      // EmailJS usually returns { status: 200, text: 'OK' }
-      return response?.status === 200 || /ok/i.test(String(response?.text || ''));
+      console.log('Welcome email sent successfully:', response);
+      return response?.status === 200;
     } catch (error) {
       console.error('Failed to send welcome email:', error);
       return false;
@@ -90,9 +78,7 @@ export class EmailService {
   }
 
   /**
-   * Send new article notification (uses template_7msgyni)
-   * Template variables used here:
-   * - article_title, author, publish_date, article_excerpt, article_url, logo_url, unsubscribe_url, year
+   * Send new article notification to subscriber
    */
   static async sendNewArticleNotification(
     subscriberEmail: string,
@@ -103,7 +89,7 @@ export class EmailService {
     author?: string,
     publishDate?: string
   ): Promise<boolean> {
-    const name = subscriberName || 'Valued Subscriber';
+    const name = subscriberName || subscriberEmail.split('@')[0];
     const fullArticleUrl = makeAbsoluteUrl(articleUrl);
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
 
@@ -112,27 +98,29 @@ export class EmailService {
       to_name: name,
       from_name: 'Saher Flow Solutions',
       subject: `New Article: ${articleTitle}`,
-      // template-specific variables
+      subscriber_name: name,
+      subscriber_email: subscriberEmail,
       article_title: articleTitle,
       article_excerpt: articleExcerpt,
       article_url: fullArticleUrl,
-      author: author || 'Saher Flow Solutions',
+      author: author || 'Saher Flow Solutions Team',
       publish_date: publishDate || new Date().toLocaleDateString(),
-      logo_url: `${origin}/assets/logo.png`,
+      company_name: 'Saher Flow Solutions',
+      website_url: origin,
       unsubscribe_url: `${origin}/unsubscribe?email=${encodeURIComponent(subscriberEmail)}`,
       year: new Date().getFullYear().toString(),
-      // fallback message
-      message: `Hi ${name}, we've published a new article: ${articleTitle}. Read: ${fullArticleUrl}`
+      message: `Hi ${name}, we've published a new article: ${articleTitle}. ${articleExcerpt} Read more: ${fullArticleUrl}`
     };
 
     try {
+      console.log('Sending article notification to:', subscriberEmail);
       const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID_NEW_ARTICLE,
         templateParams
       );
-      console.log('Article notification sent:', response);
-      return response?.status === 200 || /ok/i.test(String(response?.text || ''));
+      console.log('Article notification sent successfully:', response);
+      return response?.status === 200;
     } catch (error) {
       console.error('Failed to send article notification:', error);
       return false;
@@ -140,66 +128,88 @@ export class EmailService {
   }
 
   /**
-   * Admin notification (kept for future). Right now this is intentionally disabled.
-   * If you want to enable later, replace the body to call emailjs.send with the admin template id.
+   * Send admin notification about new subscriber
    */
   static async sendAdminNotification(
     subscriberEmail: string,
     adminEmail: string,
     subscriberPreferences?: any
   ): Promise<boolean> {
-    console.warn('sendAdminNotification is not enabled yet. This function is reserved for future use.');
-    // Keep the function signature to avoid breaking callers, but do not send anything yet.
-    return false;
-  }
-
-  /**
-   * Monthly digest (optional). Reuse or create a digest template later.
-   */
-  static async sendMonthlyDigest(
-    subscriberEmail: string,
-    articles: Array<{ title: string; excerpt: string; url: string }>,
-    subscriberName?: string
-  ): Promise<boolean> {
-    // Simple implementation that reuses the article template (or you can create a dedicated digest template)
-    const name = subscriberName || 'Valued Subscriber';
-    const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-
-    const articlesList = articles
-      .map(a => `📰 ${a.title}\n${a.excerpt}\nRead more: ${makeAbsoluteUrl(a.url)}`)
-      .join('\n\n');
-
     const templateParams: EmailTemplateParams = {
-      to_email: subscriberEmail,
-      to_name: name,
-      from_name: 'Saher Flow Solutions',
-      subject: `Monthly Newsletter - ${monthYear}`,
-      message: `Here's your monthly digest for ${monthYear}:\n\n${articlesList}`,
-      month_year: monthYear,
-      articles_list: articlesList,
-      website_url: origin,
-      unsubscribe_url: `${origin}/unsubscribe?email=${encodeURIComponent(subscriberEmail)}`
+      to_email: adminEmail,
+      to_name: 'Admin',
+      from_name: 'Website Notification System',
+      subject: `New Newsletter Subscriber: ${subscriberEmail}`,
+      subscriber_email: subscriberEmail,
+      subscription_date: new Date().toLocaleDateString(),
+      subscription_time: new Date().toLocaleTimeString(),
+      preferences: subscriberPreferences ? JSON.stringify(subscriberPreferences, null, 2) : 'Default preferences',
+      source: 'Website Newsletter Form',
+      message: `New subscriber alert!\n\nEmail: ${subscriberEmail}\nSubscribed: ${new Date().toLocaleString()}\nSource: Website Newsletter Form\n\nThis is an automated notification.`
     };
 
     try {
+      console.log('Sending admin notification for new subscriber:', subscriberEmail);
       const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID_NEW_ARTICLE, // reuse for now
+        EMAILJS_TEMPLATE_ID_ADMIN_NOTIFICATION,
         templateParams
       );
-      console.log('Monthly digest sent:', response);
-      return response?.status === 200 || /ok/i.test(String(response?.text || ''));
+      console.log('Admin notification sent successfully:', response);
+      return response?.status === 200;
     } catch (error) {
-      console.error('Failed to send monthly digest:', error);
+      console.error('Failed to send admin notification:', error);
       return false;
     }
   }
+
+  /**
+   * Notify all subscribers about a new article
+   */
+  static async notifyAllSubscribers(
+    articleTitle: string,
+    articleExcerpt: string,
+    articleUrl: string,
+    subscriberEmails: string[],
+    author?: string,
+    publishDate?: string
+  ): Promise<{ success: number; failed: number }> {
+    let success = 0;
+    let failed = 0;
+
+    console.log(`Notifying ${subscriberEmails.length} subscribers about new article:`, articleTitle);
+
+    for (const email of subscriberEmails) {
+      try {
+        const sent = await this.sendNewArticleNotification(
+          email,
+          articleTitle,
+          articleExcerpt,
+          articleUrl,
+          undefined,
+          author,
+          publishDate
+        );
+        
+        if (sent) {
+          success++;
+        } else {
+          failed++;
+        }
+        
+        // Add small delay to avoid rate limiting
+        await new Promise(resolve => setTimeout(resolve, 100));
+      } catch (error) {
+        console.error(`Failed to notify subscriber ${email}:`, error);
+        failed++;
+      }
+    }
+
+    console.log(`Notification complete: ${success} successful, ${failed} failed`);
+    return { success, failed };
+  }
 }
 
-/* ----------------------
-   Small helpers you can use in app
-   ---------------------- */
 export const getEmailJSConfig = () => ({
   serviceId: EMAILJS_SERVICE_ID,
   welcomeTemplateId: EMAILJS_TEMPLATE_ID_WELCOME,
@@ -219,7 +229,7 @@ export const validateEmailJSConfig = (): boolean => {
     !!cfg.articleTemplateId;
 
   if (!valid) {
-    console.warn('EmailJS configuration looks incomplete. Please replace EMAILJS_PUBLIC_KEY in src/utils/emailService.ts with your real public key.');
+    console.warn('EmailJS configuration incomplete. Please update credentials in emailService.ts');
   }
   return valid;
 };

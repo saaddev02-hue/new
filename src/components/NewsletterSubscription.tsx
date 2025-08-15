@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle, AlertCircle, Bell, Users, TrendingUp } from 'lucide-react';
 import { EmailService, validateEmailJSConfig } from '../utils/emailService';
+import { SubscriberStorage } from '../utils/subscriberStorage';
 
 interface NewsletterSubscriptionProps {
   variant?: 'default' | 'compact' | 'footer';
@@ -43,8 +44,22 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
     setErrorMessage('');
 
     try {
+      // Extract name from email for personalization
+      const subscriberName = email.split('@')[0];
+      
+      // Store subscriber locally
+      const subscriberAdded = SubscriberStorage.addSubscriber({
+        email: email.trim(),
+        name: subscriberName,
+        preferences
+      });
+      
+      if (!subscriberAdded) {
+        throw new Error('Failed to store subscriber information');
+      }
+
       // Send welcome email to subscriber
-      const welcomeEmailSent = await EmailService.sendWelcomeEmail(email);
+      const welcomeEmailSent = await EmailService.sendWelcomeEmail(email.trim(), subscriberName);
       
       if (!welcomeEmailSent) {
         throw new Error('Failed to send welcome email');
@@ -52,7 +67,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
 
       // Send admin notification (to you)
       const adminEmail = 'contact@saherflow.com'; // Replace with your actual email
-      await EmailService.sendAdminNotification(email, adminEmail, preferences);
+      await EmailService.sendAdminNotification(email.trim(), adminEmail, preferences);
 
       // Success
       setSubmitStatus('success');
@@ -64,9 +79,11 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
         events: false
       });
 
+      console.log('Subscription successful for:', email.trim());
+      console.log('Total subscribers:', SubscriberStorage.getSubscriberCount());
     } catch (error) {
       console.error('Subscription error:', error);
-      setErrorMessage('Failed to subscribe. Please try again or contact support.');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to subscribe. Please try again or contact support.');
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -174,7 +191,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
             <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-2">
               <Users className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             </div>
-            <div className="text-sm font-semibold text-gray-900 dark:text-white">500+</div>
+            <div className="text-sm font-semibold text-gray-900 dark:text-white">{SubscriberStorage.getSubscriberCount()}+</div>
             <div className="text-xs text-gray-500 dark:text-gray-400">Subscribers</div>
           </div>
           <div className="flex flex-col items-center">
