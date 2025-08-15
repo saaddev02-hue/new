@@ -60,43 +60,40 @@ function generateSlug(filename: string): string {
   return filename.replace('.md', '').replace(/^\d{4}-\d{2}-\d{2}-/, '');
 }
 
-// Get all markdown files dynamically
+// Get all markdown files dynamically from content directory
 function getMarkdownFiles(): Record<string, () => Promise<any>> {
-  console.log('Getting markdown files...');
-  const files = import.meta.glob('/src/content/*.md', { as: 'raw', eager: false });
-  console.log('Found files:', Object.keys(files));
+  // Try multiple possible locations for markdown files
+  const files = {
+    ...import.meta.glob('/src/content/*.md', { as: 'raw', eager: false }),
+    ...import.meta.glob('/src/content/news/*.md', { as: 'raw', eager: false })
+  };
   return files;
 }
 
+// Cache for loaded articles to improve performance
+let articlesCache: NewsArticle[] | null = null;
+let cacheTimestamp: number = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 // Load all news articles from actual files
 export async function loadAllNews(): Promise<NewsArticle[]> {
-  console.log('loadAllNews called');
+  // Check cache first
+  const now = Date.now();
+  if (articlesCache && (now - cacheTimestamp) < CACHE_DURATION) {
+    return articlesCache;
+  }
+
   const articles: NewsArticle[] = [];
   const files = getMarkdownFiles();
   
   if (Object.keys(files).length === 0) {
-    console.warn('No markdown files found in /src/content/');
-    // Return some fallback articles for testing
-    return [
-      {
-        id: 'test-article',
-        title: 'Test Article - No MD Files Found',
-        date: '2025-01-15',
-        category: 'System',
-        image: 'https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=800',
-        excerpt: 'This is a test article because no markdown files were found in the content directory.',
-        featured: false,
-        content: '<p>No markdown files were found in the /src/content/ directory. Please add some .md files to see real content.</p>',
-        slug: 'test-article'
-      }
-    ];
+    console.warn('No markdown files found in /src/content/ or /src/content/news/');
+    return [];
   }
   
   for (const [filePath, loadFile] of Object.entries(files)) {
     try {
-      console.log(`Loading file: ${filePath}`);
       const content = await loadFile();
-      console.log(`File content length: ${content.length}`);
       const filename = filePath.split('/').pop() || '';
       const { metadata, content: markdownContent } = parseFrontmatter(content);
       const htmlContent = await marked(markdownContent);
@@ -108,15 +105,25 @@ export async function loadAllNews(): Promise<NewsArticle[]> {
         slug,
         id: metadata.id || slug,
       });
-      console.log(`Successfully loaded: ${metadata.title}`);
     } catch (error) {
       console.error(`Error loading news file ${filePath}:`, error);
     }
   }
   
-  console.log(`Total articles loaded: ${articles.length}`);
   // Sort by date (newest first)
-  return articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const sortedArticles = articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  
+  // Update cache
+  articlesCache = sortedArticles;
+  cacheTimestamp = now;
+  
+  return sortedArticles;
+}
+
+// Clear cache function (useful for development)
+export function clearNewsCache(): void {
+  articlesCache = null;
+  cacheTimestamp = 0;
 }
 
 // Load a specific news article by slug
@@ -131,7 +138,7 @@ export async function getFeaturedNews(): Promise<NewsArticle[]> {
   return articles.filter(article => article.featured);
 }
 
-// Get recent news articles (for homepage preview)
+// Get recent news articles (for homepage preview) - automatically sorted by date
 export async function getRecentNews(limit: number = 4): Promise<NewsArticle[]> {
   const articles = await loadAllNews();
   return articles.slice(0, limit);

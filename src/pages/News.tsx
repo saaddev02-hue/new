@@ -46,29 +46,17 @@ const News: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Debug logging
-  useEffect(() => {
-    console.log('News component mounted');
-    console.log('Articles:', articles);
-    console.log('Categories:', categories);
-    console.log('Filtered articles:', filteredArticles);
-  }, [articles, categories, filteredArticles]);
-
   const articlesPerSlide = 3;
 
   // Load news data
   useEffect(() => {
     const loadNewsData = async () => {
       try {
-        console.log('Starting to load news data...');
         setLoading(true);
         const [newsArticles, newsCategories] = await Promise.all([
           loadAllNews(),
           getNewsCategories()
         ]);
-        
-        console.log('Loaded articles:', newsArticles);
-        console.log('Loaded categories:', newsCategories);
         
         setArticles(newsArticles);
         setCategories(newsCategories);
@@ -92,6 +80,31 @@ const News: React.FC = () => {
 
     loadNewsData();
   }, []);
+
+  // Auto-refresh news every 5 minutes to pick up new articles
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const [newsArticles, newsCategories] = await Promise.all([
+          loadAllNews(),
+          getNewsCategories()
+        ]);
+        
+        // Only update if there are changes
+        if (newsArticles.length !== articles.length) {
+          setArticles(newsArticles);
+          setCategories(newsCategories);
+          if (selectedCategory === 'All') {
+            setFilteredArticles(newsArticles);
+          }
+        }
+      } catch (err) {
+        console.error('Error refreshing news:', err);
+      }
+    }, 5 * 60 * 1000); // 5 minutes
+
+    return () => clearInterval(interval);
+  }, [articles.length, selectedCategory]);
 
   // Filter articles by category
   useEffect(() => {

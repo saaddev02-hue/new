@@ -35,22 +35,40 @@ import { getRecentNews, NewsArticle } from '../utils/newsLoader';
 const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
-  const [recentNews, setRecentNews] = useState<NewsArticle[]>([]);
+   const [recentNews, setRecentNews] = useState<NewsArticle[]>([]);
+  const [newsLoading, setNewsLoading] = useState(true)
   const [currentTeamSlide, setCurrentTeamSlide] = useState(0);
   const [selectedMember, setSelectedMember] = useState<any>(null);
 
-  // Load recent news (only 3)
+// Load recent news on component mount
   useEffect(() => {
-    const loadNews = async () => {
+    const loadRecentNews = async () => {
       try {
-        const news = await getRecentNews(3);
+        setNewsLoading(true);
+        const news = await getRecentNews(3); // Get top 3 latest news
         setRecentNews(news);
       } catch (error) {
         console.error('Error loading recent news:', error);
+      } finally {
+        setNewsLoading(false);
       }
     };
-    loadNews();
+
+    loadRecentNews();
   }, []);
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement;
+    target.src = 'https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=800';
+  };
 
   // Hero background images
   const heroImages = [
@@ -501,18 +519,6 @@ const partnerships = [
     setCurrentTeamSlide((prev) => (prev - 1 + Math.ceil(teamMembers.length / 3)) % Math.ceil(teamMembers.length / 3));
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
-
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const target = e.target as HTMLImageElement;
-    target.src = 'https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=800';
-  };
 
   useEffect(() => {
     const timer = setInterval(nextSlide, 6000);
@@ -1104,100 +1110,120 @@ const partnerships = [
       </section>
 
 
-      {/* Recent News Section */}
-      {recentNews.length > 0 && (
-        <section className="py-12 sm:py-16 md:py-24 bg-white dark:bg-gray-900">
-          <div className="container mx-auto px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center mb-8 sm:mb-12 md:mb-16"
-            >
-              <div className="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm font-semibold mb-4 sm:mb-6">
-                <Calendar size={14} className="sm:w-4 sm:h-4" />
-                Latest Updates
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 dark:text-white mb-4 sm:mb-6">
-                Recent News & Achievements
-              </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
-                Stay updated with our latest developments and industry recognition
-              </p>
-            </motion.div>
+      {/* Latest News Section - Dynamic */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-navy-900 dark:text-white mb-4">Latest News</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              Stay updated with our breakthrough developments and partnerships
+            </p>
+          </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {newsLoading ? (
+            <div className="grid md:grid-cols-3 gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg animate-pulse">
+                  <div className="aspect-video bg-gray-300 dark:bg-gray-600"></div>
+                  <div className="p-6 space-y-4">
+                    <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/3"></div>
+                    <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded"></div>
+                    <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-2/3"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : recentNews.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-8">
               {recentNews.map((article, index) => (
-                <motion.div
-                  key={article.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group bg-gray-50 dark:bg-gray-700 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105"
+                <motion.article
+                  key={article.id || article.slug}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-[1.02] cursor-pointer"
+                  onClick={() => window.location.href = '/news'}
                 >
-                  <div className="aspect-video overflow-hidden">
+                  <div className="aspect-video overflow-hidden relative">
                     <img
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       onError={handleImageError}
                     />
-                  </div>
-
-                  <div className="p-4 sm:p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
-                        <Tag size={10} className="sm:w-3 sm:h-3" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4">
+                      <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-navy-900 dark:text-white px-3 py-1.5 rounded-full text-sm font-medium">
                         {article.category}
                       </div>
-                      <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
-                        {formatDate(article.date)}
-                      </span>
                     </div>
 
-                    <h3 className="text-base sm:text-lg font-bold text-navy-900 dark:text-white mb-3 line-clamp-2 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">
+                    {/* Featured Badge */}
+                    {article.featured && (
+                      <div className="absolute top-4 right-4">
+                        <div className="bg-yellow-500 text-navy-900 px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                          <Star size={12} />
+                          FEATURED
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 mb-3">
+                      <Calendar size={16} />
+                      <time dateTime={article.date} className="text-sm">
+                        {formatDate(article.date)}
+                      </time>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-3 group-hover:text-navy-700 dark:group-hover:text-yellow-400 transition-colors duration-200 line-clamp-2">
                       {article.title}
                     </h3>
 
-                    <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm mb-4 line-clamp-3">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
                       {article.excerpt}
                     </p>
 
-                    <a
-                      href="/news"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-navy-600 dark:text-yellow-400 font-semibold hover:text-yellow-500 transition-colors duration-200 text-xs sm:text-sm"
-                    >
-                      Read More <ArrowRight size={12} className="sm:w-3.5 sm:h-3.5" />
-                    </a>
+                    <div className="flex items-center justify-between">
+                      <span className="flex items-center gap-2 text-navy-600 dark:text-yellow-400 font-semibold hover:text-yellow-500 transition-colors duration-200 text-sm group-hover:gap-3">
+                        Read More <ArrowRight size={16} />
+                      </span>
+                      
+                      <div className="text-xs text-gray-400 dark:text-gray-500">
+                        {Math.ceil(article.content.length / 1000)} min read
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
+          ) : (
+            <div className="text-center py-12">
+              <div className="text-gray-400 dark:text-gray-500 mb-4">
+                <Calendar size={48} className="mx-auto mb-4" />
+                <p className="text-lg">No news articles available yet.</p>
+                <p className="text-sm">Check back soon for updates!</p>
+              </div>
+            </div>
+          )}
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center mt-12"
-            >
+          {recentNews.length > 0 && (
+            <div className="text-center mt-12">
               <a
                 href="/news"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-navy-800 dark:hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-3 bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-navy-800 dark:hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 View All News
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight size={20} />
               </a>
-            </motion.div>
-          </div>
-        </section>
-      )}
+            </div>
+          )}
+        </div>
+      </section>
+
 
       {/* Stats Section */}
       <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-r from-navy-900 to-navy-800 dark:from-gray-900 dark:to-gray-800 text-white">
