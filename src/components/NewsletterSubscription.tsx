@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useForm, ValidationError } from '@formspree/react';
 import { Mail, Send, CheckCircle, AlertCircle, Bell, Users, TrendingUp } from 'lucide-react';
+import { EmailService, validateEmailJSConfig } from '../utils/emailService';
 
 interface NewsletterSubscriptionProps {
   variant?: 'default' | 'compact' | 'footer';
@@ -11,8 +11,10 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
   variant = 'default',
   className = '' 
 }) => {
-  const [state, handleSubmit] = useForm("xanbkawg"); // Replace with your Formspree form ID
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const [preferences, setPreferences] = useState({
     productUpdates: true,
     industryNews: true,
@@ -23,20 +25,37 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
   const handleSubscriptionSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create FormData with subscription details
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('subscriptionType', 'newsletter');
-    formData.append('preferences', JSON.stringify(preferences));
-    formData.append('subscribedAt', new Date().toISOString());
-    formData.append('source', 'website');
-    formData.append('_subject', `New Newsletter Subscription: ${email}`);
-    formData.append('_template', 'table');
-    
-    // Submit to Formspree
-    await handleSubmit(formData);
-    
-    if (state.succeeded) {
+    if (!email.trim()) {
+      setErrorMessage('Please enter a valid email address');
+      setSubmitStatus('error');
+      return;
+    }
+
+    // Validate EmailJS configuration
+    if (!validateEmailJSConfig()) {
+      setErrorMessage('Email service is not properly configured. Please contact support.');
+      setSubmitStatus('error');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      // Send welcome email to subscriber
+      const welcomeEmailSent = await EmailService.sendWelcomeEmail(email);
+      
+      if (!welcomeEmailSent) {
+        throw new Error('Failed to send welcome email');
+      }
+
+      // Send admin notification (to you)
+      const adminEmail = 'contact@saherflow.com'; // Replace with your actual email
+      await EmailService.sendAdminNotification(email, adminEmail, preferences);
+
+      // Success
+      setSubmitStatus('success');
       setEmail('');
       setPreferences({
         productUpdates: true,
@@ -44,9 +63,27 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
         technicalPapers: false,
         events: false
       });
+
+    } catch (error) {
+      console.error('Subscription error:', error);
+      setErrorMessage('Failed to subscribe. Please try again or contact support.');
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
+    
 
+  // Reset status after 5 seconds
+  React.useEffect(() => {
+    if (submitStatus !== 'idle') {
+      const timer = setTimeout(() => {
+        setSubmitStatus('idle');
+        setErrorMessage('');
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
 
   // Default variant - full featured
   return (
@@ -80,21 +117,15 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
             />
             <Mail size={20} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
-          <ValidationError 
-            prefix="Email" 
-            field="email"
-            errors={state.errors}
-            className="text-red-500 text-sm mt-1"
-          />
         </div>
 
         
         <button
           type="submit"
-          disabled={state.submitting}
+          disabled={isSubmitting}
           className="w-full bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-4 px-8 rounded-lg font-semibold text-lg hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {state.submitting ? (
+          {isSubmitting ? (
             <>
               <div className="animate-spin rounded-full h-5 w-5 border-2 border-white dark:border-navy-900 border-t-transparent" />
               Subscribing...
@@ -107,7 +138,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
           )}
         </button>
         
-        {state.succeeded && (
+        {submitStatus === 'success' && (
           <div className="bg-green-100 dark:bg-green-900/30 border border-green-500/30 rounded-lg p-4 text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
               <CheckCircle size={20} className="text-green-600 dark:text-green-400" />
@@ -116,21 +147,21 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
               </p>
             </div>
             <p className="text-green-700 dark:text-green-300 text-sm">
-              Thank you for subscribing! You'll receive a confirmation email shortly, and we'll keep you updated with the latest news and insights.
+              Thank you for subscribing! Check your email for a welcome message, and we'll keep you updated with the latest news and insights.
             </p>
           </div>
         )}
         
-        {state.errors && state.errors.length > 0 && (
+        {submitStatus === 'error' && (
           <div className="bg-red-100 dark:bg-red-900/30 border border-red-500/30 rounded-lg p-4 text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
               <AlertCircle size={20} className="text-red-600 dark:text-red-400" />
               <p className="text-red-800 dark:text-red-400 font-medium">
-                Subscription Failed
+                {errorMessage || 'Subscription Failed'}
               </p>
             </div>
             <p className="text-red-700 dark:text-red-300 text-sm">
-              There was an error processing your subscription. Please try again or contact us directly.
+              Please try again or contact us directly at contact@saherflow.com
             </p>
           </div>
         )}

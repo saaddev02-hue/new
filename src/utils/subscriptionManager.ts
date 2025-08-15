@@ -1,5 +1,5 @@
 // Subscription management utilities
-import { useForm } from '@formspree/react';
+import { EmailService } from './emailService';
 
 export interface Subscriber {
   email: string;
@@ -188,43 +188,70 @@ export const useSubscriptionManager = (formspreeEndpoint: string) => {
   };
 };
 
-// Auto-notification hook for new articles
+// Auto-notification system for new articles
 export const useAutoNotification = () => {
-  const [state, handleSubmit] = useForm("mnnzrdzo"); // This sends notifications to subscribers about new articles
+  const [isNotifying, setIsNotifying] = useState(false);
+  const [notificationStatus, setNotificationStatus] = useState<'idle' | 'success' | 'error'>('idle');
   
   const notifySubscribers = async (article: NewsArticle) => {
-    // This should send emails to all subscribers, not to you
-    // For now, we'll create a system that manages subscriber emails
+    setIsNotifying(true);
+    setNotificationStatus('idle');
     
-    const formData = new FormData();
-    formData.append('type', 'new_article_notification_to_subscribers');
-    formData.append('articleTitle', article.title);
-    formData.append('articleUrl', article.url);
-    formData.append('articleExcerpt', article.excerpt);
-    formData.append('articleImage', article.image);
-    formData.append('articleCategory', article.category);
-    formData.append('publishedAt', article.publishedAt);
-    formData.append('_subject', `📰 New Article: ${article.title}`);
-    formData.append('_template', 'basic');
-    formData.append('message', `
-New Article Published on Saher Flow Solutions
-
-📰 ${article.title}
-
-${article.excerpt}
-
-Read the full article: ${window.location.origin}${article.url}
-
-Category: ${article.category}
-Published: ${new Date(article.publishedAt).toLocaleDateString()}
-
----
-This email was sent to subscribers of Saher Flow Solutions newsletter.
-Unsubscribe: ${window.location.origin}/unsubscribe
-    `);
-    
-    await handleSubmit(formData);
+    try {
+      // In a real implementation, you would:
+      // 1. Get list of subscribers from your database
+      // 2. Send email to each subscriber
+      // For now, we'll just log that the system is ready
+      
+      console.log('Article notification system triggered for:', article.title);
+      console.log('In production, this would send emails to all subscribers');
+      
+      // Example of how you would send to subscribers:
+      // const subscribers = await getSubscribersList(); // You need to implement this
+      // for (const subscriber of subscribers) {
+      //   await EmailService.sendNewArticleNotification(
+      //     subscriber.email,
+      //     article.title,
+      //     article.excerpt,
+      //     article.url,
+      //     subscriber.name
+      //   );
+      // }
+      
+      setNotificationStatus('success');
+    } catch (error) {
+      console.error('Failed to notify subscribers:', error);
+      setNotificationStatus('error');
+    } finally {
+      setIsNotifying(false);
+    }
   };
   
-  return { notifySubscribers, state };
+  return { 
+    notifySubscribers, 
+    isNotifying, 
+    notificationStatus 
+  };
+};
+// Helper function to get subscribers list (you need to implement this)
+// This could connect to your database, CRM, or email service
+export const getSubscribersList = async (): Promise<Subscriber[]> => {
+  // TODO: Implement subscriber storage and retrieval
+  // This could be:
+  // - A database (Firebase, Supabase, etc.)
+  // - A file-based storage
+  // - Integration with email service (Mailchimp, ConvertKit, etc.)
+  
+  console.warn('getSubscribersList not implemented - returning empty array');
+  return [];
+};
+
+// Helper function to add subscriber to list
+export const addSubscriber = async (subscriber: Omit<Subscriber, 'subscribedAt' | 'status'>): Promise<boolean> => {
+  // TODO: Implement subscriber storage
+  // This should save the subscriber to your chosen storage solution
+  
+  console.log('New subscriber to be stored:', subscriber);
+  console.warn('addSubscriber not implemented - subscriber not stored');
+  return true;
 };

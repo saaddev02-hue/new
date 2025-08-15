@@ -1,6 +1,7 @@
 import React from 'react';
 import { CheckCircle, Mail, Bell, Users, TrendingUp, Shield, Clock } from 'lucide-react';
 import NewsletterSubscription from '../components/NewsletterSubscription';
+import EmailJSSetupGuide from '../components/EmailJSSetupGuide';
 
 const Subscribe: React.FC = () => {
   const benefits = [
@@ -98,6 +99,7 @@ const Subscribe: React.FC = () => {
       {/* Subscription Form */}
       <div className="py-16">
         <div className="container mx-auto px-6">
+          <EmailJSSetupGuide />
           <div className="max-w-2xl mx-auto">
             <NewsletterSubscription variant="default" />
           </div>

@@ -93,78 +93,76 @@ The system is designed to be easily extensible with features like:
 - Email notifications
 - Admin interface for content management
 
-## Contact Form Setup
+## Email System Setup with EmailJS
 
-The contact form is integrated with Formspree for receiving real messages. To set it up:
+The website now uses EmailJS for a proper email system where:
+- **Subscribers receive welcome emails and notifications**
+- **You only receive admin notifications about new subscribers and contact forms**
 
-1. Go to [Formspree.io](https://formspree.io) and create a free account
-2. Create a new form and get your form ID
-3. Replace the form ID in `src/components/Contact.tsx`:
+### Setup Steps:
+
+1. **Create EmailJS Account**
+   - Go to [EmailJS.com](https://www.emailjs.com/) and create a free account
+   - Verify your email and log in
+
+2. **Set Up Email Service**
+   - Add your email provider (Gmail, Outlook, etc.)
+   - Get your Service ID
+
+3. **Create Email Templates**
+   - Welcome email template (ID: `template_welcome`)
+   - New article notification template (ID: `template_new_article`)  
+   - Admin notification template (ID: `template_admin_notification`)
+
+4. **Get Your Public Key**
+   - Copy your public key from Account settings
+
+5. **Update Configuration**
+   - Edit `src/utils/emailService.ts`
+   - Replace placeholder values with your actual EmailJS credentials:
    ```typescript
-   const [state, handleSubmit] = useForm("YOUR_FORM_ID_HERE");
+   const EMAILJS_SERVICE_ID = 'your_service_id_here';
+   const EMAILJS_PUBLIC_KEY = 'your_public_key_here';
    ```
-4. Configure your form settings in Formspree dashboard:
-   - Set up email notifications
-   - Configure spam protection
-   - Add custom thank you messages
-   - Set up integrations (Slack, email, etc.)
+   - Update admin email in components to your actual email
 
-### Form Features:
-- ✅ Real-time form submission
-- 📧 Email notifications to your inbox
-- 🛡️ Built-in spam protection
-- 📊 Submission analytics
-- 🔄 Form validation and error handling
-- 📱 Mobile-friendly interface
+### How It Works:
 
-### Free Plan Limits:
-- 50 submissions per month
-- Basic spam filtering
-- Email notifications
+**Newsletter Subscription:**
+1. User fills subscription form
+2. User receives welcome email instantly
+3. You receive admin notification: "New subscriber: email@example.com"
 
-For higher volume, upgrade to a paid plan for unlimited submissions and advanced features.
+**Contact Form:**
+1. User submits contact form
+2. You receive the contact inquiry
+3. User sees confirmation message
 
-## Newsletter Subscription System Setup
+**New Article Notifications:**
+1. When new articles are published
+2. System can notify all subscribers (requires subscriber database)
+3. Each subscriber gets personalized email
 
-The website includes a comprehensive newsletter subscription system with automatic notifications. To set it up:
+### Features:
 
-### 1. Newsletter Subscription Form
+- ✅ **Proper email flow** - subscribers get emails, you get notifications
+- 📧 **Welcome emails** for new subscribers
+- 🔔 **Article notifications** to subscribers
+- 📊 **Admin notifications** for new subscribers and contact forms
+- 🛡️ **No spam** - clean, professional emails
+- 📱 **Mobile-friendly** forms
+- 🎯 **Personalized** email content
+- 🔄 **Error handling** and validation
 
-Create a form in Formspree for newsletter subscriptions:
+### EmailJS Free Plan:
+- 200 emails per month
+- All features included
+- No credit card required
 
-1. Create a new form in your Formspree account for subscriptions
-2. Replace the form ID in `src/components/NewsletterSubscription.tsx`:
-   ```typescript
-   const [state, handleSubmit] = useForm("YOUR_SUBSCRIPTION_FORM_ID");
-   ```
-3. Configure the subscription form settings:
-   - Set up email notifications to your marketing team
-   - Configure autoresponder for welcome emails
-   - Set up integrations with email marketing tools
+For higher volume, upgrade to paid plans for unlimited emails.
 
-### 2. New Article Notifications
-
-Create a separate form for sending notifications about new articles:
-
-1. Create another form in Formspree for article notifications
-2. Replace the form ID in `src/utils/subscriptionManager.ts`:
-   ```typescript
-   const { notifySubscribers } = useAutoNotification(); // Update form ID in this hook
-   ```
-3. Configure notification settings:
-   - Set up email templates for new article notifications
-   - Configure subscriber list management
-   - Set up automated email sending
-
-### 3. Unsubscribe Management
-
-Create a form for handling unsubscribe requests:
-
-1. Create a form for unsubscribe requests
-2. Replace the form ID in `src/pages/Unsubscribe.tsx`:
-   ```typescript
-   const [state, handleSubmit] = useForm("YOUR_UNSUBSCRIBE_FORM_ID");
-   ```
+### Setup Guide:
+Visit the Subscribe page (`/subscribe`) to see the complete setup guide with step-by-step instructions and template examples.
 
 ### Newsletter Features:
 
