@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -14,7 +14,7 @@ import { NavigationProvider } from './context/NavigationContext';
 
 // Component to scroll to top on route change
 const ScrollToTop: React.FC = () => {
-  const location = window.location;
+  const location = useLocation();
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,9 +27,9 @@ function App() {
   return (
     <NavigationProvider>
       <Router>
-        <ScrollToTop />
         <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
           <Navbar />
+          <ScrollToTop />
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
