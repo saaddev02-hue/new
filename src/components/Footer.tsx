@@ -14,22 +14,9 @@ import {
   MessageCircle,
   CheckCircle
 } from 'lucide-react';
+import NewsletterSubscription from './NewsletterSubscription';
 
 const Footer: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setNewsletterStatus('loading');
-    
-    // Simulate API call
-    setTimeout(() => {
-      setNewsletterStatus('success');
-      setEmail('');
-      setTimeout(() => setNewsletterStatus('idle'), 3000);
-    }, 1000);
-  };
 
   const quickLinks = [
     { name: 'About Us', href: '/' },
@@ -174,100 +161,7 @@ const Footer: React.FC = () => {
           {/* Stay Connected Newsletter - Expanded to 4 columns */}
           <div className="lg:col-span-4">
             <div className="bg-gradient-to-br from-navy-800/50 to-navy-700/30 dark:from-gray-700/50 dark:to-gray-600/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 dark:border-gray-600/20 h-full">
-              <h4 className="text-xl font-bold text-yellow-500 mb-4 flex items-center gap-2">
-                <MessageCircle size={20} />
-                Stay Connected
-              </h4>
-              <p className="text-gray-300 dark:text-gray-400 mb-6 leading-relaxed">
-                Get industry insights, product updates, and technical resources delivered to your inbox monthly.
-              </p>
-              
-              {/* Newsletter Benefits */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-white/10 dark:bg-gray-800/30 rounded-lg p-4 text-center">
-                  <div className="text-2xl font-bold text-yellow-400 mb-1">500+</div>
-                  <div className="text-xs text-gray-300">Subscribers</div>
-                </div>
-                <div className="bg-white/10 dark:bg-gray-800/30 rounded-lg p-4 text-center">
-                  <div className="text-2xl font-bold text-yellow-400 mb-1">Monthly</div>
-                  <div className="text-xs text-gray-300">Updates</div>
-                </div>
-              </div>
-              
-              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
-                <div className="relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    required
-                    className="w-full px-4 py-3 pr-12 bg-white/20 dark:bg-gray-800/50 border border-white/30 dark:border-gray-600/30 rounded-xl text-white dark:text-gray-200 placeholder-gray-300 dark:placeholder-gray-400 focus:bg-white/30 dark:focus:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500/50 transition-all duration-300"
-                  />
-                  <Mail size={18} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={newsletterStatus === 'loading'}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-navy-900 py-4 px-4 rounded-xl font-bold hover:from-yellow-400 hover:to-yellow-300 hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
-                >
-                  {newsletterStatus === 'loading' ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-navy-900 border-t-transparent" />
-                      Subscribing...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={18} />
-                      Subscribe Now
-                    </>
-                  )}
-                </button>
-                
-                {newsletterStatus === 'success' && (
-                  <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4 text-center">
-                    <div className="flex items-center justify-center gap-2">
-                      <CheckCircle size={18} className="text-green-400" />
-                      <p className="text-green-400 font-medium">
-                        Successfully subscribed!
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </form>
-
-              {/* Trust Indicators */}
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <div className="flex items-center justify-between text-sm text-gray-400">
-                  <span>🔒 Privacy Protected</span>
-                  <span>📧 No Spam</span>
-                  <span>🎯 Relevant Content</span>
-                </div>
-              </div>
-              
-              {/* Additional Newsletter Features */}
-              <div className="mt-6 space-y-3">
-                <h5 className="text-sm font-semibold text-white mb-3">What you'll receive:</h5>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
-                    <span>Monthly technology updates</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
-                    <span>Industry insights and trends</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
-                    <span>Product announcements</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full" />
-                    <span>Exclusive technical resources</span>
-                  </div>
-                </div>
-              </div>
+              <NewsletterSubscription />
             </div>
           </div>
         </div>

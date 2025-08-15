@@ -431,7 +431,7 @@ const Careers: React.FC = () => {
                 </button>
               </div>
 
-              <form onSubmit={submitApplication} className="space-y-6">
+              <form onSubmit={submitApplication} className="space-y-6" >
                 {/* Hidden fields for Formspree */}
                 <input type="hidden" name="_subject" value={`Job Application: ${applicationData.position} - ${applicationData.name}`} />
                 <input type="hidden" name="_template" value="table" />

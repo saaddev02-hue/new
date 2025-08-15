@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, ArrowRight, Tag, Award, Users, TrendingUp, Building, X, ChevronLeft, ChevronRight, Clock, Eye, Share2, AlertCircle } from 'lucide-react';
 import { loadAllNews, getNewsCategories, getNewsByCategory, NewsArticle } from '../utils/newsLoader';
+import NewsletterSubscription from '../components/NewsletterSubscription';
+import { useAutoNotification } from '../utils/subscriptionManager';
 
 // SEO Component for structured data
 const NewsStructuredData: React.FC<{ articles: NewsArticle[] }> = ({ articles }) => {
@@ -45,6 +47,7 @@ const News: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { notifySubscribers } = useAutoNotification();
 
   const articlesPerSlide = 3;
 
@@ -70,6 +73,19 @@ const News: React.FC = () => {
             setSelectedArticle(article);
           }
         }
+        
+        // Auto-notify subscribers for new articles (only if this is a new article)
+        const latestArticle = newsArticles[0];
+        if (latestArticle && isNewArticle(latestArticle)) {
+          await notifySubscribers({
+            title: latestArticle.title,
+            url: `/news#${latestArticle.slug}`,
+            excerpt: latestArticle.excerpt,
+            image: latestArticle.image,
+            category: latestArticle.category,
+            publishedAt: latestArticle.date
+          });
+        }
       } catch (err) {
         console.error('Error loading news:', err);
         setError(`Failed to load news articles: ${err instanceof Error ? err.message : 'Unknown error'}`);
@@ -80,6 +96,14 @@ const News: React.FC = () => {
 
     loadNewsData();
   }, []);
+
+  // Check if article is new (published within last 24 hours)
+  const isNewArticle = (article: NewsArticle): boolean => {
+    const articleDate = new Date(article.date);
+    const now = new Date();
+    const diffHours = (now.getTime() - articleDate.getTime()) / (1000 * 60 * 60);
+    return diffHours <= 24;
+  };
 
   // Auto-refresh news every 5 minutes to pick up new articles
   useEffect(() => {
@@ -441,21 +465,16 @@ const News: React.FC = () => {
         </div>
 
         {/* Newsletter Section */}
-        <div className="bg-gray-50 dark:bg-gray-800 py-16">
+        <div className="bg-white dark:bg-gray-800 py-16">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-navy-900 dark:text-white mb-4">Stay Updated</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter for the latest news, insights, and updates from Saher Flow Solutions
-            </p>
-            <div className="max-w-md mx-auto flex gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-              />
-              <button className="bg-yellow-500 text-navy-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
-                Subscribe
-              </button>
+            <div className="mb-12">
+              <h2 className="text-4xl font-bold text-navy-900 dark:text-white mb-4">Never Miss an Update</h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Get instant notifications when we publish new articles, product updates, and industry insights
+              </p>
+            </div>
+            <div className="max-w-2xl mx-auto">
+              <NewsletterSubscription variant="default" />
             </div>
           </div>
         </div>
