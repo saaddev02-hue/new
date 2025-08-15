@@ -76,16 +76,18 @@ const News: React.FC = () => {
         
         // Auto-notify subscribers for new articles (only if this is a new article)
         const latestArticle = newsArticles[0];
-        if (latestArticle && isNewArticle(latestArticle)) {
-          await notifySubscribers({
-            title: latestArticle.title,
-            url: `/news#${latestArticle.slug}`,
-            excerpt: latestArticle.excerpt,
-            image: latestArticle.image,
-            category: latestArticle.category,
-            publishedAt: latestArticle.date
-          });
-        }
+        // Commented out auto-notification to prevent spam during development
+        // Uncomment when you want to enable automatic notifications for new articles
+        // if (latestArticle && isNewArticle(latestArticle)) {
+        //   await notifySubscribers({
+        //     title: latestArticle.title,
+        //     url: `/news#${latestArticle.slug}`,
+        //     excerpt: latestArticle.excerpt,
+        //     image: latestArticle.image,
+        //     category: latestArticle.category,
+        //     publishedAt: latestArticle.date
+        //   });
+        // }
       } catch (err) {
         console.error('Error loading news:', err);
         setError(`Failed to load news articles: ${err instanceof Error ? err.message : 'Unknown error'}`);
@@ -464,21 +466,7 @@ const News: React.FC = () => {
           </div>
         </div>
 
-        {/* Newsletter Section */}
-        <div className="bg-white dark:bg-gray-800 py-16">
-          <div className="container mx-auto px-6 text-center">
-            <div className="mb-12">
-              <h2 className="text-4xl font-bold text-navy-900 dark:text-white mb-4">Never Miss an Update</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                Get instant notifications when we publish new articles, product updates, and industry insights
-              </p>
-            </div>
-            <div className="max-w-2xl mx-auto">
-              <NewsletterSubscription variant="default" />
-            </div>
-          </div>
-        </div>
-
+        
         {/* Article Modal */}
         {selectedArticle && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">

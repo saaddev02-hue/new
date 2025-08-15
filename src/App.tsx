@@ -7,8 +7,7 @@ import Products from './pages/Products';
 import Services from './pages/Services';
 import News from './pages/News';
 import Careers from './pages/Careers';
-import Subscribe from './pages/Subscribe';
-import Unsubscribe from './pages/Unsubscribe';
+
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { NavigationProvider } from './context/NavigationContext';
@@ -38,8 +37,8 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/news" element={<News />} />
               <Route path="/careers" element={<Careers />} />
-              <Route path="/subscribe" element={<Subscribe />} />
-              <Route path="/unsubscribe" element={<Unsubscribe />} />
+           
+    
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </main>

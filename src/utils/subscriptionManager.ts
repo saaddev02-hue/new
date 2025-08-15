@@ -190,18 +190,38 @@ export const useSubscriptionManager = (formspreeEndpoint: string) => {
 
 // Auto-notification hook for new articles
 export const useAutoNotification = () => {
-  const [state, handleSubmit] = useForm("mnnzrdzo"); // Replace with your notification form ID
+  const [state, handleSubmit] = useForm("mnnzrdzo"); // This sends notifications to subscribers about new articles
   
   const notifySubscribers = async (article: NewsArticle) => {
+    // This should send emails to all subscribers, not to you
+    // For now, we'll create a system that manages subscriber emails
+    
     const formData = new FormData();
-    formData.append('type', 'auto_notification');
+    formData.append('type', 'new_article_notification_to_subscribers');
     formData.append('articleTitle', article.title);
     formData.append('articleUrl', article.url);
     formData.append('articleExcerpt', article.excerpt);
     formData.append('articleImage', article.image);
     formData.append('articleCategory', article.category);
     formData.append('publishedAt', article.publishedAt);
-    formData.append('_subject', `Auto Notification: ${article.title}`);
+    formData.append('_subject', `📰 New Article: ${article.title}`);
+    formData.append('_template', 'basic');
+    formData.append('message', `
+New Article Published on Saher Flow Solutions
+
+📰 ${article.title}
+
+${article.excerpt}
+
+Read the full article: ${window.location.origin}${article.url}
+
+Category: ${article.category}
+Published: ${new Date(article.publishedAt).toLocaleDateString()}
+
+---
+This email was sent to subscribers of Saher Flow Solutions newsletter.
+Unsubscribe: ${window.location.origin}/unsubscribe
+    `);
     
     await handleSubmit(formData);
   };
