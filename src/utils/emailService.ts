@@ -54,7 +54,7 @@ export class EmailService {
     const fullArticleUrl = `${window.location.origin}${articleUrl}`;
 
     const templateParams = {
-      to_email: subscriberEmail,
+      email: subscriberEmail,
       to_name: firstName,
       from_name: 'Saher Flow Solutions',
       subscriber_name: firstName,
