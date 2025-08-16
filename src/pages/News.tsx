@@ -3,7 +3,6 @@ import { Calendar, ArrowRight, Tag, Award, Users, TrendingUp, Building, X, Chevr
 import { loadAllNews, getNewsCategories, getNewsByCategory, NewsArticle } from '../utils/newsLoader';
 import NewsletterSubscription from '../components/NewsletterSubscription';
 import { NewsNotificationService } from '../utils/newsNotificationService';
-import AdminNotificationPanel from '../components/AdminNotificationPanel';
 
 // SEO Component for structured data
 const NewsStructuredData: React.FC<{ articles: NewsArticle[] }> = ({ articles }) => {
@@ -48,7 +47,6 @@ const News: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showAdminPanel, setShowAdminPanel] = useState(false);
 
   const articlesPerSlide = 3;
 
@@ -450,33 +448,12 @@ const News: React.FC = () => {
                 Schedule Demo
                 <ArrowRight className="w-5 h-5" />
               </a>
-              
-              {/* Admin Panel Toggle - Only show in development or for admins */}
-              <button
-                onClick={() => setShowAdminPanel(!showAdminPanel)}
-                className="inline-flex items-center gap-2 bg-white/10 text-white px-6 py-3 rounded-lg font-medium hover:bg-white/20 transition-colors"
-              >
-                <Bell className="w-4 h-4" />
-                Newsletter Admin
-              </button>
             </div>
           </div>
         </div>
 
         {/* Admin Panel */}
-        {showAdminPanel && (
-          <div className="py-8 bg-gray-50 dark:bg-gray-800">
-            <div className="container mx-auto px-6">
-              <AdminNotificationPanel 
-                article={selectedArticle || filteredArticles[0]}
-                onClose={() => setShowAdminPanel(false)}
-              />
-            </div>
-          </div>
-        )}
-
         
-        {/* Article Modal */}
         {selectedArticle && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
             <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">

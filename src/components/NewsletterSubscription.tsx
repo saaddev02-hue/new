@@ -16,12 +16,6 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-  const [preferences, setPreferences] = useState({
-    productUpdates: true,
-    industryNews: true,
-    technicalPapers: false,
-    events: false
-  });
 
   const handleSubscriptionSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,9 +26,9 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
       return;
     }
 
-    // Validate EmailJS configuration
+    // Check if EmailJS is configured
     if (!validateEmailJSConfig()) {
-      setErrorMessage('Email service is not properly configured. Please contact support.');
+      setErrorMessage('Email service is not configured yet. Please check the setup guide below.');
       setSubmitStatus('error');
       return;
     }
@@ -44,14 +38,15 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
     setErrorMessage('');
 
     try {
-      // Extract name from email for personalization
-      const subscriberName = email.split('@')[0];
-      
       // Store subscriber locally
       const subscriberAdded = SubscriberStorage.addSubscriber({
         email: email.trim(),
-        name: subscriberName,
-        preferences
+        preferences: {
+          productUpdates: true,
+          industryNews: true,
+          technicalPapers: true,
+          events: true
+        }
       });
       
       if (!subscriberAdded) {
@@ -59,37 +54,26 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
       }
 
       // Send welcome email to subscriber
-      const welcomeEmailSent = await EmailService.sendWelcomeEmail(email.trim(), subscriberName);
+      const welcomeEmailSent = await EmailService.sendWelcomeEmail(email.trim());
       
       if (!welcomeEmailSent) {
-        throw new Error('Failed to send welcome email');
+        throw new Error('Failed to send welcome email. Please check your EmailJS configuration.');
       }
-
-      // Send admin notification (to you)
-      const adminEmail = 'contact@saherflow.com'; // Replace with your actual email
-      await EmailService.sendAdminNotification(email.trim(), adminEmail, preferences);
 
       // Success
       setSubmitStatus('success');
       setEmail('');
-      setPreferences({
-        productUpdates: true,
-        industryNews: true,
-        technicalPapers: false,
-        events: false
-      });
 
       console.log('Subscription successful for:', email.trim());
       console.log('Total subscribers:', SubscriberStorage.getSubscriberCount());
     } catch (error) {
       console.error('Subscription error:', error);
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to subscribe. Please try again or contact support.');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to subscribe. Please try again.');
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
   };
-    
 
   // Reset status after 5 seconds
   React.useEffect(() => {
@@ -101,6 +85,38 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
       return () => clearTimeout(timer);
     }
   }, [submitStatus]);
+
+  if (variant === 'compact') {
+    return (
+      <div className={`${className}`}>
+        <form onSubmit={handleSubscriptionSubmit} className="flex gap-2">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-navy-500 dark:focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            placeholder="your.email@company.com"
+          />
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-6 py-2 rounded-lg font-semibold hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors disabled:opacity-50"
+          >
+            {isSubmitting ? '...' : 'Subscribe'}
+          </button>
+        </form>
+        
+        {submitStatus === 'success' && (
+          <p className="text-green-400 text-sm mt-2">✅ Subscribed successfully!</p>
+        )}
+        
+        {submitStatus === 'error' && (
+          <p className="text-red-400 text-sm mt-2">❌ {errorMessage}</p>
+        )}
+      </div>
+    );
+  }
 
   // Default variant - full featured
   return (
@@ -136,7 +152,6 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
           </div>
         </div>
 
-        
         <button
           type="submit"
           disabled={isSubmitting}
@@ -164,7 +179,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
               </p>
             </div>
             <p className="text-green-700 dark:text-green-300 text-sm">
-              Thank you for subscribing! Check your email for a welcome message, and we'll keep you updated with the latest news and insights.
+              Thank you for subscribing! Check your email for a welcome message.
             </p>
           </div>
         )}
@@ -212,7 +227,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
         
         <div className="mt-4 text-center">
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            🔒 Your privacy is protected. Unsubscribe anytime with one click.
+            🔒 Your privacy is protected. Unsubscribe anytime.
           </p>
         </div>
       </div>
