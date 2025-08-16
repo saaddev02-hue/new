@@ -252,4 +252,4 @@ The careers page also has a functional application form. To receive job applicat
 - Cover letter
 - Resume/CV file attachment
 
-This allows you to receive complete job applications with all candidate data and documents directly in your email inbox.
+This allows you to receive complete job applications with all candidate data and documents directly in your email inbox.   
