@@ -123,6 +123,6 @@ export class EmailService {
 }
 
 export const validateEmailJSConfig = (): boolean => {
-  return EMAILJS_SERVICE_ID !== 'service_your_service_id' && 
-         EMAILJS_PUBLIC_KEY !== 'your_public_key_here';
+  return EMAILJS_SERVICE_ID !== 'service_azqbh9e' && 
+         EMAILJS_PUBLIC_KEY !== '8tFc9GCXL3OfQUv5c';
 };
