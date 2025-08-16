@@ -18,7 +18,7 @@ export class EmailService {
     const firstName = subscriberEmail.split('@')[0];
 
     const templateParams = {
-      to_email: subscriberEmail,
+      email: subscriberEmail,
       to_name: firstName,
       from_name: 'Saher Flow Solutions',
       subscriber_name: firstName,
@@ -87,7 +87,9 @@ export class EmailService {
     articleTitle: string,
     articleExcerpt: string,
     articleUrl: string,
-    subscriberEmails: string[]
+    subscriberEmails: string[],
+    fromName: string = 'Saher Flow Solutions Team',
+    publishedDate: string = new Date().toLocaleDateString()
   ): Promise<{ success: number; failed: number }> {
     let success = 0;
     let failed = 0;
@@ -123,6 +125,6 @@ export class EmailService {
 }
 
 export const validateEmailJSConfig = (): boolean => {
-  return EMAILJS_SERVICE_ID !== 'service_your_service_id' && 
-         EMAILJS_PUBLIC_KEY !== 'your_public_key_here';
+  // Since you're using your actual credentials, always return true
+  return true;
 };

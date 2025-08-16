@@ -28,7 +28,7 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
 
     // Check if EmailJS is configured
     if (!validateEmailJSConfig()) {
-      setErrorMessage('Email service is not configured yet. Please check the setup guide below.');
+      setErrorMessage('Email service is not configured yet. Please update your EmailJS credentials in src/utils/emailService.ts');
       setSubmitStatus('error');
       return;
     }
