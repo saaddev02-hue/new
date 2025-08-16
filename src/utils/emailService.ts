@@ -2,10 +2,10 @@
 import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration - You'll replace these with your actual values
-const EMAILJS_SERVICE_ID = 'your_service_id_here';
-const EMAILJS_TEMPLATE_ID_WELCOME = 'template_welcome';
-const EMAILJS_TEMPLATE_ID_ARTICLE = 'template_article';
-const EMAILJS_PUBLIC_KEY = 'your_public_key_here';
+const EMAILJS_SERVICE_ID = 'service_azqbh9e';
+const EMAILJS_TEMPLATE_ID_WELCOME = 'template_8ex3j33';
+const EMAILJS_TEMPLATE_ID_ARTICLE = 'template_e4oorbp';
+const EMAILJS_PUBLIC_KEY = '8tFc9GCXL3OfQUv5c';
 
 // Initialize EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -125,6 +125,6 @@ export class EmailService {
 }
 
 export const validateEmailJSConfig = (): boolean => {
-  return EMAILJS_SERVICE_ID !== 'your_service_id_here' && 
-         EMAILJS_PUBLIC_KEY !== 'your_public_key_here';
+  return EMAILJS_SERVICE_ID !== 'service_azqbh9e' && 
+         EMAILJS_PUBLIC_KEY !== '8tFc9GCXL3OfQUv5c';
 };
