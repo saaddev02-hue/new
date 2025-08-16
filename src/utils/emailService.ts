@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration - You'll replace these with your actual values
 const EMAILJS_SERVICE_ID = 'service_azqbh9e';
-const EMAILJS_TEMPLATE_ID_WELCOME = 'template_welcome';
+const EMAILJS_TEMPLATE_ID_WELCOME = 'template_8ex3j33';
 const EMAILJS_TEMPLATE_ID_ARTICLE = 'template_article';
 const EMAILJS_PUBLIC_KEY = '8tFc9GCXL3OfQUv5c';
 
