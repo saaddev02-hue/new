@@ -219,21 +219,22 @@ const EMAILJS_PUBLIC_KEY = 'your_public_key_here';`)}
               
               {showConfig && (
                 <pre className="text-xs text-gray-800 dark:text-gray-200 overflow-x-auto">
-{`const EMAILJS_SERVICE_ID = 'your_service_id_here';  ← Replace with your Service ID
-const EMAILJS_TEMPLATE_ID_WELCOME = 'template_welcome';  ← Keep as is
-const EMAILJS_TEMPLATE_ID_ARTICLE = 'template_article';  ← Keep as is  
-const EMAILJS_PUBLIC_KEY = 'your_public_key_here';  ← Replace with your Public Key`}
+{`// Replace these values in src/utils/emailService.ts:
+const EMAILJS_SERVICE_ID = 'your_actual_service_id';     ← Your Service ID
+const EMAILJS_TEMPLATE_ID_WELCOME = 'template_welcome';  ← Keep exactly as is
+const EMAILJS_TEMPLATE_ID_ARTICLE = 'template_article';  ← Keep exactly as is  
+const EMAILJS_PUBLIC_KEY = 'your_actual_public_key';     ← Your Public Key`}
                 </pre>
               )}
             </div>
 
             <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
               <p className="text-blue-800 dark:text-blue-300 text-sm">
-                <strong>Example:</strong> If your Service ID is "service_abc123" and Public Key is "xyz789", replace:
+                <strong>Important:</strong> Make sure your EmailJS template IDs are exactly:
                 <br />
-                <code>const EMAILJS_SERVICE_ID = 'service_abc123';</code>
+                <code>template_welcome</code> for welcome emails
                 <br />
-                <code>const EMAILJS_PUBLIC_KEY = 'xyz789';</code>
+                <code>template_article</code> for article notifications
               </p>
             </div>
           </div>

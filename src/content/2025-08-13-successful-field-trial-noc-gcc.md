@@ -9,11 +9,11 @@ featured: false
 
 # Successful field trial with a major NOC in the GCC region
 
-**Saher Flow Solutions has successfully completed a field trial in collaboration with one of the major National Oil Companies (NOCs) in the GCC.** Our compact, skid-mounted, non-radioactive Multiphase Flow Meter (MPFM) demonstrated reliable, field-grade performance — meeting and in many cases exceeding the end-user’s accuracy targets for water-cut and liquid flow rate.
+**Saher Flow Solutions has successfully completed a field trial in collaboration with one of the major National Oil Companies (NOCs) in the GCC.** Our compact, skid-mounted, non-radioactive Multiphase Flow Meter (MPFM) demonstrated reliable, field-grade performance — meeting and in many cases exceeding the end-user's accuracy targets for water-cut and liquid flow rate.
 
 ## Trial overview
 
-The field trial directly compared Saher’s MPFM against a portable test (liquid–gas) separator used by the operator. Tests were performed under realistic operational conditions to validate the MPFM’s accuracy, robustness, and suitability for deployment in demanding oilfield environments.
+The field trial directly compared Saher's MPFM against a portable test (liquid–gas) separator used by the operator. Tests were performed under realistic operational conditions to validate the MPFM's accuracy, robustness, and suitability for deployment in demanding oilfield environments.
 
 ## Key outcomes
 
@@ -22,7 +22,7 @@ The field trial directly compared Saher’s MPFM against a portable test (liquid
 - **Operational robustness:** The skid-mounted design performed well under field conditions — demonstrating durability, ease of installation, and dependable data delivery.  
 - **Non-radioactive advantage:** The MPFM delivers high-quality multiphase measurements without radioactive sources, simplifying logistics, safety, and regulatory compliance.
 
-## Why choose Saher’s MPFM?
+## Why choose Saher's MPFM?
 
 - **Safe (non-radioactive):** Eliminates complexity and hazard associated with radioactive sources.  
 - **Compact & skid-mounted:** Easy transport, installation, and integration into existing facilities.  
