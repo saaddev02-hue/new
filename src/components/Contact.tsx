@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Phone, Mail, MapPin, Send, Clock, Globe } from 'lucide-react';
+import SEOHead from './SEOHead';
 
 const Contact: React.FC = () => {
   const [state, handleSubmit] = useForm("xzzvwrgz"); // You'll need to replace this with your actual Formspree form ID
@@ -40,6 +41,33 @@ const Contact: React.FC = () => {
   };
 
   return (
+    <>
+      <SEOHead
+        title="Contact Us | Get in Touch | Saher Flow Solutions"
+        description="Contact Saher Flow Solutions in Thuwal, Saudi Arabia. Get expert consultation on multiphase flow measurement technology. Phone: +966 54 286 2009"
+        keywords="contact Saher Flow, Thuwal Saudi Arabia, KAUST office, flow measurement consultation, oil gas technology support, multiphase flow meter contact"
+        url="/contact"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Saher Flow Solutions",
+          "description": "Get in touch with our team of flow measurement experts",
+          "url": "https://saherflow.com/contact",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Saher Flow Solutions",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "KAUST, Office 2112, Olayan Building 40",
+              "addressLocality": "Thuwal",
+              "postalCode": "23955",
+              "addressCountry": "SA"
+            },
+            "telephone": "+966-54-286-2009",
+            "email": "contact@saherflow.com"
+          }
+        }}
+      />
     <section id="contact" className="py-24 dark:bg-gray-900">
       {/* Header */}
       <div className="bg-gradient-to-r from-navy-900 to-navy-800 dark:from-gray-800 dark:to-gray-700 text-white py-16">
@@ -263,6 +291,7 @@ const Contact: React.FC = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

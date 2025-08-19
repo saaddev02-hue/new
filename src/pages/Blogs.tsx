@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, ArrowRight, Tag, User, Clock, Search, Filter, Share2, Eye, BookOpen, TrendingUp, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { loadAllBlogs, getBlogCategories, getBlogTags, getBlogsByCategory, getBlogsByTag, searchBlogs, BlogArticle } from '../utils/blogLoader';
+import SEOHead from '../components/SEOHead';
 
 // SEO Component for structured data
 const BlogStructuredData: React.FC<{ articles: BlogArticle[] }> = ({ articles }) => {
@@ -207,6 +208,40 @@ const Blogs: React.FC = () => {
 
   return (
     <>
+      <SEOHead
+        title="Expert Blog | Flow Measurement Technology Insights | Saher Flow Solutions"
+        description="Expert insights on multiphase flow measurement, oil & gas technology, digital transformation, and industry innovations from Saher Flow Solutions team of experts."
+        keywords="flow measurement blog, oil gas technology blog, multiphase flow insights, DMOR technology blog, digital transformation oil gas, Saudi Vision 2030, petroleum engineering blog"
+        url="/blogs"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "Saher Flow Solutions Expert Blog",
+          "description": "Expert insights on multiphase flow measurement and oil & gas technology",
+          "url": "https://saherflow.com/blogs",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Saher Flow Solutions"
+          },
+          "blogPost": articles.slice(0, 10).map(article => ({
+            "@type": "BlogPosting",
+            "headline": article.title,
+            "description": article.excerpt,
+            "image": article.image,
+            "author": {
+              "@type": "Person",
+              "name": article.author,
+              "jobTitle": article.authorTitle
+            },
+            "datePublished": article.date,
+            "url": `https://saherflow.com/blogs/${article.slug}`,
+            "publisher": {
+              "@type": "Organization",
+              "name": "Saher Flow Solutions"
+            }
+          }))
+        }}
+      />
       <BlogStructuredData articles={articles} />
       
       {/* SEO Meta Tags */}

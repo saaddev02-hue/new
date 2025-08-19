@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, ArrowRight, Tag, Award, Users, TrendingUp, Building, X, ChevronLeft, ChevronRight, Clock, Eye, Share2, AlertCircle } from 'lucide-react';
 import { loadAllNews, getNewsCategories, getNewsByCategory, NewsArticle } from '../utils/newsLoader';
+import SEOHead from '../components/SEOHead';
 import NewsletterSubscription from '../components/NewsletterSubscription';
 import { NewsNotificationService } from '../utils/newsNotificationService';
 
@@ -232,6 +233,35 @@ const News: React.FC = () => {
 
   return (
     <>
+      <SEOHead
+        title="Latest News & Updates | Saher Flow Solutions"
+        description="Stay updated with latest news from Saher Flow Solutions. Saudi Aramco pre-qualification, field trials, awards, partnerships, and breakthrough developments in multiphase flow measurement."
+        keywords="Saher Flow news, Saudi Aramco pre-qualified, multiphase flow meter news, oil gas technology news, DMOR technology updates, flow measurement industry news"
+        url="/news"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "Saher Flow Solutions News",
+          "description": "Latest news and updates from Saher Flow Solutions",
+          "url": "https://saherflow.com/news",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Saher Flow Solutions"
+          },
+          "blogPost": articles.slice(0, 5).map(article => ({
+            "@type": "BlogPosting",
+            "headline": article.title,
+            "description": article.excerpt,
+            "image": article.image,
+            "datePublished": article.date,
+            "url": `https://saherflow.com/news#${article.slug}`,
+            "author": {
+              "@type": "Organization",
+              "name": "Saher Flow Solutions"
+            }
+          }))
+        }}
+      />
       <NewsStructuredData articles={articles} />
       
       {/* SEO Meta Tags */}

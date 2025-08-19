@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FileText, Download, Gauge, Droplets, Settings, X, Eye } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 const Products: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -114,6 +115,43 @@ const Products: React.FC = () => {
   );
 
   return (
+    <>
+      <SEOHead
+        title="Multiphase Flow Measurement Products | DMOR Technology | Saher Flow Solutions"
+        description="Explore our revolutionary multiphase flow meters: SF-321 Water-cut Meter, SF-331 Multiphase Flow Meter, and SK-100 Skid Mounted MPFM. Non-radioactive, AI-powered, Saudi Aramco approved."
+        keywords="multiphase flow meter, water cut meter, DMOR technology, SF-321, SF-331, SK-100, non-radioactive flow meter, oil gas instrumentation, Saudi Aramco approved, made in Saudi Arabia"
+        url="/products"
+        image="https://res.cloudinary.com/drnak5yb2/image/upload/v1754555754/High-Res-render-min_oqcyvr.png"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ProductCollection",
+          "name": "Saher Flow Solutions Products",
+          "description": "Revolutionary multiphase flow measurement instruments",
+          "url": "https://saherflow.com/products",
+          "provider": {
+            "@type": "Organization",
+            "name": "Saher Flow Solutions"
+          },
+          "hasProduct": [
+            {
+              "@type": "Product",
+              "name": "SF-321 Water-cut Meter",
+              "description": "3 Phase Wellhead Water-cut Meter using DMOR technology",
+              "image": "https://res.cloudinary.com/drnak5yb2/image/upload/v1754555754/High-Res-render-min_oqcyvr.png",
+              "brand": "Saher Flow Solutions",
+              "category": "Flow Measurement Instrument"
+            },
+            {
+              "@type": "Product", 
+              "name": "SF-331 Multiphase Flow Meter",
+              "description": "3-Phase Multi Phase Flow Meter with AI integration",
+              "image": "https://res.cloudinary.com/drnak5yb2/image/upload/v1754555854/MPFM-SFS-3G-X-1536x1187_qhmxbs.png",
+              "brand": "Saher Flow Solutions",
+              "category": "Flow Measurement Instrument"
+            }
+          ]
+        }}
+      />
     <section id="products" className="py-24 dark:bg-gray-900 pt-32">
       {/* Header */}
       <div className="bg-gradient-to-r from-navy-900 to-navy-800 dark:from-gray-800 dark:to-gray-700 text-white py-16">
@@ -338,6 +376,7 @@ const Products: React.FC = () => {
         />
       )}
     </section>
+    </>
   );
 };
 

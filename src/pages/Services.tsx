@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Gauge, Droplets, Wrench, FileText, Zap, Microscope, Download, Eye, X } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 const Services: React.FC = () => {
   const [showPDFViewer, setShowPDFViewer] = useState(false);
@@ -100,6 +101,32 @@ const Services: React.FC = () => {
   );
 
   return (
+    <>
+      <SEOHead
+        title="Engineering Services | Flow Measurement Consultancy | Saher Flow Solutions"
+        description="Expert engineering services: Flow measurement consultancy, imaging & sensing design, product engineering. Multidisciplinary R&D solutions for oil & gas industry."
+        keywords="flow measurement consultancy, engineering services, imaging sensing design, product engineering, R&D services, oil gas consulting, microwave sensing, x-ray sensing"
+        url="/services"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Engineering and Consultancy Services",
+          "description": "Expert engineering services for flow measurement and sensing applications",
+          "provider": {
+            "@type": "Organization",
+            "name": "Saher Flow Solutions"
+          },
+          "serviceType": [
+            "Flow Measurement Consultancy",
+            "Imaging & Sensing Design", 
+            "Engineering & Product Design"
+          ],
+          "areaServed": {
+            "@type": "Place",
+            "name": "Global"
+          }
+        }}
+      />
     <section id="services" className="py-24 dark:bg-gray-900 pt-32">
       {/* Header */}
       <div className="bg-gradient-to-r from-navy-900 to-navy-800 dark:from-gray-800 dark:to-gray-700 text-white py-16">
@@ -229,6 +256,7 @@ const Services: React.FC = () => {
         />
       )}
     </section>
+    </>
   );
 };
 
