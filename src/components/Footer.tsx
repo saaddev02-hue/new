@@ -12,7 +12,8 @@ import {
   Users,
   Settings,
   MessageCircle,
-  CheckCircle
+  CheckCircle,
+  Facebook
 } from 'lucide-react';
 import NewsletterSubscription from './NewsletterSubscription';
 
@@ -71,8 +72,7 @@ const Footer: React.FC = () => {
                 <div>
                   <p className="text-gray-300 font-medium">Headquarters</p>
                   <p className="text-gray-400 text-sm">
-                    King Abdullah University of Science and Technology (KAUST)<br />
-                    Building 1, Office 2204, Thuwal 23955, Saudi Arabia
+                    KAUST, Office 2112, Olayan Building 40 King Abdullah <br/> University of Science and Technology, Thuwal 23955, Saudi Arabia
                   </p>
                 </div>
               </div>
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
                 <Phone size={20} className="text-yellow-500 flex-shrink-0" />
                 <div>
                   <a href="tel:+966128080900" className="text-gray-300 hover:text-white transition-colors">
-                    +966 12 808 0900
+                    +966 54 286 2009
                   </a>
                   <p className="text-gray-400 text-sm">Sun-Thu 8:00 AM - 5:00 PM AST</p>
                 </div>
@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               <a 
-                href="https://linkedin.com/company/saherflow" 
+                href="https://sa.linkedin.com/company/saherflow" 
                 className="p-3 bg-white/10 rounded-lg hover:bg-yellow-500 hover:text-navy-900 transition-all duration-300 group"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
                 <Linkedin size={20} />
               </a>
               <a 
-                href="https://youtube.com/saherflow" 
+                href="https://www.youtube.com/watch?v=KmRtSAURurM" 
                 className="p-3 bg-white/10 rounded-lg hover:bg-yellow-500 hover:text-navy-900 transition-all duration-300 group"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -115,12 +115,12 @@ const Footer: React.FC = () => {
                 <Youtube size={20} />
               </a>
               <a 
-                href="https://twitter.com/saherflow" 
+                href="https://www.facebook.com/people/Saher-Flow-Solutions/100086522580571/" 
                 className="p-3 bg-white/10 rounded-lg hover:bg-yellow-500 hover:text-navy-900 transition-all duration-300 group"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Twitter size={20} />
+                <Facebook size={20} />
               </a>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, Bell } from 'lucide-react';
 
 // use your real blue & white SVG URLs here:
-const lightLogo = 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754564118/Mediamodifier-Design_optimized_zeltsh.svg';
+const lightLogo = 'https://res.cloudinary.com/drnak5yb2/image/upload/v1755589239/output-onlinepngtools_fnkcov.png';
 const darkLogo  = 'https://saherflow.com/wp-content/uploads/2021/06/Artboard-1-copy100.svg';
 
 const Navbar: React.FC = () => {
