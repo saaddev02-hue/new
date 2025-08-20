@@ -253,7 +253,7 @@ const Blogs: React.FC = () => {
 
       <section id="blogs" className="pt-20 bg-gray-50 dark:bg-gray-900 min-h-screen">
         {/* Hero Header */}
-        <div className="relative bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 text-white py-24 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 text-white py-16 sm:py-20 lg:py-24 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl">
@@ -261,26 +261,26 @@ const Blogs: React.FC = () => {
                 <div className="p-4 bg-yellow-500 rounded-full">
                   <BookOpen className="w-8 h-8 text-navy-900" />
                 </div>
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
                   Expert Insights &
                   <span className="block text-yellow-400">Industry Blog</span>
                 </h1>
               </div>
-              <p className="text-xl lg:text-2xl text-gray-300 leading-relaxed mb-8">
+              <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed mb-6 sm:mb-8">
                 Deep dive into flow measurement technology, industry trends, and innovation insights from our team of experts
               </p>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4 sm:gap-6">
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-yellow-400" />
-                  <span className="text-gray-300">Weekly Updates</span>
+                  <span className="text-gray-300 text-sm sm:text-base">Weekly Updates</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Eye className="w-5 h-5 text-yellow-400" />
-                  <span className="text-gray-300">{articles.length} Articles</span>
+                  <span className="text-gray-300 text-sm sm:text-base">{articles.length} Articles</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <User className="w-5 h-5 text-yellow-400" />
-                  <span className="text-gray-300">Expert Authors</span>
+                  <span className="text-gray-300 text-sm sm:text-base">Expert Authors</span>
                 </div>
               </div>
             </div>
@@ -648,9 +648,144 @@ const Blogs: React.FC = () => {
 
                 {/* Article Content */}
                 <div 
-                  className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-navy-900 dark:prose-headings:text-white prose-a:text-navy-600 dark:prose-a:text-yellow-400 prose-strong:text-navy-900 dark:prose-strong:text-white"
+                  className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-navy-900 dark:prose-headings:text-white prose-a:text-navy-600 dark:prose-a:text-yellow-400 prose-strong:text-navy-900 dark:prose-strong:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300"
                   dangerouslySetInnerHTML={{ __html: selectedArticle.content }}
                 />
+                <style jsx>{`
+                  .prose {
+                    line-height: 1.8;
+                  }
+                  .prose h1 {
+                    font-size: 2.5rem;
+                    font-weight: 800;
+                    margin-top: 2rem;
+                    margin-bottom: 1.5rem;
+                    color: #1a3a5c;
+                  }
+                  .prose h2 {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    margin-top: 2rem;
+                    margin-bottom: 1rem;
+                    color: #1a3a5c;
+                    border-bottom: 2px solid #ffd500;
+                    padding-bottom: 0.5rem;
+                  }
+                  .prose h3 {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-top: 1.5rem;
+                    margin-bottom: 0.75rem;
+                    color: #1a3a5c;
+                  }
+                  .prose p {
+                    margin-bottom: 1.5rem;
+                    font-size: 1.1rem;
+                    line-height: 1.8;
+                    color: #374151 !important;
+                  }
+                  .dark .prose p {
+                    color: #d1d5db !important;
+                  }
+                  .prose ul, .prose ol {
+                    margin: 1.5rem 0;
+                    padding-left: 2rem;
+                  }
+                  .prose li {
+                    margin-bottom: 0.75rem;
+                    font-size: 1.1rem;
+                    line-height: 1.7;
+                    color: #374151 !important;
+                  }
+                  .dark .prose li {
+                    color: #d1d5db !important;
+                  }
+                  .prose blockquote {
+                    border-left: 4px solid #ffd500;
+                    background: #f9fafb;
+                    padding: 1.5rem 2rem;
+                    margin: 2rem 0;
+                    font-style: italic;
+                    font-size: 1.2rem;
+                    color: #1a3a5c;
+                  }
+                  .prose table {
+                    width: 100%;
+                    margin: 2rem 0;
+                    border-collapse: collapse;
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                    border-radius: 0.5rem;
+                    overflow: hidden;
+                  }
+                  .prose th {
+                    background: #1a3a5c;
+                    color: white;
+                    padding: 1rem;
+                    text-align: left;
+                    font-weight: 600;
+                  }
+                  .prose td {
+                    padding: 1rem;
+                    border-bottom: 1px solid #e5e7eb;
+                    color: #374151 !important;
+                  }
+                  .dark .prose td {
+                    color: #d1d5db !important;
+                  }
+                  .prose tr:nth-child(even) {
+                    background: #f9fafb;
+                  }
+                  .prose code {
+                    background: #f3f4f6;
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 0.25rem;
+                    font-family: 'Monaco', 'Menlo', monospace;
+                    font-size: 0.9rem;
+                    color: #1a3a5c;
+                  }
+                  .prose pre {
+                    background: #1f2937;
+                    color: #f9fafb;
+                    padding: 1.5rem;
+                    border-radius: 0.5rem;
+                    overflow-x: auto;
+                    margin: 2rem 0;
+                  }
+                  .prose img {
+                    border-radius: 0.5rem;
+                    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+                    margin: 2rem 0;
+                  }
+                  .prose a {
+                    color: #1a3a5c;
+                    text-decoration: underline;
+                    text-decoration-color: #ffd500;
+                    text-underline-offset: 3px;
+                    font-weight: 500;
+                  }
+                  .prose a:hover {
+                    color: #ffd500;
+                  }
+                  .dark .prose h1,
+                  .dark .prose h2,
+                  .dark .prose h3 {
+                    color: white !important;
+                  }
+                  .dark .prose blockquote {
+                    background: #374151;
+                    color: #f9fafb !important;
+                  }
+                  .dark .prose th {
+                    background: #374151;
+                  }
+                  .dark .prose tr:nth-child(even) {
+                    background: #374151;
+                  }
+                  .dark .prose code {
+                    background: #374151;
+                    color: #ffd500;
+                  }
+                `}</style>
 
                 {/* Share Actions */}
                 <div className="flex items-center justify-between pt-8 mt-8 border-t border-gray-200 dark:border-gray-700">

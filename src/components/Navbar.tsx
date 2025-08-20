@@ -118,13 +118,13 @@ const Navbar: React.FC = () => {
               </button>
               <Link
                 to="/contact"
-                className="hidden md:inline-flex bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-4 py-2 rounded-lg font-medium hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors"
+                className="hidden sm:inline-flex bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-medium hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors text-sm sm:text-base"
               >
                 Contact Us
               </Link>
               <button
                 onClick={() => setIsMobileMenuOpen(open => !open)}
-                className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="sm:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 {isMobileMenuOpen
                   ? <X size={24} className="dark:text-white" />
@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
 
           {/* mobile menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+            <div className="sm:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
               <div className="py-4 space-y-2">
                 {navItems.map(item => (
                   <Link
@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
                 <Link
                   to="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-left px-4 py-3 bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 rounded-lg font-medium mt-4 mx-4"
+                  className="block w-full text-center px-4 py-3 bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 rounded-lg font-medium mt-4 mx-4 text-base"
                 >
                   Contact Us
                 </Link>
