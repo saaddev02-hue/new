@@ -87,7 +87,7 @@ const Home: React.FC = () => {
       />
     ),
       title: "Non-Gamma",
-      description: "Gamma rays were the solutions of the past. Our solution does not use any radioactive source such as gamma rays and yet gives accurate measurements.",
+      description: "Gamma rays were the solutions of the past. Our solution does not use any nuclear radiation source such as gamma rays and yet gives accurate measurements.",
       color: "from-green-500 to-emerald-600"
     },
     {
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
       />
     ),
       title: "Real-Time Remote Monitoring",
-      description: "No need to visit the well site or data center, our sensors securely connect to the cloud, giving you global access to well performance data anytime.",
+      description: "No need to visit the well site or connect with company's on-site secure servers, our sensors securely connect to the cloud, giving you global access to well performance data anytime.",
       color: "from-blue-500 to-cyan-600"
     },
     {
@@ -111,8 +111,8 @@ const Home: React.FC = () => {
         className="w-8 h-8 object-contain" 
       />
     ),
-      title: "Non-intrusive (Full bore design)",
-      description: "Multiphase fraction sensing (WC & GVF) does not require PVT data & our advanced algorithms minimize the requirement of frequent recalibration.",
+      title: "Non-Intrusive (Full Bore Design)",
+      description: "Our sensors don’t physically interact with the production fluid. Resulting in low wear and tear, hence longer operational life.",
       color: "from-purple-500 to-indigo-600"
     },
     {
@@ -124,7 +124,7 @@ const Home: React.FC = () => {
       />
     ),
       title: "Min. Calibration Requirements",
-      description: "Multiphase fraction sensing (WC & GVF) does not require PVT data & our advanced algorithms minimize the requirement of frequent recalibration.",
+      description: "Our advanced algorithms minimize the requirement of frequent recalibration",
       color: "from-orange-500 to-red-600"
     },
     {
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
       />
     ),
       title: "Compact",
-      description: "Power of advanced multiphase sensing in a compact package",
+      description: "Compact skid mounted package - can be mounted in standard pick-up truck for high mobility and rapid well testing operation",
       color: "from-teal-500 to-green-600"
     },
     {
@@ -148,11 +148,11 @@ const Home: React.FC = () => {
       />
     ),
       title: "Cost Effective",
-      description: "Get superior performance at a competitive price compared to our competitors",
+      description: "Tri-sensory accurate multiphase measurements offered at a competitive pricing",
       color: "from-yellow-500 to-orange-600"
     }
   ];
-
+1
   // Industry partnerships data
 const partnerships = [
   {
@@ -165,9 +165,9 @@ const partnerships = [
     status: "Ongoing Project"
   },
   {
-    name: "Strategic US Partner",
+    name: "QTM Energy USA",
     description:
-      "Collaborating with leading American energy technology company on innovative measurement systems",
+      "Collaborating with Houston based oilfield service company",
     logo:
       "https://cdn.informaconnect.com/platform/files/public/2020-08/background/400x600/USoil-logo_1598383213.jpg?VersionId=aSQb_.jysA_xThRyDijAOtgzNQEpudcF",
     status: "Active Partnership"
@@ -610,7 +610,7 @@ const partnerships = [
                   </h1>
 
                   <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-200 font-semibold mb-8 max-w-3xl">
-                    Patented DMOR Technology • Real-time Data • Only One Time Calibration Required
+                    Patented DMOR Technology • Real-time Data • Minimum Calibration Requirement
                   </h2>
 
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 leading-relaxed max-w-4xl">
