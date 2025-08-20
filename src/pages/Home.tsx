@@ -169,7 +169,7 @@ const partnerships = [
     description:
       "Collaborating with Houston based oilfield service company on innovative measurement systems",
     logo:
-      "https://cdn.informaconnect.com/platform/files/public/2020-08/background/400x600/USoil-logo_1598383213.jpg?VersionId=aSQb_.jysA_xThRyDijAOtgzNQEpudcF",
+      "https://res.cloudinary.com/drnak5yb2/image/upload/v1755681092/images_ywuvh0.jpg",
     status: "Active Partnership"
   }
 ];
