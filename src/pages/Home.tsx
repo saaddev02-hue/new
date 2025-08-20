@@ -1277,9 +1277,9 @@ const partnerships = [
               viewport={{ once: true }}
               className="space-y-2 sm:space-y-4"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">10+</div>
-              <div className="text-base sm:text-lg md:text-xl font-semibold">Years Experience</div>
-              <div className="text-gray-300 text-sm sm:text-base">Pioneering flow measurement technology</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">50%</div>
+              <div className="text-base sm:text-lg md:text-xl font-semibold">Cost Saving vs Conventional</div>
+              <div className="text-gray-300 text-sm sm:text-base">Test Separator Based Well Testing</div>
             </motion.div>
 
             <motion.div
@@ -1290,8 +1290,8 @@ const partnerships = [
               className="space-y-2 sm:space-y-4"
             >
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">40%</div>
-              <div className="text-base sm:text-lg md:text-xl font-semibold">Lower Cost</div>
-              <div className="text-gray-300 text-sm sm:text-base">Ownership</div>
+              <div className="text-base sm:text-lg md:text-xl font-semibold">Lower Cost Ownership</div>
+              <div className="text-gray-300 text-sm sm:text-base">Compared to Gamma Based MPFMs</div>
             </motion.div>
 
             <motion.div
