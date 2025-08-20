@@ -86,7 +86,5 @@ export class SubscriberStorage {
     return this.getActiveSubscribers().map(s => s.email);
   }
 
-  static getSubscriberCount(): number {
-    return this.getActiveSubscribers().length;
-  }
+
 }

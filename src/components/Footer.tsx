@@ -74,14 +74,14 @@ const Footer: React.FC = () => {
                 <div>
                   <p className="text-gray-300 font-medium">Headquarters</p>
                   <p className="text-gray-400 text-sm">
-                    KAUST, Office 2112, Olayan Building 40 King Abdullah <br/> University of Science and Technology, Thuwal 23955, Saudi Arabia
+                    KAUST, Office 2112, Olayan Building 40 King Abdulla University of Science and Technology, Thuwal 23955, Saudi Arabia
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={20} className="text-yellow-500 flex-shrink-0" />
                 <div>
-                  <a href="tel:+966128080900" className="text-gray-300 hover:text-white transition-colors">
+                  <a href="tel:+966542862009" className="text-gray-300 hover:text-white transition-colors">
                     +966 54 286 2009
                   </a>
                   <p className="text-gray-400 text-sm">Sun-Thu 8:00 AM - 5:00 PM AST</p>
@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               <a 
-                href="https://sa.linkedin.com/company/saherflow" 
+                href="https://www.linkedin.com/company/saherflow" 
                 className="p-3 bg-white/10 rounded-lg hover:bg-yellow-500 hover:text-navy-900 transition-all duration-300 group"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -174,7 +174,7 @@ const Footer: React.FC = () => {
         <div className="container mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-center md:text-left">
-              <p>&copy; 2024 Saher Flow Solutions. All rights reserved.</p>
+              <p>&copy; 2025 Saher Flow Solutions. All rights reserved.</p>
               <p className="text-sm mt-1">Innovating flow measurement technology from Saudi Arabia for the world</p>
             </div>
             

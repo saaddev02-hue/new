@@ -79,39 +79,76 @@ const Home: React.FC = () => {
 
   const salientFeatures = [
     {
-      icon: <Shield className="w-8 h-8" />,
-      title: "Non-Radioactive Technology",
-      description: "Safe, environmentally friendly measurement without radioactive sources",
+       icon: (
+      <img 
+        src="https://res.cloudinary.com/drnak5yb2/image/upload/e_colorize,co_white/v1755673987/660432-200_blblz7.png" 
+        alt="Non-Gamma" 
+        className="w-8 h-8 object-contain" 
+      />
+    ),
+      title: "Non-Gamma",
+      description: "Gamma rays were the solutions of the past. Our solution does not use any radioactive source such as gamma rays and yet gives accurate measurements.",
       color: "from-green-500 to-emerald-600"
     },
     {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Real-Time Monitoring",
-      description: "Instant data processing and transmission for immediate decision making",
+       icon: (
+      <img 
+        src="https://res.cloudinary.com/drnak5yb2/image/upload/e_colorize,co_white/v1755673987/remote-access_rgo1kh.png
+" 
+        alt="Remote Monitoring" 
+        className="w-8 h-8 object-contain" 
+      />
+    ),
+      title: "Real-Time Remote Monitoring",
+      description: "No need to visit the well site or data center, our sensors securely connect to the cloud, giving you global access to well performance data anytime.",
       color: "from-blue-500 to-cyan-600"
     },
     {
-      icon: <Target className="w-8 h-8" />,
-      title: "Unmatched Accuracy",
-      description: "±2% water cut accuracy across full 0-100% range",
+       icon: (
+      <img 
+        src="https://res.cloudinary.com/drnak5yb2/image/upload/e_colorize,co_white/v1755673987/drugs_15611260_tlkmyt.png" 
+        alt="Non-Intrusive" 
+        className="w-8 h-8 object-contain" 
+      />
+    ),
+      title: "Non-intrusive (Full bore design)",
+      description: "Multiphase fraction sensing (WC & GVF) does not require PVT data & our advanced algorithms minimize the requirement of frequent recalibration.",
       color: "from-purple-500 to-indigo-600"
     },
     {
-      icon: <Settings className="w-8 h-8" />,
-      title: "Only One Time Calibration Required",
-      description: "Patented DMOR technology eliminates need for field calibration",
+       icon: (
+      <img 
+        src="https://res.cloudinary.com/drnak5yb2/image/upload/e_colorize,co_white/v1755673987/1792984-200_mzmjss.png" 
+        alt="Calibration" 
+        className="w-8 h-8 object-contain" 
+      />
+    ),
+      title: "Min. Calibration Requirements",
+      description: "Multiphase fraction sensing (WC & GVF) does not require PVT data & our advanced algorithms minimize the requirement of frequent recalibration.",
       color: "from-orange-500 to-red-600"
     },
     {
-      icon: <Globe className="w-8 h-8" />,
-      title: "Global Deployment",
-      description: "Proven performance across diverse operating conditions worldwide",
+       icon: (
+      <img 
+        src="https://res.cloudinary.com/drnak5yb2/image/upload/e_colorize,co_white/v1755673987/3303441-200_eeg0ql.png" 
+        alt="Compact" 
+        className="w-8 h-8 object-contain" 
+      />
+    ),
+      title: "Compact",
+      description: "Power of advanced multiphase sensing in a compact package",
       color: "from-teal-500 to-green-600"
     },
     {
-      icon: <Award className="w-8 h-8" />,
-      title: "Industry Validated",
-      description: "Pre-qualified by major oil companies and validated by third-party testing",
+       icon: (
+      <img 
+        src="https://res.cloudinary.com/drnak5yb2/image/upload/e_colorize,co_white/v1755674927/cost-reduction_vsvbki.png" 
+  alt="Cost Reduction" 
+        className="w-8 h-8 object-contain" 
+      />
+    ),
+      title: "Cost Effective",
+      description: "Get superior performance at a competitive price compared to our competitors",
       color: "from-yellow-500 to-orange-600"
     }
   ];
@@ -191,7 +228,7 @@ const partnerships = [
       id: 1,
       name: 'Dr. Muhammad Akram Karimi',
       role: 'Co-founder / CTO',
-      location: 'Makkah, Saudi Arabia',
+      location: 'Thuwal, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555205/Dr.Akram__wtiwxi.png',
       description: 'Co-founder & CTO at SaherFlow, pioneering non-gamma multiphase flow meters with over a decade of R&D in microwave sensing.',
       longDescription: 'Dr. Karimi leads Saher Flow Solutions in developing revolutionary non-gamma multiphase flow meters for the oil and gas industry. With over 10 years of R&D in microwave sensing, he has authored 20+ research papers, filed 10+ patents, and secured $3M+ in funding from Saudi Aramco and KAUST Innovation Fund. He has built a 20+ member team, driven product innovation from concept to field deployment, and collaborated globally to advance multiphase flow measurement technologies.',
@@ -215,9 +252,9 @@ const partnerships = [
       id: 2,
       name: 'Dr. Atif Shamim',
       role: 'Technical Director',
-      location: 'Makkah, Saudi Arabia',
+      location: 'Thuwal, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555206/ATIF-SHAMIM-2020_v6cyab.png',
-      description: 'IEEE Fellow, Chair Professor at KAUST, and pioneer in innovative antenna and sensing technologies with 400+ publications and 40 patents.',
+      description: 'IEEE Fellow, Professor at KAUST, and pioneer in innovative antenna and sensing technologies with 400+ publications and 40 patents.',
       longDescription: 'Dr. Atif Shamim is Chair Professor of Electrical and Computer Engineering at KAUST, leading the IMPACT Lab. He is a Fellow of IEEE and a globally recognized leader in antenna design, RF systems, and wireless sensing technologies, integrating CMOS and additive manufacturing for flexible and wearable systems. He holds a Ph.D. in Electronics from Carleton University and has authored 400+ publications, 1 book, and 40 patents. His work has earned prestigious awards, including the King\'s Prize for Best Innovation, OCRI Researcher of the Year, multiple IEEE Best Paper Awards, and several international design competition wins. Beyond academia, he has successfully commercialized technologies for the oil industry, winning Canadas national business plan competition and OCRI Entrepreneur of the Year.',
       expertise: [
         'Antenna Design',
@@ -295,7 +332,7 @@ const partnerships = [
       role: 'Office Manager',
       location: 'Lahore, Pakistan',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555206/Babar-Zia-Picture_kxkfjw.jpg',
-      description: 'Managing daily operations at our Thuwal office with expertise in organizational excellence and administrative coordination.',
+      description: 'Managing daily operations at our Lahore office with expertise in organizational excellence and administrative coordination.',
       longDescription: 'Babar ensures smooth daily operations at our Thuwal headquarters, managing administrative functions and coordinating between different teams to maintain operational excellence and efficiency.',
       expertise: ['Operations Management', 'Administration', 'Team Coordination', 'Process Optimization', 'Office Management'],
       achievements: ['10+ years operations experience', 'Process improvement initiatives', 'Team coordination expertise'],
@@ -340,7 +377,7 @@ const partnerships = [
       id: 6,
       name: 'Rashad Maqsood',
       role: 'Software Project Manager',
-      location: 'Makkah, Saudi Arabia',
+      location: 'Thuwal, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555207/Rashad_lddbgq.jpg',
       description: 'Versatile software project manager and engineer specializing in .NET, smart metering, embedded systems, and oil & gas instrumentation.',
       longDescription: 'Rashad Maqsood is a Software Project Manager at Saher Flow Solutions with over a decade of experience spanning smart metering, document intelligence systems, custom application development, and oil & gas instrumentation. He has led teams in building robust solutions for automated meter reading, prepaid metering, and real-time data analytics using C#, .NET, Electron, AWS, and advanced communication protocols. His background includes key roles at MicroTech Industries, FiveRivers Technologies, and NorthBay Solutions, delivering high-performance software in both industrial and financial domains. At SaherFlow, he contributes to the R&D of cutting-edge multiphase flow meters by integrating multiple sensors, x-ray sources, and detectors into advanced measurement systems.',
@@ -365,7 +402,7 @@ const partnerships = [
       id: 7,
       name: 'Fahad Usman Meer',
       role: 'Senior Software Engineer',
-      location: 'Makkah, Saudi Arabia',
+      location: 'Thuwal, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555208/Fahad-Usman-Meer-Sr.-Software-Engineer_cc1ssv.jpg',
       description: 'Senior software developer with expertise in full-stack .NET solutions, multi-threaded applications, and hardware-software integration for oil & gas measurement systems.',
       longDescription: 'Fahad Usman Meer is a senior software developer at Saher Flow Solutions with extensive experience in building robust business and industrial applications. Since 2014, he has specialized in .NET technologies, C#, and full-stack web and desktop development. At SaherFlow, he leads the development of multi-threaded proprietary software capable of interfacing with hardware devices such as Vector Network Analyzers to collect and process real-time sensor data for multiphase flow meters in the oil and gas industry. His prior experience includes key roles at NorthBay Solutions, Strategic Systems International, and MicroTech Industries, where he developed background services, WCF APIs, and advanced search solutions using Apache SOLR. He is proficient in SQL Server, MySQL, WPF, WinForms, RESTful APIs, and microservices, with a strong focus on high-performance, user-friendly applications.',
@@ -390,7 +427,7 @@ const partnerships = [
       id: 8,
       name: 'Saad Mahmood',
       role: 'Software Engineer',
-      location: 'Lahore, Punjab, Pakistan',
+      location: 'Lahore, Pakistan',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754639157/saad-profile_swp9ep.jpg',
       description: 'Full-stack software engineer specializing in scalable, user-focused web and mobile applications using Flutter, React, Node.js, and modern databases.',
       longDescription: 'Saad Mahmood is a software engineer at Saher Flow Solutions with a passion for building high-performance, maintainable, and user-centric applications. He brings hands-on experience in mobile and web development using Flutter, React, Node.js/Express, MongoDB, and PostgreSQL. Skilled in REST API design, third-party integrations, and end-to-end feature development, Saad has contributed to diverse projects, from Android apps at Lalaland.pk to backend API systems at DHA Lahore. He also has teaching experience in computer science and holds IBM certifications in DevOps, Cloud, Agile, and Full Stack Development. His approach emphasizes clean coding, scalability, and effective cross-functional collaboration within Agile environments.',
@@ -414,7 +451,7 @@ const partnerships = [
       id: 9,
       name: 'Arsalan Raza',
       role: 'Procurement Manager',
-      location: 'Jaddah, Saudi Arabia',
+      location: 'Thuwal, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754562693/Arsalan-Raza_rcd4rs.png',
       description: 'Skilled procurement manager focused on streamlining supply chain operations and vendor management.',
       longDescription: 'Arsalan Raza serves as Procurement Manager at Saher Flow Solutions, where he optimizes sourcing strategies, manages supplier relationships, and ensures efficient supply chain operations. Bringing a pragmatic approach to procurement, Arsalan is committed to delivering quality and reliability in procurement while supporting operational excellence through optimized inventory, cost efficiency, and vendor performance.',
@@ -437,7 +474,7 @@ const partnerships = [
       id: 10,
       name: 'Muneeb Haider',
       role: 'Accountant',
-      location: 'Jeddah, Saudi Arabia',
+      location: 'Thuwal, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555207/Syed-Muneeb-Haider-Accountant-Business-Administrator_aerlfp.jpg',
       description: 'Accountant and ACCA candidate specializing in financial forecasting, bookkeeping, and compliance with IFRS standards.',
       longDescription: 'Muneeb Haider is an Accountant at Saher Flow Solutions with over three years of professional experience in financial management and compliance. As an ACCA candidate and AAT member, he excels in financial forecasting, bank reconciliation, receivables and payables management, and VAT/WHT compliance. His role also spans cross-departmental support in administration, HR, and supply chain operations. Previously, he interned at Brainnest, where he prepared and analyzed financial statements using key financial ratios. Muneeb\'s meticulous approach to accounting ensures accuracy, transparency, and informed decision-making for the organizations he supports.',
@@ -471,7 +508,7 @@ const partnerships = [
       id: 11,
       name: 'Salem Bawazir',
       role: 'Embedded Design Engineer',
-      location: 'Jeddah, Saudi Arabia',
+      location: 'Thuwal, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754562693/photo_6059953427796046688_x_1_nsecls.jpg',
       description: 'Electrical and Electronics Engineer specializing in embedded systems, PCB design, and automation.',
       longDescription: 'Salem Bawazir is an Embedded Design Engineer at Saher Flow Solutions with a solid foundation in electrical and electronics engineering. His expertise spans embedded systems, PCB design, electronics troubleshooting, and automation, with hands-on experience in microcontroller programming (PIC, STM32), robotics, and PLC systems. Prior to joining Saher Flow Solutions, Salem worked as a Production Engineer at Al Wefag Trading & Manufacturing Co. Ltd and completed internships as a Robotics Engineer at Smart Methods and as an Electrical/Electronics Trainee at Smart Life Technology and Hamid Nawaz Engineering Services. He is adept with tools like Altium Designer and KiCad, and brings strong problem-solving, time management, and communication skills to every project. Salem is also a certified engineer with the Saudi Council of Engineers and the Board of Engineers Malaysia.',
@@ -582,7 +619,7 @@ const partnerships = [
                   </p>
 
                   <div className="flex flex-wrap gap-3 sm:gap-4 mb-10">
-                    {['Saudi Aramco Pre-Qualified', '±2% Accuracy', '99.8% Uptime', 'Non-Radioactive'].map((feature, idx) => (
+                    {['Saudi Aramco Pre-Qualified', '±2-5% Accuracy', '99.8% Uptime', 'Non-Gamma', 'Non-Intrusive'].map((feature, idx) => (
                       <motion.div
                         key={idx}
                         initial={{ opacity: 0, x: -20 }}
@@ -1082,30 +1119,34 @@ const partnerships = [
 
           {/* Team Stats */}
           {/* Team Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 p-8 bg-gradient-to-r from-navy-50 to-yellow-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl"
-          >
-            <div className="text-center">
-              <div className="text-3xl font-bold text-navy-900 dark:text-white mb-2">3+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">Countries Served</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-navy-900 dark:text-white mb-2">10+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">Years Combined Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-navy-900 dark:text-white mb-2">5+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">Patents & Publications</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-navy-900 dark:text-white mb-2">5+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">Successful Deployments</div>
-            </div>
-          </motion.div>
+         <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 p-8 
+             bg-gradient-to-r from-navy-900 to-navy-700 
+             dark:from-gray-800 dark:to-gray-700 
+             rounded-3xl"
+>
+  <div className="text-center">
+    <div className="text-3xl font-bold text-white mb-2">3+</div>
+    <div className="text-sm text-gray-200">Countries Served</div>
+  </div>
+  <div className="text-center">
+    <div className="text-3xl font-bold text-white mb-2">10+</div>
+    <div className="text-sm text-gray-200">Years MPFM Experience</div>
+  </div>
+  <div className="text-center">
+    <div className="text-3xl font-bold text-white mb-2">15+</div>
+    <div className="text-sm text-gray-200">Patents & Publications</div>
+  </div>
+  <div className="text-center">
+    <div className="text-3xl font-bold text-white mb-2">30+</div>
+    <div className="text-sm text-gray-200">Successful Deployments</div>
+  </div>
+</motion.div>
+
         </div>
       </section>
 
@@ -1248,9 +1289,9 @@ const partnerships = [
               viewport={{ once: true }}
               className="space-y-2 sm:space-y-4"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">99.8%</div>
-              <div className="text-base sm:text-lg md:text-xl font-semibold">Uptime Achieved</div>
-              <div className="text-gray-300 text-sm sm:text-base">Reliable 24/7 operation</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">40%</div>
+              <div className="text-base sm:text-lg md:text-xl font-semibold">Lower Cost</div>
+              <div className="text-gray-300 text-sm sm:text-base">Ownership</div>
             </motion.div>
 
             <motion.div
@@ -1260,7 +1301,7 @@ const partnerships = [
               viewport={{ once: true }}
               className="space-y-2 sm:space-y-4"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">±2%</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">±2-5%</div>
               <div className="text-base sm:text-lg md:text-xl font-semibold">Measurement Accuracy</div>
               <div className="text-gray-300 text-sm sm:text-base">Industry-leading precision</div>
             </motion.div>
@@ -1272,9 +1313,9 @@ const partnerships = [
               viewport={{ once: true }}
               className="space-y-2 sm:space-y-4"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">3+</div>
-              <div className="text-base sm:text-lg md:text-xl font-semibold">Countries Served</div>
-              <div className="text-gray-300 text-sm sm:text-base">Global deployment success</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">75%</div>
+              <div className="text-base sm:text-lg md:text-xl font-semibold">Reduction</div>
+              <div className="text-gray-300 text-sm sm:text-base">Carbon Emission</div>
             </motion.div>
           </div>
         </div>
