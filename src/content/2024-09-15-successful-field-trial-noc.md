@@ -7,7 +7,6 @@ excerpt: "Our innovative compact, skid-mounted, non-radioactive Multiphase Flow 
 featured: false
 ---
 
-# Successful field trial in major NOC in the GCC region
 
 **We are thrilled to announce** that Saher Flow Solutions has successfully completed a field trial in collaboration with one of the major National Oil Companies (NOCs) in the GCC region.
 

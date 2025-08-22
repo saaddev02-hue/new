@@ -7,7 +7,6 @@ excerpt: "Saher Flow Solutions participates in IKTVA forum 2023 as kingdom's fir
 featured: false
 ---
 
-# Saher Flow Solutions Participates in IKTVA Forum 2023
 
 **Saher Flow Solutions participates in IKTVA forum 2023** as kingdom's **first and only supplier of multiphase flow meters (MPFMs)**.
 

@@ -7,7 +7,6 @@ excerpt: "Saher Flow Solutions participated at ADIPEC 2021 between 15-18 Novembe
 featured: false
 ---
 
-# Saher Flow Solutions Exhibits in ADIPEC 2021
 
 **We, Saher Flow Solutions, are pleased to have had the great opportunity** to participate at **ADIPEC 2021** between **15-18 November**, the world's most influential meeting place where oil, gas and energy companies and professionals meet in-person, safely to network and establish new opportunities.
 

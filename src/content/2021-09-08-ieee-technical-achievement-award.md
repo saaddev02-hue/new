@@ -7,7 +7,6 @@ excerpt: "A proud moment to honor our Chief Technology Officer Dr. Muhamad Akram
 featured: false
 ---
 
-# IEEE Sensors Society Honors Our CTO with Prestigious Technical Achievement Award
 
 **A proud moment to honor our Chief Technology Officer: Dr. Muhamad Akram Karimi** for receiving the **2021 IEEE Sensors Council Technical Achievement Award** in the area of Sensors (early career).
 

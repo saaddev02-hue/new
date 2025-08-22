@@ -87,7 +87,7 @@ const Home: React.FC = () => {
       />
     ),
       title: "Non-Gamma",
-      description: "Gamma rays were the solutions of the past. Our solution does not use any nuclear radiation source such as gamma rays and yet gives accurate measurements.",
+      description: "Our solution does not use any nuclear radiation source such as gamma rays and yet gives accurate measurements",
       color: "from-green-500 to-emerald-600"
     },
     {
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
       />
     ),
       title: "Real-Time Remote Monitoring",
-      description: "No need to visit the well site or connect with company's on-site secure servers, our sensors securely connect to the cloud, giving you global access to well performance data anytime.",
+      description: "There's no need to visit the well site or access the company's on-site servers, data can be synced with on-site servers or cloud based servers",
       color: "from-blue-500 to-cyan-600"
     },
     {
@@ -112,7 +112,7 @@ const Home: React.FC = () => {
       />
     ),
       title: "Non-Intrusive (Full Bore Design)",
-      description: "Our sensors don’t physically interact with the production fluid. Resulting in low wear and tear, hence longer operational life.",
+      description: "Our sensors don’t physically interact with the production fluid. Resulting in low wear and tear, hence longer operational life",
       color: "from-purple-500 to-indigo-600"
     },
     {
@@ -476,19 +476,12 @@ const partnerships = [
       role: 'Accountant',
       location: 'Thuwal, Saudi Arabia',
       image: 'https://res.cloudinary.com/drnak5yb2/image/upload/v1754555207/Syed-Muneeb-Haider-Accountant-Business-Administrator_aerlfp.jpg',
-      description: 'Accountant and ACCA candidate specializing in financial forecasting, bookkeeping, and compliance with IFRS standards.',
-      longDescription: 'Muneeb Haider is an Accountant at Saher Flow Solutions with over three years of professional experience in financial management and compliance. As an ACCA candidate and AAT member, he excels in financial forecasting, bank reconciliation, receivables and payables management, and VAT/WHT compliance. His role also spans cross-departmental support in administration, HR, and supply chain operations. Previously, he interned at Brainnest, where he prepared and analyzed financial statements using key financial ratios. Muneeb\'s meticulous approach to accounting ensures accuracy, transparency, and informed decision-making for the organizations he supports.',
+      description: 'Part Qualified ACCA and AAT member specializing in financial reporting, tax compliance, and audits. ensures accuracy in accounting operations, oversees payroll and investor relations, and supports cross-functional processes.',
+      longDescription: 'Part Qualified ACCA and AAT member specializing in financial reporting, tax compliance, and audits. ensures accuracy in accounting operations, oversees payroll and investor relations, and supports cross-functional processes.',
       expertise: [
-        'Financial Forecasting',
-        'Bookkeeping',
-        'Bank Reconciliation',
-        'IFRS Compliance',
-        'Receivables & Payables Management',
-        'VAT & WHT Records',
-        'Client & Supplier Relations',
-        'Financial Statement Analysis',
-        'Budgeting',
-        'RFQ Handling'
+        'Financial Reporting',
+        'Tax Compliance',
+        'Audit & Reconciliation'
       ],
       achievements: [
         'Implemented accurate bookkeeping systems aligning with IFRS standards',

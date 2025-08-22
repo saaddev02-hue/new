@@ -7,7 +7,6 @@ excerpt: "Saher Flow Solutions has been registered in Abu Dhabi Global Market (A
 featured: false
 ---
 
-# Saher Flow Registered in Abu Dhabi Global Market (ADGM)
 
 **We are pleased to announce** that Saher Flow Solutions has been registered in **Abu Dhabi Global Market (ADGM)** on March 11, 2022.
 

@@ -7,7 +7,6 @@ excerpt: "Saher Flow Solutions attended the International Petroleum Technology C
 featured: false
 ---
 
-# Saher Flow Solutions Attends IPTC 2022 in Riyadh
 
 **Saher Flow Solutions attended the International Petroleum Technology Conference (IPTC)**, held on **21–23 February 2022**, at the **Riyadh International Convention and Exhibition Centre**, Kingdom of Saudi Arabia, with **Saudi Aramco hosting exclusively**.
 

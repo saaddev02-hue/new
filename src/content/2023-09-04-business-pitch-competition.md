@@ -7,7 +7,6 @@ excerpt: "Saher Flow Solutions is pleased to be declared 2nd place winner at a b
 featured: false
 ---
 
-# 🥈 2nd Place Winner at Business Pitch Competition
 
 **Saher Flow Solutions is pleased to be declared 2nd place winner** at a business pitch competition held in collaboration with **Flat6labs and Inclusion Japan VCs**.
 

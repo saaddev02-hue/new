@@ -7,7 +7,6 @@ excerpt: "Historic milestone: Saher becomes the first GCC company to achieve Sau
 featured: true
 ---
 
-# Saher's multiphase technology pre-qualified by Saudi Aramco
 
 **Saher is a technology company** specializing in three-phase water-cut and multiphase flow metering solutions. Our innovative technology is being validated by a growing number of energy companies worldwide, underscoring its reliability and effectiveness.
 

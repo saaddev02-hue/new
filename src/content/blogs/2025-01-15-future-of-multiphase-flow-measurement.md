@@ -2,8 +2,8 @@
 title: "The Future of Multiphase Flow Measurement: AI and Digital Twin Technology"
 date: "2025-01-15"
 author: "Dr. Muhammad Akram Karimi"
-authorTitle: "Chief Technology Officer"
-authorImage: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=150"
+authorTitle: "Co-founder / CTO"
+authorImage: "https://res.cloudinary.com/drnak5yb2/image/upload/v1754555205/Dr.Akram__wtiwxi.png"
 category: "Technology"
 tags: ["AI", "Digital Twin", "DMOR", "Innovation"]
 image: "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -14,7 +14,6 @@ seoTitle: "AI-Powered Multiphase Flow Measurement | Digital Twin Technology"
 seoDescription: "Discover how Saher Flow Solutions uses AI and digital twin technology to revolutionize multiphase flow measurement in oil and gas operations."
 ---
 
-# The Future of Multiphase Flow Measurement: AI and Digital Twin Technology
 
 The oil and gas industry is experiencing a technological revolution, and at the forefront of this transformation is the integration of **artificial intelligence (AI)** and **digital twin technology** in multiphase flow measurement. As the Chief Technology Officer at Saher Flow Solutions, I've witnessed firsthand how these cutting-edge technologies are reshaping our industry's approach to flow measurement.
 

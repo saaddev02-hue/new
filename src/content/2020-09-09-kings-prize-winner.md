@@ -7,7 +7,6 @@ excerpt: "King's prize is the highest honor an inventor can receive for its crea
 featured: true
 ---
 
-# 👑 Winner of King's Prize
 
 **King's prize is the highest honor an inventor can receive for its creation in Kingdom of Saudi Arabia.** We are extremely humbled that our patent on the innovative design of **Dual Mutually Orthogonal Resonator (DMOR) based water cut sensor** was awarded the **best invention of the year 2018**.
 

@@ -7,7 +7,6 @@ excerpt: "A global innovation uses artificial intelligence to measure oil and ga
 featured: false
 ---
 
-# Benefiting From The Research Infrastructure In The Kingdom RDIA
 
 **A global innovation** uses artificial intelligence to measure the performance of oil and gas wells and provides sustainable solutions to reduce production costs.
 

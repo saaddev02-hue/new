@@ -7,7 +7,6 @@ excerpt: "We are excited to complete successful industrial flow loop testing of 
 featured: false
 ---
 
-# Successful Industrial Flow Loop Testing in NORCE, Norway
 
 **We are excited to complete successful industrial flow loop testing** of our multiphase meter in a **well accredited test setup**.
 

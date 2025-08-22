@@ -3,7 +3,7 @@ title: "Digital Transformation in Oil & Gas: Beyond Traditional Measurement"
 date: "2025-01-10"
 author: "Prof. Atif Shamim"
 authorTitle: "Technical Director & KAUST Professor"
-authorImage: "https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=150"
+authorImage: "https://res.cloudinary.com/drnak5yb2/image/upload/v1754555206/ATIF-SHAMIM-2020_v6cyab.png"
 category: "Industry Insights"
 tags: ["Digital Transformation", "Oil & Gas", "IoT", "Industry 4.0"]
 image: "https://images.pexels.com/photos/3913025/pexels-photo-3913025.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -14,7 +14,6 @@ seoTitle: "Digital Transformation in Oil & Gas Industry | Smart Technologies"
 seoDescription: "Explore how digital transformation is revolutionizing the oil and gas industry with IoT, smart sensors, and advanced analytics for improved efficiency."
 ---
 
-# Digital Transformation in Oil & Gas: Beyond Traditional Measurement
 
 The oil and gas industry, traditionally known for its conservative approach to technology adoption, is experiencing an unprecedented digital transformation. As we advance deeper into the 21st century, the integration of smart technologies, Internet of Things (IoT), and advanced analytics is not just an option—it's becoming essential for survival and competitiveness.
 

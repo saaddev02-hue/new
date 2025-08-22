@@ -7,7 +7,6 @@ excerpt: "Saher Flow Solutions has proudly completed a flow loop test at South W
 featured: false
 ---
 
-# Saher Multiphase Meter Testing in SwRI Flow Loop
 
 **Industrial flow loops play a critical role** in validating the performance of multiphase meters and it is considered an **essential benchmarking test** before rolling out the meters to the fields.
 

@@ -7,7 +7,6 @@ excerpt: "We hosted senior management from Saudi Aramco, including the Vice Pres
 featured: false
 ---
 
-# 🌟 Saher Flow Solutions Welcomes Senior Leadership from Saudi Aramco! 🌟
 
 **We are proud to have recently hosted** senior management from Saudi Aramco, including the esteemed **Vice President of Aramco Digital**. This visit marks a significant milestone in our journey towards revolutionizing flow measurement solutions in the GCC.
 

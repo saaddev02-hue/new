@@ -7,7 +7,6 @@ excerpt: "Saher Flow Solutions highlighted in the first edition of LEAP magazine
 featured: false
 ---
 
-# Saher Flow Solutions Featured in Inaugural Edition of LEAP Magazine
 
 **Saher Flow Solutions**, a cutting-edge advanced sensing solution provider based in Saudi Arabia, has been highlighted in the first edition of LEAP magazine. The company, known for its innovative water-cut and multiphase flow meters, is making waves in the oil and gas industry by helping companies manage unwanted produced water, thereby reducing their costs per barrel.
 

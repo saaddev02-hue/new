@@ -7,7 +7,6 @@ excerpt: "Verification of our technology in the field was the most important mil
 featured: false
 ---
 
-# Successful Field Trials of Our Multiphase Meter in the Middle East
 
 **Verification of our technology in the field was the most important milestone** which was achieved in **summer 2020**.
 
