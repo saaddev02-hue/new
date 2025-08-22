@@ -227,9 +227,7 @@ const Contact: React.FC = () => {
                     <div>
                       <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Headquarters</h4>
                       <p className="text-gray-600 dark:text-gray-300">
-                        King Abdullah University of Science and Technology (KAUST)<br />
-                        Building 1, Office 2204<br />
-                        Thuwal 23955, Saudi Arabia
+                        King Abdullah University of Science and Technology (KAUST) Building 1, Office 2204 Thuwal 23955, Saudi Arabia
                       </p>
                     </div>
                   </div>
