@@ -209,10 +209,10 @@ const Footer: React.FC = () => {
                   <span>CE Compliant</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-green-600/30 rounded border border-green-500/30 flex items-center justify-center">
-                    <span className="text-xs font-bold text-green-400">KSA</span>
+                  <div className="w-8 h-8 bg-white/20 rounded border border-white/30 flex items-center justify-center">
+                    <span className="text-xs font-bold">KSA</span>
                   </div>
-                  <span className="text-green-400">Made in Saudi Arabia</span>
+                  <span>Made in Saudia Arabia</span>
                 </div>
               </div>
 
