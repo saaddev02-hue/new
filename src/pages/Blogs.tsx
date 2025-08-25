@@ -258,13 +258,12 @@ const Blogs: React.FC = () => {
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl">
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-4 bg-yellow-500 rounded-full">
-                  <BookOpen className="w-8 h-8 text-navy-900" />
-                </div>
+              
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
                   Expert Insights &
                   <span className="block text-yellow-400">Industry Blog</span>
                 </h1>
+                
               </div>
               <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed mb-6 sm:mb-8">
                 Deep dive into flow measurement technology, industry trends, and innovation insights from our team of experts
@@ -544,21 +543,7 @@ const Blogs: React.FC = () => {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Subscribe to our newsletter and never miss expert insights on flow measurement technology and industry trends
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="/subscribe"
-                className="inline-flex items-center gap-3 bg-yellow-500 text-navy-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                Subscribe to Newsletter
-                <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-navy-900 transition-all duration-300"
-              >
-                Contact Our Experts
-              </a>
-            </div>
+            
           </div>
         </div>
 
