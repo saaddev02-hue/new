@@ -17,7 +17,7 @@ const EmailJSSetupGuide: React.FC = () => {
         <div className="flex items-center gap-2">
           <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
           <span className="text-green-800 dark:text-green-400 font-medium">
-            EmailJS is properly configured! Newsletter subscriptions are working.
+            EmailJS is properly configured! All email services are working.
           </span>
         </div>
       </div>
@@ -30,10 +30,10 @@ const EmailJSSetupGuide: React.FC = () => {
         <AlertTriangle className="w-6 h-6 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-1" />
         <div className="flex-1">
           <h3 className="text-yellow-800 dark:text-yellow-400 font-semibold mb-2">
-            EmailJS Setup Required
+            EmailJS Templates Setup Required
           </h3>
           <p className="text-yellow-700 dark:text-yellow-300 mb-4">
-            To send welcome emails and article notifications to subscribers, you need to set up EmailJS (it's free!).
+            You have EmailJS configured but need to create the email templates for the contact form, careers, and newsletter to work properly.
           </p>
           
           <button
@@ -41,229 +41,361 @@ const EmailJSSetupGuide: React.FC = () => {
             className="flex items-center gap-2 bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition-colors"
           >
             <Settings className="w-4 h-4" />
-            {showGuide ? 'Hide Setup Guide' : 'Show Setup Guide'}
+            {showGuide ? 'Hide Setup Guide' : 'Show Template Setup Guide'}
           </button>
         </div>
       </div>
 
       {showGuide && (
         <div className="mt-6 space-y-6">
-          {/* Step 1: Create Account */}
+          {/* Current Configuration */}
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
-              Create EmailJS Account (Free)
+              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">✓</span>
+              Your Current Configuration
             </h4>
-            <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              <li>
-                Go to{' '}
-                <a 
-                  href="https://www.emailjs.com/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline inline-flex items-center gap-1"
-                >
-                  EmailJS.com <ExternalLink className="w-3 h-3" />
-                </a>{' '}
-                and click "Sign Up"
-              </li>
-              <li>Create account with your email (the one you want to receive notifications)</li>
-              <li>Verify your email address</li>
-              <li>Log in to your EmailJS dashboard</li>
-            </ol>
-          </div>
-
-          {/* Step 2: Add Email Service */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
-              Connect Your Email
-            </h4>
-            <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              <li>In EmailJS dashboard, click "Email Services" in the left menu</li>
-              <li>Click "Add New Service"</li>
-              <li>Choose your email provider:
-                <ul className="list-disc list-inside ml-4 mt-2 space-y-1">
-                  <li><strong>Gmail</strong> - Most common choice</li>
-                  <li><strong>Outlook/Hotmail</strong> - Microsoft emails</li>
-                  <li><strong>Yahoo</strong> - Yahoo emails</li>
-                  <li><strong>Other</strong> - Any SMTP email</li>
-                </ul>
-              </li>
-              <li>Follow the setup instructions (usually just login with your email)</li>
-              <li><strong>Copy your Service ID</strong> (looks like: service_abc123)</li>
-            </ol>
-          </div>
-
-          {/* Step 3: Create Templates */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
-              Create Email Templates
-            </h4>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              Create 2 email templates:
-            </p>
-            
-            <div className="space-y-4">
-              {/* Welcome Template */}
-              <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-                <h5 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Template 1: Welcome Email
-                </h5>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  Go to "Email Templates" → "Create New Template" → Name it "template_welcome"
-                </div>
-                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded text-sm">
-                  <p><strong>Subject:</strong> Welcome to Saher Flow Solutions Newsletter!</p>
-                  <p><strong>Body:</strong></p>
-                  <pre className="whitespace-pre-wrap text-xs mt-2 bg-white dark:bg-gray-800 p-2 rounded">
-{`Hi {{to_name}},
-
-Welcome to Saher Flow Solutions newsletter! 🎉
-
-Thank you for subscribing. You'll now receive:
-✅ Latest product updates and innovations
-✅ Industry insights and technical papers  
-✅ Company news and achievements
-✅ Exclusive content for subscribers
-
-We're excited to keep you informed about the latest developments in multiphase flow measurement technology.
-
-Best regards,
-The Saher Flow Solutions Team
-
-Visit our website: {{website_url}}`}
-                  </pre>
-                </div>
-              </div>
-
-              {/* Article Template */}
-              <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-                <h5 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Template 2: New Article Notification
-                </h5>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  Create another template → Name it "template_article"
-                </div>
-                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded text-sm">
-                  <p><strong>Subject:</strong> New Article: {{article_title}}</p>
-                  <p><strong>Body:</strong></p>
-                  <pre className="whitespace-pre-wrap text-xs mt-2 bg-white dark:bg-gray-800 p-2 rounded">
-{`Hi {{to_name}},
-
-We've just published a new article! 📰
-
-Title: {{article_title}}
-
-{{article_excerpt}}
-
-Read the full article here: {{article_url}}
-
-Best regards,
-The Saher Flow Solutions Team
-
-Visit our website: {{website_url}}`}
-                  </pre>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Step 4: Get Public Key */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
-              Get Your Public Key
-            </h4>
-            <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              <li>In EmailJS dashboard, click "Account" in the left menu</li>
-              <li>Click "General" tab</li>
-              <li><strong>Copy your Public Key</strong> (looks like: abc123XYZ)</li>
-            </ol>
-          </div>
-
-          {/* Step 5: Update Code */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">5</span>
-              Update Your Website Code
-            </h4>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              Open the file <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">src/utils/emailService.ts</code> and replace these values:
-            </p>
-            
             <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Replace these lines:</span>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => setShowConfig(!showConfig)}
-                    className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
-                  >
-                    {showConfig ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
-                    {showConfig ? 'Hide' : 'Show'}
-                  </button>
-                  <button
-                    onClick={() => copyToClipboard(`const EMAILJS_SERVICE_ID = 'your_service_id_here';
-const EMAILJS_TEMPLATE_ID_WELCOME = 'template_welcome';
-const EMAILJS_TEMPLATE_ID_ARTICLE = 'template_article';
-const EMAILJS_PUBLIC_KEY = 'your_public_key_here';`)}
-                    className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
-                  >
-                    <Copy className="w-3 h-3" />
-                    Copy
-                  </button>
-                </div>
-              </div>
-              
-              {showConfig && (
-                <pre className="text-xs text-gray-800 dark:text-gray-200 overflow-x-auto">
-{`// Replace these values in src/utils/emailService.ts:
-const EMAILJS_SERVICE_ID = 'your_actual_service_id';     ← Your Service ID
-const EMAILJS_TEMPLATE_ID_WELCOME = 'template_welcome';  ← Keep exactly as is
-const EMAILJS_TEMPLATE_ID_ARTICLE = 'template_article';  ← Keep exactly as is  
-const EMAILJS_PUBLIC_KEY = 'your_actual_public_key';     ← Your Public Key`}
-                </pre>
-              )}
-            </div>
-
-            <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-              <p className="text-blue-800 dark:text-blue-300 text-sm">
-                <strong>Important:</strong> Make sure your EmailJS template IDs are exactly:
-                <br />
-                <code>template_welcome</code> for welcome emails
-                <br />
-                <code>template_article</code> for article notifications
+              <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                <strong>Service ID:</strong> service_yu0nzx3
+              </p>
+              <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                <strong>Public Key:</strong> B4GXKUs8SowruUqKW
+              </p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <strong>Admin Email:</strong> saad.mahmood@saherflow.com
               </p>
             </div>
           </div>
 
-          {/* Step 6: Test */}
+          {/* Template Creation Steps */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
+            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
+              Create Email Templates in EmailJS
+            </h4>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              You need to create 6 email templates in your EmailJS dashboard. Go to{' '}
+              <a 
+                href="https://dashboard.emailjs.com/admin/templates" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline inline-flex items-center gap-1"
+              >
+                EmailJS Templates <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
+
+            <div className="space-y-4">
+              {/* Template 1: Contact Admin */}
+              <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-gray-900 dark:text-white">
+                    1. Contact Form → Admin (template_contact_admin)
+                  </h5>
+                  <button
+                    onClick={() => copyToClipboard(`Subject: New Contact Form: {{sender_name}} — {{department}}
+
+New contact form submission
+
+Name: {{sender_name}}
+Email: {{sender_email}}
+Department: {{department}}
+Sent at: {{submitted_at}}
+
+Message:
+{{message}}
+
+---
+Reply directly to: {{sender_email}}`)}
+                    className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
+                  >
+                    <Copy className="w-3 h-3" />
+                    Copy Template
+                  </button>
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  <strong>To Email:</strong> saad.mahmood@saherflow.com
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded text-xs">
+                  <p><strong>Subject:</strong> New Contact Form: {`{{sender_name}}`} — {`{{department}}`}</p>
+                  <p><strong>Body:</strong></p>
+                  <pre className="whitespace-pre-wrap mt-2">
+{`New contact form submission
+
+Name: {{sender_name}}
+Email: {{sender_email}}
+Department: {{department}}
+Sent at: {{submitted_at}}
+
+Message:
+{{message}}
+
+---
+Reply directly to: {{sender_email}}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Template 2: Contact Auto-reply */}
+              <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-gray-900 dark:text-white">
+                    2. Contact Auto-reply (template_contact_autoreply)
+                  </h5>
+                  <button
+                    onClick={() => copyToClipboard(`Subject: Thanks for contacting {{company_name}} — we received your message
+
+Hi {{sender_name}},
+
+Thanks — we received your message and will reply within 1–2 business days.
+
+If urgent, contact us at {{support_email}}.
+
+— {{company_name}}`)}
+                    className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
+                  >
+                    <Copy className="w-3 h-3" />
+                    Copy Template
+                  </button>
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  <strong>To Email:</strong> {`{{to_email}}`} (dynamic)
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded text-xs">
+                  <pre className="whitespace-pre-wrap">
+{`Subject: Thanks for contacting {{company_name}} — we received your message
+
+Hi {{sender_name}},
+
+Thanks — we received your message and will reply within 1–2 business days.
+
+If urgent, contact us at {{support_email}}.
+
+— {{company_name}}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Template 3: Careers Admin */}
+              <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-gray-900 dark:text-white">
+                    3. Job Application → Admin (template_careers_admin)
+                  </h5>
+                  <button
+                    onClick={() => copyToClipboard(`Subject: Job Application: {{position}} — {{applicant_name}}
+
+New job application
+
+Name: {{applicant_name}}
+Email: {{applicant_email}}
+Phone: {{applicant_phone}}
+Position: {{position}}
+Location: {{location}}
+Experience: {{experience}}
+Submitted: {{submitted_at}}
+
+Cover letter:
+{{cover_letter}}
+
+Resume download link (expires in 14 days): {{resume_url}}
+
+---
+Reply directly to: {{applicant_email}}`)}
+                    className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
+                  >
+                    <Copy className="w-3 h-3" />
+                    Copy Template
+                  </button>
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  <strong>To Email:</strong> saad.mahmood@saherflow.com
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded text-xs">
+                  <pre className="whitespace-pre-wrap">
+{`Subject: Job Application: {{position}} — {{applicant_name}}
+
+New job application
+
+Name: {{applicant_name}}
+Email: {{applicant_email}}
+Phone: {{applicant_phone}}
+Position: {{position}}
+Location: {{location}}
+Experience: {{experience}}
+Submitted: {{submitted_at}}
+
+Cover letter:
+{{cover_letter}}
+
+Resume download link (expires in 14 days): {{resume_url}}
+
+---
+Reply directly to: {{applicant_email}}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Template 4: Careers Auto-reply */}
+              <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-gray-900 dark:text-white">
+                    4. Job Application Auto-reply (template_careers_autoreply)
+                  </h5>
+                  <button
+                    onClick={() => copyToClipboard(`Subject: Application received — {{position}} at {{company_name}}
+
+Hi {{applicant_name}},
+
+Thanks for applying for the {{position}} role at {{company_name}}.
+We've received your application and will review it. If shortlisted, we'll contact you at {{to_email}}.
+
+For queries: {{support_email}}
+
+Best,
+{{company_name}} HR`)}
+                    className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
+                  >
+                    <Copy className="w-3 h-3" />
+                    Copy Template
+                  </button>
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  <strong>To Email:</strong> {`{{to_email}}`} (dynamic)
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded text-xs">
+                  <pre className="whitespace-pre-wrap">
+{`Subject: Application received — {{position}} at {{company_name}}
+
+Hi {{applicant_name}},
+
+Thanks for applying for the {{position}} role at {{company_name}}.
+We've received your application and will review it. If shortlisted, we'll contact you at {{to_email}}.
+
+For queries: {{support_email}}
+
+Best,
+{{company_name}} HR`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Template 5: Newsletter Welcome */}
+              <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-gray-900 dark:text-white">
+                    5. Newsletter Welcome (template_newsletter_welcome)
+                  </h5>
+                  <button
+                    onClick={() => copyToClipboard(`Subject: Welcome to {{company_name}} newsletter
+
+Hi {{subscriber_name}},
+
+Welcome — thanks for subscribing to {{company_name}}'s updates. We'll send occasional news and new blog posts to this email.
+
+Manage your preferences: {{manage_link}}
+
+Best regards,
+The {{company_name}} Team`)}
+                    className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
+                  >
+                    <Copy className="w-3 h-3" />
+                    Copy Template
+                  </button>
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  <strong>To Email:</strong> {`{{to_email}}`} (dynamic)
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded text-xs">
+                  <pre className="whitespace-pre-wrap">
+{`Subject: Welcome to {{company_name}} newsletter
+
+Hi {{subscriber_name}},
+
+Welcome — thanks for subscribing to {{company_name}}'s updates. We'll send occasional news and new blog posts to this email.
+
+Manage your preferences: {{manage_link}}
+
+Best regards,
+The {{company_name}} Team`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Template 6: Article Notification */}
+              <div className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-gray-900 dark:text-white">
+                    6. Article Notification (template_article_notification)
+                  </h5>
+                  <button
+                    onClick={() => copyToClipboard(`Subject: New article: {{article_title}} — {{company_name}}
+
+Hi {{subscriber_name}},
+
+A new article is live: {{article_title}}
+{{article_excerpt}}
+
+Read it: {{article_url}}
+
+Published on: {{published_date}}
+
+Best regards,
+The {{company_name}} Team`)}
+                    className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1"
+                  >
+                    <Copy className="w-3 h-3" />
+                    Copy Template
+                  </button>
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  <strong>To Email:</strong> {`{{to_email}}`} (dynamic)
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded text-xs">
+                  <pre className="whitespace-pre-wrap">
+{`Subject: New article: {{article_title}} — {{company_name}}
+
+Hi {{subscriber_name}},
+
+A new article is live: {{article_title}}
+{{article_excerpt}}
+
+Read it: {{article_url}}
+
+Published on: {{published_date}}
+
+Best regards,
+The {{company_name}} Team`}
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Testing Instructions */}
           <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-6">
             <h4 className="text-green-800 dark:text-green-400 font-semibold mb-2 flex items-center gap-2">
-              <span className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">6</span>
+              <span className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
               Test Your Setup
             </h4>
             <ol className="list-decimal list-inside space-y-1 text-green-700 dark:text-green-300 text-sm">
-              <li>Save your changes and refresh the website</li>
-              <li>Try subscribing to the newsletter with your email</li>
-              <li>Check your email inbox for the welcome message</li>
-              <li>If it works, you're all set! 🎉</li>
+              <li>Create all 6 templates in EmailJS with the exact template IDs shown above</li>
+              <li>Test the contact form - you should receive an email at saad.mahmood@saherflow.com</li>
+              <li>Test the careers form - upload a resume and check your email</li>
+              <li>Test newsletter subscription - you should get a welcome email</li>
+              <li>If everything works, this yellow warning will disappear! 🎉</li>
             </ol>
           </div>
 
-          {/* Troubleshooting */}
-          <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4">
-            <h4 className="text-red-800 dark:text-red-400 font-semibold mb-2">
-              Troubleshooting
+          {/* File Upload Info */}
+          <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+            <h4 className="text-blue-800 dark:text-blue-400 font-semibold mb-2">
+              File Upload Service
             </h4>
-            <ul className="list-disc list-inside space-y-1 text-red-700 dark:text-red-300 text-sm">
-              <li>Make sure template names are exactly "template_welcome" and "template_article"</li>
-              <li>Check that Service ID and Public Key are correct (no extra spaces)</li>
-              <li>Verify your email service is connected in EmailJS dashboard</li>
-              <li>Check browser console for error messages</li>
-            </ul>
+            <p className="text-blue-700 dark:text-blue-300 text-sm">
+              Resume uploads now use <strong>file.io</strong> - a free service that provides temporary download links. 
+              Files expire after 14 days or 10 downloads, which is perfect for job applications.
+            </p>
           </div>
         </div>
       )}

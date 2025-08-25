@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useForm, ValidationError } from '@formspree/react';
 import { Phone, Mail, MapPin, Send, Clock, Globe } from 'lucide-react';
+import { EmailService } from '../utils/emailService';
 import SEOHead from './SEOHead';
 
 const Contact: React.FC = () => {
-  const [state, handleSubmit] = useForm("xzzvwrgz"); // You'll need to replace this with your actual Formspree form ID
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,22 +25,50 @@ const Contact: React.FC = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create FormData object for Formspree
-    const formDataToSubmit = new FormData();
-    formDataToSubmit.append('name', formData.name);
-    formDataToSubmit.append('email', formData.email);
-    formDataToSubmit.append('department', formData.department);
-    formDataToSubmit.append('message', formData.message);
-    formDataToSubmit.append('_subject', `New Contact Form Submission from ${formData.name}`);
-    
-    // Submit to Formspree
-    const result = await handleSubmit(formDataToSubmit);
-    
-    if (state.succeeded) {
-      setFormData({ name: '', email: '', department: 'sales', message: '' });
-      alert('Thank you for your message! We\'ll get back to you soon.');
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setErrorMessage('Please fill in all required fields');
+      setSubmitStatus('error');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      // Send email to admin
+      const adminEmailSent = await EmailService.sendContactFormToAdmin({
+        sender_name: formData.name,
+        sender_email: formData.email,
+        department: formData.department,
+        message: formData.message
+      });
+
+      // Send auto-reply to user
+      const autoReplySent = await EmailService.sendContactAutoReply({
+        sender_name: formData.name,
+        sender_email: formData.email
+      });
+
+      if (adminEmailSent) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', department: 'sales', message: '' });
+        
+        if (!autoReplySent) {
+          console.warn('Auto-reply failed to send, but admin notification was successful');
+        }
+      } else {
+        throw new Error('Failed to send contact form');
+      }
+    } catch (error) {
+      console.error('Contact form submission error:', error);
+      setErrorMessage('Failed to send message. Please try again or contact us directly.');
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
+    
 
   return (
     <>
@@ -188,25 +218,25 @@ const Contact: React.FC = () => {
 
                 <button
                   type="submit"
-                  disabled={state.submitting}
+                  disabled={isSubmitting}
                   className="w-full bg-navy-900 dark:bg-yellow-500 text-white dark:text-navy-900 py-4 px-8 rounded-lg font-semibold text-lg hover:bg-navy-800 dark:hover:bg-yellow-400 transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send size={20} />
-                  {state.submitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
                 
-                {state.succeeded && (
+                {submitStatus === 'success' && (
                   <div className="bg-green-100 dark:bg-green-900/30 border border-green-500/30 rounded-lg p-4 text-center">
                     <p className="text-green-800 dark:text-green-400 font-medium">
-                      ✅ Message sent successfully! We'll get back to you within 24 hours.
+                      ✅ Message sent successfully! We'll get back to you within 1-2 business days.
                     </p>
                   </div>
                 )}
                 
-                {state.errors && state.errors.length > 0 && (
+                {submitStatus === 'error' && (
                   <div className="bg-red-100 dark:bg-red-900/30 border border-red-500/30 rounded-lg p-4 text-center">
                     <p className="text-red-800 dark:text-red-400 font-medium">
-                      ❌ There was an error sending your message. Please try again.
+                      ❌ {errorMessage || 'There was an error sending your message. Please try again.'}
                     </p>
                   </div>
                 )}
@@ -249,7 +279,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-navy-900 dark:text-white mb-1">Email</h4>
-                      <p className="text-gray-600 dark:text-gray-300">contact@saherflow.com</p>
+                      <p className="text-gray-600 dark:text-gray-300">saad.mahmood@saherflow.com</p>
                       <p className="text-sm text-gray-500 dark:text-gray-400">We respond within 24 hours</p>
                     </div>
                   </div>
